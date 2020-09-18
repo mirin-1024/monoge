@@ -1,31 +1,35 @@
 version: '3'
 services:
   db:
-    build: containers/mysql
+    build: docker/mysql
     env_file:
       - ./environments/common.env
       - ./environments/db.env
     volumes:
-      - ../volumes/db/data:/var/lib/mysql
+      - db-data:/var/lib/mysql
   app:
-    build: containers/rails
+    build: docker/rails
     env_file:
       - ./environments/common.env
       - ./environments/db.env
     command: bundle exec puma -C config/puma.rb
     volumes:
-      - ../volumes/app:/app
+      - .:/app
     depends_on:
       - db
   web:
-    build: containers/nginx
+    build: docker/nginx
     env_file:
       - ./environments/common.env
     volumes:
-      - ../volumes/app:/app
-      - ../volumes/web/log:/var/log/nginx/
-      - ../volumes/ssl:/etc/nginx/cert/
+      - .:/app
+      - log-data:/var/log/nginx/
+      - cert-data:/etc/nginx/cert/
     ports:
       - 80:80   # 443:443
     depends_on:
       - app
+volumes:
+  db-data:
+  log-data:
+  cert-data:

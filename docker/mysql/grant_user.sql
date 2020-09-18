@@ -1,2 +1,2 @@
-GRANT ALL PRIVILEGES ON *.* TO 'testappuser'@'%';
+GRANT ALL PRIVILEGES ON *.* TO 'monogeuser'@'%';
 FLUSH PRIVILEGES;
