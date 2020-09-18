@@ -17,16 +17,13 @@ RUN apk update && \
         build-base \
         curl-dev
 
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
-
-ENV READY_RAILS_DIR=/ready_rails
-WORKDIR $READY_RAILS_DIR
-COPY Gemfile .
-COPY application.rb .
-COPY database.yml .
-COPY puma.rb .
-
-
 WORKDIR /app
-ENTRYPOINT ["docker-entrypoint.sh"]
+
+COPY Gemfile .
+COPY Gemfile.lock .
+
+RUN bundle install -j4
+
+COPY . /app
+
+RUN mkdir -p tmp/sockets
