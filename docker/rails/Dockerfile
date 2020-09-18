@@ -18,11 +18,9 @@ RUN apk update && \
         curl-dev
 
 COPY docker-entrypoint.sh /usr/local/bin/
-
 RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
 
 ENV READY_RAILS_DIR=/ready_rails
-
 WORKDIR $READY_RAILS_DIR
 
 COPY Gemfile .
@@ -31,4 +29,4 @@ COPY database.yml .
 COPY puma.rb .
 
 WORKDIR /app
-ENTRYPOINT [“docker-entrypoint.sh”]
+ENTRYPOINT ["docker-entrypoint.sh"]
