@@ -1,0 +1,22 @@
+
+default: &default
+adapter: mysql2
+encoding: utf8
+pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+username: root
+password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' } %>
+host: db
+
+development:
+<<: *default
+database: monoge_development
+
+test:
+<<: *default
+database: monoge_test
+
+production:
+<<: *default
+database: monoge_production
+username: monoge
+password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>

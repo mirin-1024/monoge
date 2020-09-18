@@ -1,4 +1,4 @@
-version: '3'
+version: ‘3’
 services:
   db:
     build: docker/mysql
@@ -14,7 +14,7 @@ services:
       - ./environments/db.env
     command: bundle exec puma -C config/puma.rb
     volumes:
-      - .:/app
+      - ./app:/app
     depends_on:
       - db
   web:
@@ -22,14 +22,10 @@ services:
     env_file:
       - ./environments/common.env
     volumes:
-      - .:/app
+      - ./app:/app
       - log-data:/var/log/nginx/
       - cert-data:/etc/nginx/cert/
     ports:
-      - 80:80   # 443:443
+      - 80:80     # 443:443
     depends_on:
       - app
-volumes:
-  db-data:
-  log-data:
-  cert-data:

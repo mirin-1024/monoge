@@ -8,14 +8,14 @@ default: &default
 
 development:
   <<: *default
-  database: app_development
+  database: monoge_development
 
 test:
   <<: *default
-  database: app_test
+  database: monoge_test
 
 production:
   <<: *default
-  database: app_production
-  username: <%= ENV.fetch('MYSQL_USER') %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') %>
+  database: monoge_production
+  username: <%= ENV.fetch('DB_USERNAME') %>
+  password: <%= ENV.fetch('DB_PASSWORD') %>
