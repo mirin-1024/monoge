@@ -30,8 +30,13 @@ services:
       - 80:80     # 443:443
     depends_on:
       - app
-# chrome webdriverの追加
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - 4444:4444
 volumes:
   db-data:
   log-data:
   cert-data:
+
+# CircleCIの設定も行う

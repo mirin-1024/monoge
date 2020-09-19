@@ -6,7 +6,7 @@ if [ ! -e Gemfile ]; then
   cp -a $READY_RAILS_DIR/Gemfile .
   touch Gemfile.lock
 
-  bundle install
+  bundle install -j4
   rails new . -d mysql -f --skip-test
 
   cp -a $READY_RAILS_DIR/database.yml \
@@ -24,7 +24,7 @@ if [ ! -e Gemfile ]; then
   rails db:create
 
 elif [ -e $READY_RAILS_DIR ]; then
-  bundle install
+  bundle install -j4
   yarn install --check-files
   rm -r $READY_RAILS_DIR
 fi
