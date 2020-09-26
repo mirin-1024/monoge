@@ -10,6 +10,7 @@ jobs:
           DB_HOST: 127.0.0.1
           MYSQL_USER: 'root'
           MYSQL_PASSWORD: ''
+          MYSQL_TEST_HOST: '127.0.0.1'
       - image: circleci/mysql:8.0
         command: |
           --default-authentication-plugin=mysql_native_password
@@ -17,6 +18,7 @@ jobs:
           MYSQL_DATABASE: app_test
           MYSQL_USER: 'root'
           MYSQL_PASSWORD: ''
+          MYSQL_TEST_HOST: '127.0.0.1'
     steps:
       - checkout
       - restore_cache:
