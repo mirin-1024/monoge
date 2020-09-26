@@ -23,7 +23,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - repo-bundle-v1-{{ checksum "volumes/app/Gemfile.lock" }}
+            - repo-bundle-v1-{{ checksum "app/Gemfile.lock" }}
             - repo-bundle-v1-
       - run:
           name: Bundler install
@@ -34,12 +34,12 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install -j4
       - save_cache:
-          key: repo-bundle-v1-{{ checksum "volumes/app/Gemfile.lock" }}
+          key: repo-bundle-v1-{{ checksum "app/Gemfile.lock" }}
           paths:
             - vendor/bundle
       - restore_cache:
           keys:
-            - repo-yarn-{{ checksum "volumes/app/yarn.lock" }}
+            - repo-yarn-{{ checksum "app/yarn.lock" }}
             - repo-yarn-
       - run:
           name: Yarnをinstall
