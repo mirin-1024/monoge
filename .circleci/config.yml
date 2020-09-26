@@ -1,0 +1,59 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/ruby:2.7.1-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.1.4
+          RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          MYSQL_USER: 'root'
+          MYSQL_PASSWORD: ''
+      - image: circleci/mysql:8.0
+        command: |
+          --default-authentication-plugin=mysql_native_password
+        environment:
+          MYSQL_DATABASE: app_test
+          MYSQL_USER: 'root'
+          MYSQL_PASSWORD: ''
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - repo-bundle-v1-{{ checksum "volumes/app/Gemfile.lock" }}
+            - repo-bundle-v1-
+      - run:
+          name: Bundler install
+          command: |
+            gem update --system
+            gem install bundler -v 2.1.4
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install -j4
+      - save_cache:
+          key: repo-bundle-v1-{{ checksum "volumes/app/Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - restore_cache:
+          keys:
+            - repo-yarn-{{ checksum "volumes/app/yarn.lock" }}
+            - repo-yarn-
+      - run:
+          name: Yarnをinstall
+          command: yarn install --cache-folder ~/.cache/yarn
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+      - run:
+          name: Database setup
+          command: bin/rails db:create db:schema:load --trace
+      - run:
+          name: webpackの設定
+          command: |
+            bundle exec bin/webpack
+            bundle exec rails webpacker:install
+            yarn add bootstrap@4.3.1 jquery popper.js
+      - run:
+          name: execute rspec
+          command: bundle exec rspec

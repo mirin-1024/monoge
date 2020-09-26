@@ -7,7 +7,8 @@ services:
       - ./environments/db.env
     volumes:
       - db-data:/var/lib/mysql
-    # security_optの追加
+    security_opt:
+      - seccomp:unconfined
   app:
     build: docker/rails
     env_file:
@@ -23,7 +24,7 @@ services:
     env_file:
       - ./environments/common.env
     volumes:
-      - .:/app
+      - .:/app:delegated
       - log-data:/var/log/nginx/
       - cert-data:/etc/nginx/cert/
     ports:
@@ -38,5 +39,3 @@ volumes:
   db-data:
   log-data:
   cert-data:
-
-# CircleCIの設定も行う

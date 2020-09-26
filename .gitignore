@@ -34,3 +34,7 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# 個人追加
+/environments
+/.devcontainer

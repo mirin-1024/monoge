@@ -1,0 +1,91 @@
+@import '~bootstrap/scss/bootstrap';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+html {
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: "UD新ゴNT M";;
+  font-weight: 200;
+}
+
+.container-fluid {
+  height: 100vh;
+  width: 100vw;
+  background-color: #414950;
+}
+
+h1, h2, h3, h4, h5, p {
+  color: #fff;
+}
+
+label {
+  color: #fff;
+}
+
+/* home */
+#home-container {
+  h1, p {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .btn {
+    margin-top: 3rem;
+  }
+}
+
+/* header */
+#header {
+}
+
+/* footer */
+#footer {
+  background-color: gray;
+  li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 0.25rem;
+  }
+}
+
+/* contact */
+#contact-container {
+  h1 {
+    margin: 5% auto;
+    border-bottom: 1px gray solid;
+  }
+  dt {
+    color: #fff;
+    border-bottom: 1px #fff solid;
+    width: 30%;
+  }
+  dd {
+    list-style: none;
+    color: #fff;
+  }
+}
+
+/* signup */
+#signup-container {
+  #form-row {
+    border: 1px #fff solid;
+  }
+  h1 {
+    border-bottom: 1px gray solid;
+    text-align: center;
+    margin: 2rem 0;
+  }
+  .form-control {
+    margin-bottom: 1rem;
+  }
+  p {
+    text-align: center;
+  }
+  .btn {
+    margin: 4rem 0 2rem 0;
+  }
+}
