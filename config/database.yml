@@ -18,6 +18,7 @@ test:
 
 production:
   <<: *default
-  database: monoge_production
-  username: <%= ENV.fetch('MYSQL_USER') %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') %>
+  database: <%= ENV["DATABASE_NAME"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
