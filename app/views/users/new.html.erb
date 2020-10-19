@@ -1,8 +1,9 @@
-<div id="signup-container" class="container-fluid">
-  <div class="row">
-    <div id="form-row" class="col-md-8 mx-auto justify-content-center">
+<div class="signup-container container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-4 col-sm-3">
       <h1>ユーザー登録</h1>
-      <%= form_with model: @user, local: true, class: "form-group" do |f| %>
+      <div class="signup-form">
+        <%= form_with model: @user, local: true, class: "form-group" do |f| %>
         <%= render 'shared/error_messages' %>
 
         <%= f.label :name, "名前" %>
@@ -16,10 +17,13 @@
 
         <%= f.label :password_confirmation, "パスワード（確認）" %>
         <%= f.password_field :password_confirmation, class: "form-control" %>
-
-        <%= f.submit "登録", class: "btn btn-light btn-block" %>
+        <div class="signup-btn mx-auto">
+          <%= f.submit "登録", class: "btn btn-primary btn-block" %>
+        </div>
       <% end %>
-      <p>すでに登録済みの方は<%= link_to 'こちら', '#' %></p>
+      </div>
     </div>
+    <div class="w-100"></div>
+    <p>すでに登録済みの方は<%= link_to 'こちら', '#' %></p>
   </div>
 </div>
