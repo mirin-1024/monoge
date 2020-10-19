@@ -1,52 +1,33 @@
-<header class="header">
-  <div class="branding">
-    <div class="container">
-      <nav class="navbar navbar-expand-lg">
-        <div class="site-logo mr-5">
-          <%= link_to 'monoge', root_path %>
-        </div>
-          <button class="navbar-toggler collapsed"
+<div class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+  <div class="container">
+    <%= link_to 'monoge', root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler"
                   type="button"
                   data-toggle="collapse"
-                  data-target="#navigation"
-                  aria-controls="navigation"
+                  data-target="#navbarResponsive"
+                  aria-controls="navbarResponsive"
                   aria-expanded="false"
                   aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        <div class="collapse navbar-collapse pt-3 pt-lg-0" id="navigation">
-          <ul class="navbar-nav">
-            <li class="nav-item mr-lg-4">
-              <%= link_to 'ホーム', root_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item mr-lg-4">
-              <%= link_to 'Contact', contact_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item dropdown mr-lg-4">
-              <%= link_to 'ユーザー', '#', 
-                      class: "nav-link  dropdown-toggle", 
-                      id: "navbarDropdown", 
-                      'role': :button, 
-                      'data-toggle': :dropdown, 
-                      'aria-haspopup': true, 
-                      'aria-expanded': false %>
-              <div class="dropdown-menu dropdown-menu-right rounded shadow menu-animate slideIn" aria-labelledby="navbarDropdown">
-                <%= link_to  "設定", '#', class: "dropdown-item has-icon" %>
-              </div>
-            </li>
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item mr-lg-3">
-              <%= link_to  "登録", '#', class: "nav-link mt-1 mb-3 mb-lg-0" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to  "Free Trial", '#', class: "nav-btn btn btn-gradient text-white" %>
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to 'ホーム', root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Contact', contact_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+          <%= link_to('#', class: "nav-link dropdown-toggle", 'data-toggle': :dropdown, 'id': :user_caret) do %>
+            ユーザー
+            <span class="caret"></span>
+          <% end %>
+          <div class="dropdown-menu" aria-labelledby="user_caret">
+            <%= link_to  "設定", '#', class: "dropdown-item" %>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-</header>
+</div>

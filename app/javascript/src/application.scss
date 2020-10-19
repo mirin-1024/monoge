@@ -1,8 +1,9 @@
-@import '~bootswatch/dist/darkly/variables';
+@import '~bootswatch/dist/simplex/variables';
 @import '~bootstrap/scss/bootstrap';
-@import '~bootswatch/dist/darkly/bootswatch';
+@import '~bootswatch/dist/simplex/bootswatch';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+/*
 html {
   height: 100vh;
   width: 100vw;
@@ -29,7 +30,7 @@ label {
   color: #fff;
 }
 
-/* home */
+
 #home-container {
   h1, p {
     text-align: center;
@@ -40,11 +41,11 @@ label {
   }
 }
 
-/* header */
+
 #header {
 }
 
-/* footer */
+
 #footer {
   background-color: gray;
   li {
@@ -54,7 +55,7 @@ label {
   }
 }
 
-/* contact */
+
 #contact-container {
   h1 {
     margin: 5% auto;
@@ -71,7 +72,7 @@ label {
   }
 }
 
-/* signup */
+
 #signup-container {
   #form-row {
     border: 1px #fff solid;
@@ -90,4 +91,52 @@ label {
   .btn {
     margin: 4rem 0 2rem 0;
   }
+}
+
+*/
+
+body {
+  /* 4.5remから変更 */
+  padding-top: 4.1rem;
+}
+
+footer {
+  li {
+    display: inline-block;
+  }
+}
+
+/* header section */
+.header-section {
+  background-image: url("/header-section-bg.jpg");
+  background-size: cover;
+}
+
+/* banner */
+.banner {
+  h1 {
+    padding-top: 6rem;
+    text-align: center;
+  }
+  p {
+    padding: 1.5rem 0;
+    text-align: center;
+    color: #5D6778;
+  }
+  .banner-btn {
+    padding-bottom: 9rem;
+  }
+  .banner-image {
+    .image-fluid {
+      max-width: 100%;
+      height: auto;
+    }
+    padding-bottom: 3rem;
+  }
+}
+
+/* target-section */
+.target-section {
+
+  padding-top: 3rem;
 }
