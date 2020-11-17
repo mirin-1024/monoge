@@ -15,18 +15,24 @@
         <li class="nav-item">
           <%= link_to 'お問い合わせ', contact_path, class: "nav-link" %>
         </li>
-        <li class="nav-item dropdown">
-          <%= link_to('#', class: "nav-link dropdown-toggle", 'data-toggle': :dropdown, 'id': :user_caret) do %>
-            ユーザー
-            <span class="caret"></span>
-          <% end %>
-          <div class="dropdown-menu" aria-labelledby="user_caret">
-            <%= link_to  "設定", '#', class: "dropdown-item" %>
-          </div>
-        </li>
+        <% unless is_logged_in? %>
+          <li class="nav-item">
+            <%= link_to 'ログイン', login_path, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item dropdown">
+            <%= link_to('#', class: "nav-link dropdown-toggle", 'data-toggle': :dropdown, 'id': :user_caret) do %>
+              ユーザー
+              <span class="caret"></span>
+            <% end %>
+            <div class="dropdown-menu" aria-labelledby="user_caret">
+              <%= link_to "プロフィール", current_user, class: "dropdown-item" %>
+              <%= link_to "設定", '#', class: "dropdown-item" %>
+              <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
 </div>
-
-<%# ログインユーザーのみのメニューを実装 %>
