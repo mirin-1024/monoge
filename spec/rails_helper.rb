@@ -47,6 +47,9 @@ Capybara.register_driver :remote_chrome do |app|
 end
 
 RSpec.configure do |config|
+  # TestHelperの設定
+  config.include TestHelper
+
   # docker-seleniumコンテナの設定
   config.before(:each, type: :system) do
     driven_by :rack_test

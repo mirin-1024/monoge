@@ -1,24 +1,35 @@
-# README
+# monoge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+（画像）
 
-Things you may want to cover:
+（URL）
+（※ ゲストログインをクリックすることで、ゲストアカウントとしてログインできます）
 
-* Ruby version
+ミニマリスト向けの、モノをリスト上で管理するSNSサービスです。
+ユーザーはテーマごとにモノをリストとして管理し、そのリストを他のユーザーとSNS形式で共有することで、より良い製品選びを実現することを目標としています。
 
-* System dependencies
+# 使用技術
+### 言語
+Ruby 2.7.1
+### フレームワーク
+Rails 6.0.3
+### フロントエンド
+HTML/CSS, Sass, Bootstrap4, JQuery
+### 開発環境
+Docker, Docker Compose
+### Webサーバー
+Nginx
+### アプリケーションサーバー
+Puma
+### インフラ
+AWS(EC2, RDS(MySQL8.0), S3, Route53, ACM, ALB)
+（インフラ構成図の画像）
+### CI/CD
+CircleCI, Capistrano
+### バージョン管理
+ Git, GitHub
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 機能一覧
+* ユーザー登録機能
+* ユーザーログイン機能
+* etc...

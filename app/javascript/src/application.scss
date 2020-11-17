@@ -48,6 +48,9 @@ footer {
 /* target-section */
 .target-section {
   padding-top: 3rem;
+  h4 {
+    text-align: center;
+  }
 }
 
 /* signup page */
@@ -75,6 +78,33 @@ footer {
     background-color: #F5F7FA;
   }
 }
+
+/* login page */
+.login-container {
+  h1 {
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+  p {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .login-btn {
+    text-align: center;
+    padding-top: 1rem;
+  }
+  input {
+    margin-bottom: 0.5rem;
+  }
+  .login-form {
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 30px;
+    background-color: #F5F7FA;
+  }
+}
+
 
 /* contact page */
 .contact-container {
