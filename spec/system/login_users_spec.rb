@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "LoginUsers", type: :system do
+RSpec.describe "ユーザーのログイン", type: :system do
   context "不正確な情報でログイン" do
     before do
       @user = create(:user)
@@ -39,6 +39,7 @@ RSpec.describe "LoginUsers", type: :system do
         click_link 'ユーザー'
         click_link 'ログアウト'
         is_expected.to have_current_path root_path
+        delete logout_path
         is_expected.to have_link 'ログイン', href: login_path
         is_expected.to_not have_selector(".dropdown-toggle")
       end

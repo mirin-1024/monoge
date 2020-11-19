@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "SignupUsers", type: :system do
+RSpec.describe "ユーザー登録", type: :system do
   context "正確な情報でログイン" do
     before do
       visit signup_path
