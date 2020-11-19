@@ -46,6 +46,9 @@ Capybara.register_driver :remote_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :remote, url: url, desired_capabilities: caps)
 end
 
+# テストで必要なHelperの設定
+include SessionsHelper
+
 RSpec.configure do |config|
   # TestHelperの設定
   config.include TestHelper

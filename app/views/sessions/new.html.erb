@@ -12,6 +12,13 @@
         <%= f.label :password, "パスワード" %>
         <%= f.password_field :password, class: "form-control" %>
 
+        <div class="form-check">
+          <%= f.check_box :remember_me, class: "form-check-input", id: "defaultCheck1" %>
+          <%= f.label class: "form-check-label", for: "defaultCheck1" do %>
+            <span>次回からは自動でログインする</span>
+          <% end %>
+        </div>
+
         <div class="login-btn mx-auto">
           <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
         </div>

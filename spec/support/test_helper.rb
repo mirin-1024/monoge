@@ -1,14 +1,15 @@
 module TestHelper
-  # -- SessionsHelper --
-  # 現在ログインしているユーザーを返す
-  def current_user
-    if session[:user_id]
-      @current_user ||= User.find_by(id: session[:user_id])
-    end
+  def is_logged_in?
+    !session[:user_id].nil?
   end
 
-  # ユーザーがログインしているかをtrue/falseで返す
-  def is_logged_in?
-    !current_user.nil?
+  def log_in_as(user)
+    session[:user_id] = user.id
+  end
+
+  def log_in_as(user, remember_me: '1')
+    post login_path, params: { session: { email: user.email,
+                                          password: user.password,
+                                          remember_me: remember_me } }
   end
 end

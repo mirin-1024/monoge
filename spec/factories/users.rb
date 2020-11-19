@@ -5,4 +5,11 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
   end
+
+  factory :invuser, class: User do
+    name { "invalid user" }
+    email { "a" * 39 + "@example.com" }
+    password { "password" }
+    password_confirmation { "passwor" }
+  end
 end

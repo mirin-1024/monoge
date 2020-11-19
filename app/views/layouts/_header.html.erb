@@ -15,7 +15,7 @@
         <li class="nav-item">
           <%= link_to 'お問い合わせ', contact_path, class: "nav-link" %>
         </li>
-        <% unless is_logged_in? %>
+        <% unless logged_in? %>
           <li class="nav-item">
             <%= link_to 'ログイン', login_path, class: "nav-link" %>
           </li>
