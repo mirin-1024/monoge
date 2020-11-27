@@ -1,19 +1,11 @@
 module TestHelper
-  def is_logged_in?
-    !session[:user_id].nil?
-  end
-
-  def login_as(user)
-    session[:user_id] = user.id
-  end
-
   def log_in_as(user, remember_me: '1')
     post login_path, params: { session: { email: user.email,
                                           password: user.password,
                                           remember_me: remember_me } }
   end
 
-  def log_in(user)
+  def login_as(user)
     visit login_path
     fill_in 'メールアドレス', with: user.email
     fill_in 'パスワード', with: user.password

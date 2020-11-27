@@ -4,7 +4,7 @@ RSpec.describe "ユーザー情報の編集", type: :system do
   let(:user) { create(:user) }
   context "編集成功時" do
     before do
-      log_in(user)
+      login_as(user)
       visit edit_user_path(user)
       fill_in "名前", with: "FooFoo"
       fill_in "メールアドレス", with: "foofoo@example.com"
@@ -23,7 +23,7 @@ RSpec.describe "ユーザー情報の編集", type: :system do
 
   context "編集失敗時" do
     before do
-      log_in(user)
+      login_as(user)
       visit edit_user_path(user)
       fill_in "名前", with: ""
       fill_in "メールアドレス", with: ""

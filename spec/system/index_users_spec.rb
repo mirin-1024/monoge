@@ -7,7 +7,7 @@ RSpec.describe "ユーザー一覧", type: :system do
   before(:all) { 30.times { create(:test_user) } }
   subject { page }
   example "ページネーションが正確に作動している" do
-    log_in(user)
+    login_as(user)
     visit users_path
     is_expected.to have_css 'ul.pagination'
     User.paginate(page: 1).each do |user|
@@ -15,7 +15,7 @@ RSpec.describe "ユーザー一覧", type: :system do
     end
   end
   example "管理者ユーザーでない場合のユーザー一覧" do
-    log_in_as(non_admin)
+    login_as(non_admin)
     visit users_path
     is_expected.to have_selector('a', text: 'delete', count: '0')
   end

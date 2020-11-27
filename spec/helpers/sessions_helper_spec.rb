@@ -8,7 +8,7 @@ RSpec.describe SessionsHelper, type: :helper do
 
     example "sessionがnilの場合、正しいユーザーを返す" do
       expect(current_user).to eq user
-      expect(is_logged_in?).to be_truthy
+      expect(logged_in?).to be_truthy
     end
 
     example "remember_digestが不適切な場合、nilを返す" do
