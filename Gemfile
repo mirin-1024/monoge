@@ -30,8 +30,14 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 
 # Personal Gems
+# エラーメッセージの日本語化
 gem 'rails-i18n'
-
+# サンプルユーザーの作成
+gem 'faker'
+# ページネーションの実装
+gem 'will_paginate'
+# Bootstrap4に即したページネーションの実装
+gem 'will_paginate-bootstrap4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

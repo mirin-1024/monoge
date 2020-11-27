@@ -6,7 +6,10 @@ services:
       - ./environments/common.env
       - ./environments/db.env
     volumes:
-      - db-data:/var/lib/mysql
+      - db-data:/var/lib/mysql:delegated
+      - bundle_path:/bundle:delegated
+    environment:
+      - BUNDLE_PATH=/bundle
     security_opt:
       - seccomp:unconfined
   app:
@@ -16,7 +19,7 @@ services:
       - ./environments/db.env
     command: bundle exec puma -C config/puma.rb
     volumes:
-      - .:/app
+      - .:/app:delegated
     depends_on:
       - db
   web:
@@ -25,8 +28,8 @@ services:
       - ./environments/common.env
     volumes:
       - .:/app:delegated
-      - log-data:/var/log/nginx/
-      - cert-data:/etc/nginx/cert/
+      - log-data:/var/log/nginx/:delegated
+      - cert-data:/etc/nginx/cert/:delegated
     ports:
       - 80:80     # 443:443
     depends_on:
@@ -39,3 +42,4 @@ volumes:
   db-data:
   log-data:
   cert-data:
+  bundle_path:

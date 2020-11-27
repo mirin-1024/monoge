@@ -3,7 +3,7 @@ module TestHelper
     !session[:user_id].nil?
   end
 
-  def log_in_as(user)
+  def login_as(user)
     session[:user_id] = user.id
   end
 
@@ -11,5 +11,12 @@ module TestHelper
     post login_path, params: { session: { email: user.email,
                                           password: user.password,
                                           remember_me: remember_me } }
+  end
+
+  def log_in(user)
+    visit login_path
+    fill_in 'メールアドレス', with: user.email
+    fill_in 'パスワード', with: user.password
+    click_button 'ログイン'
   end
 end

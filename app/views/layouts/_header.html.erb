@@ -27,7 +27,8 @@
             <% end %>
             <div class="dropdown-menu" aria-labelledby="user_caret">
               <%= link_to "プロフィール", current_user, class: "dropdown-item" %>
-              <%= link_to "設定", '#', class: "dropdown-item" %>
+              <%= link_to "ユーザー一覧", users_path, class: "dropdown-item" %>
+              <%= link_to "設定", edit_user_path(current_user), class: "dropdown-item" %>
               <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
