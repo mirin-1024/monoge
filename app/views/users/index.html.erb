@@ -1,0 +1,20 @@
+<div class="signup-container container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-4 col-sm-3">
+      <h1>ユーザー一覧</h1>
+      <div class="users-section">
+        <ul>
+          <% @users.each do |user| %>
+            <li>
+              <%= link_to user.name, user %>
+              <% if current_user.admin? && !current_user?(user) %>
+              | <%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+            <% end %>
+            </li>
+          <% end %>
+        </ul>
+        <%= will_paginate %>
+      </div>
+    </div>
+  </div>
+</div>
