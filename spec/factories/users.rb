@@ -1,16 +1,16 @@
 FactoryBot.define do
   factory :user do
-    name { "Foobar" }
+    name { "Foo Bar" }
     email { "foobar@example.com" }
     password { "password" }
     password_confirmation { "password" }
   end
 
-  factory :invuser, class: User do
-    name { "invalid user" }
+  factory :invalid_user, class: User do
+    name { "Invalid User" }
     email { "a" * 39 + "@example.com" }
     password { "password" }
-    password_confirmation { "passwor" }
+    password_confirmation { "passward" }
   end
 
   factory :other_user, class: User do
@@ -27,7 +27,11 @@ FactoryBot.define do
     password_confirmation { "password" }
   end
 
-  trait :admin do
+  factory :admin_user, class: User do
+    name { "Admin User" }
+    email { "adminuser@example.com"}
+    password { "password" }
+    password_confirmation { "password" }
     admin { true }
   end
 end

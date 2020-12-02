@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe "StaticPages", type: :request do
+  subject { response }
 
-  describe "GET /home" do
-    example "GETリクエストが成功" do
-      get "/"
-      expect(response).to have_http_status(:success)
+  describe "GET #home" do
+    example "200レスポンスを返す" do
+      get root_path
+      is_expected.to have_http_status(200)
     end
   end
 
-  describe "GET /contact" do
-    example "GETリクエストが成功" do
+  describe "GET #contact" do
+    example "200レスポンスを返す" do
       get "/contact"
-      expect(response).to have_http_status(:success)
+      is_expected.to have_http_status(200)
     end
   end
-
 end
