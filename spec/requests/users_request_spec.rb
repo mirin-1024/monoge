@@ -1,117 +1,159 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  describe "before_action :logged_in_user" do
-    let(:user) { create(:user) }
-    let(:other_user) { create(:other_user) }
-    describe "GET #edit"  do
-      context "未ログインの時" do
-        before {
-          get edit_user_path(user)
-        }
-        subject { response }
-        example "エラーメッセージを表示" do
-          expect(flash[:danger]).to_not be_empty
-        end
-        example "ログインページへリダイレクト" do
-          is_expected.to redirect_to login_url
-          is_expected.to have_http_status(302)
-        end
-        # sessionsヘルパーテストへ移動
-        context "ログイン後" do
-          before { log_in_as(user) }
-          example "フレンドリーフォワーディングされる" do
-            is_expected.to redirect_to edit_user_url(user)
-          end
-        end
+  let(:user) { create(:user) }
+  let(:other_user) { create(:other_user) }
+  subject { response }
+
+  describe "GET #new" do
+    before { get signup_path }
+    example "200レスポンスを返す" do
+      is_expected.to have_http_status(200)
+    end
+  end
+
+  describe "GET #show" do
+    before { get user_path(user) }
+    example "200レスポンスを返す" do
+      is_expected.to have_http_status(200)
+    end
+  end
+
+  describe "POST #create" do
+    context "パラメータが妥当な場合" do
+      example "データベースにユーザーが保存される" do
+        expect do
+          post users_path, params: { user: attributes_for(:user) }
+        end.to change(User, :count).by(1)
       end
-      context "異なるユーザーでログインした時" do
-        before {
-          log_in_as(other_user)
-          get edit_user_path(user)
-        }
-        subject { response }
-        example "エラーメッセージを表示" do
-          expect(flash[:danger]).to be_nil
-        end
-        example "トップページへリダイレクト" do
-          is_expected.to redirect_to root_url
-          is_expected.to have_http_status(302)
-        end
+      example "302レスポンスを返す" do
+        post users_path, params: { user: attributes_for(:user) }
+        is_expected.to have_http_status(302)
       end
     end
-    describe "PATCH #update" do
-      context "未ログインの時" do
-        before {
-          patch user_path(user), params: { user: { name: user.name,
-                                                  email: user.email } }
-        }
-        subject { response }
-        example "エラーメッセージを表示" do
-          expect(flash[:danger]).to_not be_empty
-        end
-        example "ログインページへリダイレクト" do
-          is_expected.to redirect_to login_url
-          is_expected.to have_http_status(302)
-        end
+    context "パラメータが不正な場合" do
+      example "データベースにユーザーが保存されない" do
+        expect do
+          post users_path, params: { user: attributes_for(:invalid_user) }
+        end.to_not change(User, :count)
       end
-      context "異なるユーザーでログインした時" do
-        before {
-          log_in_as(other_user)
-          patch user_path(user), params: { user: { name: user.name,
-                                                  email: user.email } }
-        }
-        subject { response }
-        example "エラーメッセージを表示" do
-          expect(flash[:danger]).to be_nil
-        end
-        example "ログインページへリダイレクト" do
-          is_expected.to redirect_to root_url
-          is_expected.to have_http_status(302)
-        end
-      end
-    end
-    describe "GET #index" do
-      context "未ログインの時" do
-        before { get users_path }
-        subject { response }
-        example "ログインページへリダイレクト" do
-          is_expected.to redirect_to login_url
-          is_expected.to have_http_status(302)
-        end
-      end
-    end
-    describe "DELETE #destroy" do
-      context "未ログインの時" do
-        subject { response }
-        example "ログインページへリダイレクト" do
-          delete user_path(user)
-          is_expected.to redirect_to login_url
-          is_expected.to have_http_status(302)
-        end
+      example "200レスポンスを返す" do
+        post users_path, params: { user: attributes_for(:invalid_user) }
+        is_expected.to have_http_status(200)
       end
     end
   end
-  describe "before_action :correct_user" do
-    
-  end
-  describe "before_action :admin_user" do
-    let!(:user) { create(:user) }
-    let!(:other_user) { create(:other_user) }
-    let!(:admin_user) { create(:test_user, :admin) }
-    describe "DELETE #destroy" do
-      example "管理者ユーザーでない場合に失敗する" do
+
+  describe "GET #edit" do
+    context "正常にログインした場合" do
+      before {
         log_in_as(user)
-        expect do
-          delete user_path(other_user)
-        end.to change(User, :count).by(0)
+        get edit_user_path(user)
+      }
+      example "200レスポンスを返す" do
+        is_expected.to have_http_status(200)
       end
-      example "管理者ユーザーである場合に成功する" do
-        log_in_as(admin_user)
-        expect do
+    end
+    context "ログインしていない場合" do
+      before { get edit_user_path(user) }
+      example "302レスポンスを返す" do
+        is_expected.to have_http_status(302)
+      end
+    end
+    context "異なるユーザーでログインした場合" do
+      before {
+        log_in_as(other_user)
+        get edit_user_path(user)
+      }
+      example "302レスポンスを返す" do
+        is_expected.to have_http_status(302)
+      end
+    end
+  end
+
+  describe "PATCH #update" do
+    context "正常にログインした場合" do
+      before {
+        log_in_as(user)
+        patch user_path(user), params: { user: attributes_for(:user) }
+      }
+      example "302レスポンスを返す" do
+        is_expected.to have_http_status(302)
+      end
+    end
+    context "ログインしていない場合" do
+      before {
+        patch user_path(user), params: { user: attributes_for(:user) }
+      }
+      example "302レスポンスを返す" do
+        is_expected.to have_http_status(302)
+      end
+    end
+    context "異なるユーザーでログインした場合" do
+      before {
+        log_in_as(other_user)
+        patch user_path(user), params: { user: attributes_for(:user) }
+      }
+      example "302レスポンスを返す" do
+        is_expected.to have_http_status(302)
+      end
+    end
+  end
+
+  describe "GET #index" do
+    context "ログインしている場合" do
+      before {
+        log_in_as(user)
+        get users_path
+      }
+      example "200レスポンスを返す" do
+        is_expected.to have_http_status(200)
+      end
+    end
+    context "ログインしていない場合" do
+      before { get users_path }
+      example "302レスポンスを返す" do
+        is_expected.to have_http_status(302)
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+    let!(:user) { create(:user) }
+    let(:admin_user) { create(:admin_user) }
+
+    context "ログインしている場合" do
+      context "管理者ユーザーであるとき" do
+        before { log_in_as(admin_user) }
+        example "データベースからユーザーが削除される" do
+          expect do
+            delete user_path(user)
+          end.to change(User, :count).by(-1)
+        end
+        example "302レスポンスを返す" do
           delete user_path(user)
-        end.to change(User, :count).by(-1)
-        expect(response).to redirect_to users_url
+          is_expected.to have_http_status(302)
+        end
+      end
+      context "通常のユーザーであるとき" do
+        before {
+          log_in_as(other_user)
+        }
+        example "データベースからユーザーが削除されない" do
+          expect do
+            delete user_path(user)
+          end.to_not change(User, :count)
+        end
+        example "302レスポンスを返す" do
+          delete user_path(user)
+          is_expected.to have_http_status(302)
+        end
+      end
+    end
+    context "ログインしていない場合" do
+      before { delete user_path(user) }
+      example "302レスポンスを返す" do
+        is_expected.to have_http_status(302)
       end
     end
   end
