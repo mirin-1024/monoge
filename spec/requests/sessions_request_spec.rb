@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Sessions", type: :request do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, :activated) }
   let(:other_user) { create(:other_user) }
   subject { response }
   before "ユーザーID、メールアドレス、パスワード、remember_meをセッションから取り出せるようにする" do
@@ -27,40 +27,49 @@ RSpec.describe "Sessions", type: :request do
         expect(user).to be_valid
         expect(user.authenticate(session[:password])).to be_truthy
       end
-      example "セッションにIDが保存されている" do
-        log_in_as(user)
-        expect(session[:user_id]).to eq user.id
-      end
-      describe "Remember me" do
-        example "チェックボックスがONのとき" do
-          log_in_as(user, remember_me: '1')
-          expect(cookies[:remember_token]).to_not be_empty
+      context "ユーザーが有効化されている場合" do
+        example "セッションにIDが保存されている" do
+          log_in_as(user)
+          expect(session[:user_id]).to eq user.id
         end
-        example "チェックボックスがOFFの時" do
-          log_in_as(user, remember_me: '0')
-          expect(cookies[:remember_token]).to be_nil
-        end
-      end
-      describe "リダイレクト先" do
-        context "ログイン前に保護されたページにアクセスした場合" do
-          before {
-            allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(forwarding_url: edit_user_path(user))
-          }
-          example "ユーザーフレンドリーなURLにリダイレクト" do
-            log_in_as(user)
-            is_expected.to redirect_to edit_user_url(user)
-            is_expected.to have_http_status(302)
+        describe "Remember me" do
+          example "チェックボックスがONのとき" do
+            log_in_as(user, remember_me: '1')
+            expect(cookies[:remember_token]).to_not be_empty
+          end
+          example "チェックボックスがOFFの時" do
+            log_in_as(user, remember_me: '0')
+            expect(cookies[:remember_token]).to be_nil
           end
         end
-        context "ログイン前に保護されたページにアクセスしていない場合" do
-          before {
-            allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(forwarding_url: nil)
-          }
-          example "ユーザーページへリダイレクト" do
-            log_in_as(user)
-            is_expected.to redirect_to user_url(user)
-            is_expected.to have_http_status(302)
+        describe "リダイレクト先" do
+          context "ログイン前に保護されたページにアクセスした場合" do
+            before {
+              allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(forwarding_url: edit_user_path(user))
+            }
+            example "ユーザーフレンドリーなURLにリダイレクト" do
+              log_in_as(user)
+              is_expected.to redirect_to edit_user_url(user)
+              is_expected.to have_http_status(302)
+            end
           end
+          context "ログイン前に保護されたページにアクセスしていない場合" do
+            before {
+              allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(forwarding_url: nil)
+            }
+            example "ユーザーページへリダイレクト" do
+              log_in_as(user)
+              is_expected.to redirect_to user_url(user)
+              is_expected.to have_http_status(302)
+            end
+          end
+        end
+      end
+      context "ユーザーが有効化されていない場合" do
+        let!(:non_activated_user) { create(:test_user, :non_activated) }
+        example "302レスポンスを返す" do
+          log_in_as(non_activated_user)
+          is_expected.to have_http_status(302)
         end
       end
     end

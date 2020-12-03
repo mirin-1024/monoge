@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:user) { create(:user) }
+
   context "正しい情報を入力した場合" do
     example "正しい情報でユーザーが作成できる" do
       expect(build(:user)).to be_valid
@@ -46,10 +47,6 @@ RSpec.describe User, type: :model do
       example "6字未満では登録できない" do
         expect(build(:user, password: "a" * 5, password_confirmation: "a" * 5)).to_not be_valid
       end
-      # example "allow_nil: trueのテスト" do
-        # ユーザー編集時に空のパスワードを許可する
-        # expect(user).to_not be_valid
-      # end
     end
   end
   describe "セキュアなパスワードの実装" do
@@ -60,19 +57,11 @@ RSpec.describe User, type: :model do
       expect(user.password_digest).to_not eq user.password
     end
   end
-  # describe "記憶ダイジェスト" do
-  #   example "nilの場合、falseを返すことができる" do
-  #     expect(user.authenticated?('')).to be_falsey
-  #   end
-  #   example "データベースに保存できる" do
-  #     expect(user.remember_digest).to eq nil
-  #     user.remember
-  #     expect(user.remember_digest).to_not eq nil
-  #   end
-  #   example "データベースから削除できる" do
-  #     user.remember
-  #     user.forget
-  #     expect(user.remember_digest).to eq nil
-  #   end
-  # end
+  describe "記憶ダイジェスト" do
+    context "nilの場合" do
+      example "falseを返すことができる" do
+        expect(user.authenticated?(:remember, '')).to be_falsey
+      end
+    end
+  end
 end

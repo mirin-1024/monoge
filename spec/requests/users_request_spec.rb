@@ -26,6 +26,10 @@ RSpec.describe "Users", type: :request do
           post users_path, params: { user: attributes_for(:user) }
         end.to change(User, :count).by(1)
       end
+      example "配信されるメールは一通である" do
+        3.times{ post users_path, params: { user: attributes_for(:user) } }
+        expect(ActionMailer::Base.deliveries.size).to eq(1)
+      end
       example "302レスポンスを返す" do
         post users_path, params: { user: attributes_for(:user) }
         is_expected.to have_http_status(302)
