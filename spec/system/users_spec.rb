@@ -13,13 +13,13 @@ RSpec.describe "Users", type: :system do
         fill_in "パスワード", with: "password"
         fill_in "パスワード（確認）", with: "password"
       end
-      example "サクセスメッセージが表示される" do
+      example "確認メッセージが表示される" do
         click_button "登録"
-        is_expected.to have_selector('.alert-success', text: 'monogeへようこそ！')
+        is_expected.to have_selector('.alert-info', text: '入力されたメールアドレスにアカウント有効化用のメールをお送りいたしました。確認をお願いします。')
       end
-      example "ユーザーページに遷移する" do
+      example "トップページに遷移する" do
         click_button "登録"
-        is_expected.to have_current_path user_path(User.last)
+        is_expected.to have_current_path root_path
       end
     end
     context "不正な情報を入力した場合" do
@@ -108,10 +108,34 @@ RSpec.describe "Users", type: :system do
     end
   end
 
+  describe "ユーザーの表示" do
+    let!(:user) { create(:user, :activated) }
+    context "ユーザーが有効化されている時" do
+      before {
+        log_in_as(user)
+        visit user_path(user)
+      }
+      example "ユーザーページにアクセスできる" do
+        is_expected.to have_current_path user_path(user)
+      end
+    end
+    context "ユーザーが有効化されていない時" do
+      let!(:non_activated_user) { create(:test_user, :non_activated) }
+      before{
+        log_in_as(non_activated_user)
+        visit user_path(non_activated_user)
+      }
+      example "トップページに遷移する" do
+        is_expected.to have_current_path root_path
+      end
+    end
+  end
+
   describe "ユーザー一覧の表示" do
-    before(:all) { 30.times { create(:test_user) } }
     let!(:user) { create(:user) }
     let!(:admin_user) { create(:admin_user) }
+    let!(:non_activated_user) { create(:test_user, :non_activated) }
+    before(:all) { 30.times { create(:test_user) } }
 
     context "ログインしている場合" do
       context "管理者ユーザーであるとき" do
@@ -153,6 +177,9 @@ RSpec.describe "Users", type: :system do
         example "削除ボタンが表示されていない" do
           is_expected.to_not have_selector('a', text: '削除')
         end
+      end
+      example "有効化されていないユーザーが表示されない" do
+        is_expected.to_not have_link user_path(non_activated_user)
       end
     end
     context "ログインしていない場合" do

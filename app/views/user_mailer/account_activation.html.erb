@@ -1,0 +1,10 @@
+<h1>monoge</h1>
+
+<p><%= @user.name %>さん、</p>
+
+<p>
+  monogeへようこそ！
+  以下のリンクからアカウントの有効化を完了してください。
+</p>
+
+<%= link_to "有効にする", edit_account_activation_url(@user.activation_token, email: @user.email) %>
