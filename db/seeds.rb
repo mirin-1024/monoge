@@ -7,6 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # メインユーザーを作成
+User.create!(name:                  "Foo Bar",
+             email:                 "foobar@example.com",
+             password:              "password",
+             password_confirmation: "password",
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
+
+# 管理者ユーザーの作成
 User.create!(name:                  "Admin User",
              email:                 "adminuser@example.com",
              password:              "password",

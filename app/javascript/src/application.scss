@@ -140,6 +140,50 @@ footer {
   list-style: none;
 }
 
+/* password change page */
+.change-container {
+  h1 {
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+  .change-btn {
+    text-align: center;
+    padding-top: 1rem;
+  }
+  input {
+    margin-bottom: 0.5rem;
+  }
+  .change-form {
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 30px;
+    background-color: #F5F7FA;
+  }
+}
+
+/* password reset page */
+.reset-container {
+  h1 {
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+  .reset-btn {
+    text-align: center;
+    padding-top: 1rem;
+  }
+  input {
+    margin-bottom: 0.5rem;
+  }
+  .reset-form {
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 30px;
+    background-color: #F5F7FA;
+  }
+}
+
 /* error message */
 .flash-message {
   margin-top: 1rem;

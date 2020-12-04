@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "AccountActivations", type: :system do
   subject { page }
-  
+
   context "ユーザーが有効化されていない場合" do
     let!(:user) { create(:user, :non_activated) }
     describe "有効化トークンとメールアドレス" do
