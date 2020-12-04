@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.describe UserMailer, type: :mailer do
-  describe "account_activation" do
+  describe "アカウントの有効化メール" do
     let(:mail) { UserMailer.account_activation(user) }
     let(:user) { create(:user) }
 
-    example "宛先が適切である" do
+    example "ヘッダーが適切である" do
       expect(mail.subject).to eq("Welcome to monoge!")
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["noreply@example.com"])
@@ -18,17 +18,20 @@ RSpec.describe UserMailer, type: :mailer do
     end
   end
 
-  describe "password_reset" do
-    let(:mail) { UserMailer.password_reset }
+  describe "パスワードの再設定メール" do
+    let(:mail) { UserMailer.password_reset(user) }
+    let(:user) { create(:user) }
+    before { user.reset_token = User.new_token }
 
-    example "renders the headers" do
-      expect(mail.subject).to eq("Password reset")
-      expect(mail.to).to eq(["to@example.org"])
+    example "ヘッダーが適切である" do
+      expect(mail.subject).to eq("Password Reset")
+      expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["noreply@example.com"])
     end
 
-    example "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+    example "内容が適切である" do
+      expect(mail.body.encoded).to match user.reset_token
+      expect(mail.body.encoded).to match CGI.escape(user.email)
     end
   end
 end
