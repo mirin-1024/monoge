@@ -188,3 +188,26 @@ footer {
 .flash-message {
   margin-top: 1rem;
 }
+
+/* microposts */
+.microposts {
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 0.5rem 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 0.25rem;
+    padding-top: 0;
+  }
+  .content {
+    display: block;
+    margin-left: 4rem;
+  }
+  .timestamp {
+    color: gray;
+    display: block;
+    margin-left: 4rem;
+  }
+}
