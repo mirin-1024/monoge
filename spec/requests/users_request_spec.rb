@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Users", type: :request do
   let(:user) { create(:user) }
   let(:other_user) { create(:other_user) }
+  let!(:admin_user) { create(:admin_user) }
   subject { response }
 
   describe "GET #new" do
@@ -27,7 +28,7 @@ RSpec.describe "Users", type: :request do
         end.to change(User, :count).by(1)
       end
       example "配信されるメールは一通である" do
-        3.times{ post users_path, params: { user: attributes_for(:user) } }
+        post users_path, params: { user: attributes_for(:user) }
         expect(ActionMailer::Base.deliveries.size).to eq(1)
       end
       example "302レスポンスを返す" do
