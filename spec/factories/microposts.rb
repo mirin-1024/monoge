@@ -5,6 +5,12 @@ FactoryBot.define do
     association :user
   end
 
+  factory :test_micropost, class: Micropost do
+    content { Faker::Lorem.sentence(word_count: 5) }
+    created_at { Time.zone.now }
+    association :user
+  end
+
   trait :yesterday do
     content { "Yesterday" }
     created_at { 1.day.ago }

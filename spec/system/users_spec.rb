@@ -110,6 +110,8 @@ RSpec.describe "Users", type: :system do
 
   describe "ユーザーの表示" do
     let!(:user) { create(:user, :activated) }
+    before{ 51.times { create(:test_micropost, user: user) } }
+
     context "ユーザーが有効化されている時" do
       before {
         log_in_as(user)
@@ -117,6 +119,15 @@ RSpec.describe "Users", type: :system do
       }
       example "ユーザーページにアクセスできる" do
         is_expected.to have_current_path user_path(user)
+      end
+      example "ユーザーの名前が表示されている" do
+        is_expected.to have_css('h1', text: user.name)
+      end
+      example "ユーザー投稿のページネーションが正確に作動している" do
+        is_expected.to have_css 'ul.pagination'
+        user.microposts.paginate(page: 1).each do |micropost|
+          is_expected.to have_css('.content', text: micropost.content)
+        end
       end
     end
     context "ユーザーが有効化されていない時" do
@@ -132,10 +143,10 @@ RSpec.describe "Users", type: :system do
   end
 
   describe "ユーザー一覧の表示" do
+    before{ 29.times { create(:test_user) } }
     let!(:user) { create(:user) }
     let!(:admin_user) { create(:admin_user) }
     let!(:non_activated_user) { create(:test_user, :non_activated) }
-    before(:all) { 30.times { create(:test_user) } }
 
     context "ログインしている場合" do
       context "管理者ユーザーであるとき" do
@@ -146,7 +157,7 @@ RSpec.describe "Users", type: :system do
         example "ページネーションが正確に作動している" do
           is_expected.to have_css 'ul.pagination'
           User.paginate(page: 1).each do |user|
-            is_expected.to have_css('li', text: user.name)
+            is_expected.to have_link user.name
           end
         end
         example "削除ボタンが表示されている" do
@@ -171,7 +182,7 @@ RSpec.describe "Users", type: :system do
         example "ページネーションが正確に作動している" do
           is_expected.to have_css 'ul.pagination'
           User.paginate(page: 1).each do |user|
-            is_expected.to have_css('li', text: user.name)
+            is_expected.to have_link user.name
           end
         end
         example "削除ボタンが表示されていない" do
