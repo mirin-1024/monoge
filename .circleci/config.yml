@@ -23,8 +23,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - repo-bundle-v1-{{ checksum "app/Gemfile.lock" }}
-            - repo-bundle-v1-
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
       - run:
           name: Bundler install
           command: |
@@ -34,13 +34,13 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install -j4
       - save_cache:
-          key: repo-bundle-v1-{{ checksum "app/Gemfile.lock" }}
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle
+            - ./vendor/bundle
       - restore_cache:
           keys:
-            - repo-yarn-{{ checksum "app/yarn.lock" }}
-            - repo-yarn-
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
       - run:
           name: Yarnをinstall
           command: yarn install --cache-folder ~/.cache/yarn
@@ -53,6 +53,7 @@ jobs:
       - run:
           name: webpackの設定
           command: |
+            bundle exec bin/webpack
             bundle exec rails webpacker:install
             yarn add bootstrap@4.3.1 jquery popper.js
       - run:
