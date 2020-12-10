@@ -32,7 +32,7 @@ jobs:
             gem install bundler -v 2.1.4
       - run:
           name: Bundle Install
-          command: bundle check || bundle install -j4
+          command: bundle check --path vendor/bundle || bundle install -j4
       - save_cache:
           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
           paths:
@@ -44,18 +44,17 @@ jobs:
       - run:
           name: Yarnをinstall
           command: yarn install --cache-folder ~/.cache/yarn
+      - save_cache:
+          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
       - run:
           name: Database setup
           command: bin/rails db:create db:schema:load --trace
-      # - run:
-      #     name: webpackの設定
-      #     command: |
-      #       bundle exec bin/webpack
-      #       bundle exec rails webpacker:install
-      #       yarn add bootstrap@4.3.1 jquery popper.js
+      # webpackのビルド、 bootstrap@4.3.1, jquery, popper.jsのインストール（不要？）
       - run:
           name: execute rspec
           command: bundle exec rspec
