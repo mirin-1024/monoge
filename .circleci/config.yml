@@ -23,8 +23,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - repo-bundle-v1-{{ checksum "app/Gemfile.lock" }}
-            - repo-bundle-v1-
+            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-
       - run:
           name: Bundler install
           command: |
@@ -34,13 +34,13 @@ jobs:
           name: Bundle Install
           command: bundle check || bundle install -j4
       - save_cache:
-          key: repo-bundle-v1-{{ checksum "app/Gemfile.lock" }}
+          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
           paths:
-            - vendor/bundle
+            - ./vendor/bundle
       - restore_cache:
           keys:
-            - repo-yarn-{{ checksum "app/yarn.lock" }}
-            - repo-yarn-
+            - yarn-cache-v1-{{ checksum "yarn.lock" }}
+            - yarn-cache-v1-
       - run:
           name: Yarnをinstall
           command: yarn install --cache-folder ~/.cache/yarn
@@ -50,12 +50,12 @@ jobs:
       - run:
           name: Database setup
           command: bin/rails db:create db:schema:load --trace
-      - run:
-          name: webpackの設定
-          command: |
-            bundle exec bin/webpack
-            bundle exec rails webpacker:install
-            yarn add bootstrap@4.3.1 jquery popper.js
+      # - run:
+      #     name: webpackの設定
+      #     command: |
+      #       bundle exec bin/webpack
+      #       bundle exec rails webpacker:install
+      #       yarn add bootstrap@4.3.1 jquery popper.js
       - run:
           name: execute rspec
           command: bundle exec rspec
