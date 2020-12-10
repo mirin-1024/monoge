@@ -50,12 +50,12 @@ jobs:
       - run:
           name: Database setup
           command: bin/rails db:create db:schema:load --trace
-      - run:
-          name: webpackの設定
-          command: |
-            bundle exec bin/webpack
-            bundle exec rails webpacker:install
-            yarn add bootstrap@4.3.1 jquery popper.js
+      # - run:
+      #     name: webpackの設定
+      #     command: |
+      #       bundle exec bin/webpack
+      #       bundle exec rails webpacker:install
+      #       yarn add bootstrap@4.3.1 jquery popper.js
       - run:
           name: execute rspec
           command: bundle exec rspec
