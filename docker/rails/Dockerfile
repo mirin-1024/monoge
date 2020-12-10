@@ -12,7 +12,8 @@ RUN apk update && \
         mysql-client \
         mysql-dev \
         tzdata \
-        yarn && \
+        yarn \
+        imagemagick && \
     apk add --virtual build-packs --no-cache \
         build-base \
         curl-dev

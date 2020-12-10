@@ -51,6 +51,13 @@ group :development, :test do
   gem 'mail-iso-2022-jp'
   # テストDBのデータを削除
   gem 'database_cleaner-active_record'
+  # 画像処理用のgem
+  gem 'image_processing'
+  gem 'mini_magick'
+  # Active Storageのバリデーション
+  gem 'active_storage_validations'
+  # 画像テスト用のgem
+  gem 'carrierwave'
 end
 
 group :development do

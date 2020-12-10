@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Microposts", type: :system do
+  include CarrierWave::Test::Matchers
+
   let!(:user) { create(:user) }
   subject { page }
 
@@ -53,7 +55,22 @@ RSpec.describe "Microposts", type: :system do
         is_expected.to have_css('.micropost_form')
       end
     end
+
+    describe "画像の投稿" do
+      before {
+        # ボタンをクリックでアップロードする際のテスト
+        @image_name = "neko.jpg"
+        attach_file 'micropost_image', "#{Rails.root}/spec/fixtures/#{@image_name}", make_visible: true
+        fill_in 'micropost_content', with: "適切な投稿"
+        click_button '投稿'
+      }
+      example "画像が投稿一覧に表示される" do
+        is_expected.to have_selector "img[src$='#{@image_name}']"
+      end
+      # リサイズのテスト
+    end
   end
+
   describe "投稿の削除" do
     before {
       sign_in(user)

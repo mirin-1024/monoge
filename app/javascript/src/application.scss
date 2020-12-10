@@ -211,3 +211,12 @@ footer {
     margin-left: 4rem;
   }
 }
+
+/* micropost_form */
+.micropost_form {
+  .image {
+    input {
+      display: none;
+    }
+  }
+}

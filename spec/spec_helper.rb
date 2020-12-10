@@ -15,6 +15,8 @@
 
 require 'capybara/rspec'
 require 'database_cleaner'
+# carrierwaveの追加
+require 'carrierwave/test/matchers'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
