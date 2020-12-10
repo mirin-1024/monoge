@@ -53,7 +53,6 @@ jobs:
       - run:
           name: webpackの設定
           command: |
-            bundle exec bin/webpack
             bundle exec rails webpacker:install
             yarn add bootstrap@4.3.1 jquery popper.js
       - run:
