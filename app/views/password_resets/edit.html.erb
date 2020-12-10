@@ -4,7 +4,7 @@
       <h1>パスワードの再設定</h1>
       <div class="reset-form">
         <%= form_with(model: @user, url: password_reset_path(params[:id]), local: true, class: "form-group") do |f| %>
-          <%= render 'shared/error_messages' %>
+          <%= render 'shared/error_messages', object: f.object %>
 
           <%= hidden_field_tag :email, @user.email %>
 
