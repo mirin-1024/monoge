@@ -73,4 +73,25 @@ RSpec.describe User, type: :model do
       end.to change(Micropost, :count).by(-1)
     end
   end
+
+  describe "フォロー機能" do
+    let!(:user) { create(:user) }
+    let!(:other_user) { create(:other_user) }
+    describe "他のユーザーをフォロー" do
+      example "フォローできる" do
+        expect(user.following?(other_user)).to be_falsey
+        user.follow(other_user)
+        expect(user.following?(other_user)).to be_truthy
+      end
+      example "フォロワーである" do
+        user.follow(other_user)
+        other_user.followers.include?(user)
+      end
+      example "フォロー解除できる" do
+        user.follow(other_user)
+        user.unfollow(other_user)
+        expect(user.following?(other_user)).to be_falsey
+      end
+    end
+  end
 end
