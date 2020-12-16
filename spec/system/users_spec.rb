@@ -140,6 +140,28 @@ RSpec.describe "Users", type: :system do
         is_expected.to have_current_path root_path
       end
     end
+
+    describe "ステータスフィード" do
+      let(:user_follower) { create(:test_user) }
+      let(:other_user) { create(:test_user) }
+      before {
+        sign_in(user_follower)
+        user_follower.active_relationships.create!(followed_id: user.id)
+      }
+      example "フォローしているユーザーの投稿が存在する" do
+        user.microposts.each do |following_post|
+          expect(user_follower.feed).to be_include following_post
+        end
+      end
+      example "自分自身の投稿が存在する" do
+        user_follower_micropost = create(:test_micropost, user: user_follower)
+        expect(user_follower.feed).to be_include user_follower_micropost
+      end
+      example "フォローしていないユーザーの投稿が存在しない" do
+        other_user_micropost = create(:test_micropost, user: other_user)
+        expect(user_follower.feed).to_not be_include other_user_micropost
+      end
+    end
   end
 
   describe "ユーザー一覧の表示" do
