@@ -205,15 +205,19 @@ footer {
     display: block;
     margin-left: 4rem;
   }
+  .delete_button {
+    padding-bottom: 0.25rem;
+    text-align: center;
+  }
   .timestamp {
     color: gray;
-    display: block;
-    margin-left: 4rem;
+    padding-bottom: 0.25rem;
+    text-align: center;
   }
 }
 
 /* micropost_form */
-.micropost_form {
+#micropost_form {
   .image {
     input {
       display: none;
@@ -243,4 +247,16 @@ footer {
   strong {
     display: block;
   }
+}
+
+/* like button */
+.like {
+  input {
+    display: none;
+  }
+}
+
+/* ユーザーのフォーム */
+#user_form {
+  border-right: 1px solid #e8e8e8;
 }

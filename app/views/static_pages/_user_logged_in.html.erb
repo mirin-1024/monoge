@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-5 col-md-4 col-sm-3">
+    <div id="user_form" class="col-md-3">
       <section class="user_info">
         <%= render 'shared/user_info' %>
       </section>
       <section class="stats">
         <%= render 'shared/stats' %>
       </section>
-      <section class="micropost_form">
+      <section id="micropost_form">
         <%= render 'shared/micropost_form' %>
       </section>
     </div>
-    <div class="col-lg-5 col-md-4 col-sm-3">
+    <div class="col-md-6">
       <h3>投稿一覧</h3>
       <%= render 'shared/feed' %>
     </div>
