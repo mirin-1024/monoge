@@ -1,6 +1,7 @@
 class Micropost < ApplicationRecord
   belongs_to :user
   has_many :likes, dependent: :destroy
+  has_many :like_users, through: :likes, source: :user
   has_one_attached :image
   default_scope -> {order(created_at: :desc)}
   validates :user_id, presence: true
@@ -19,5 +20,9 @@ class Micropost < ApplicationRecord
 
   def unlike(user)
     likes.find_by(user_id: user.id).destroy
+  end
+
+  def like?(user)
+    like_users.include?(user)
   end
 end

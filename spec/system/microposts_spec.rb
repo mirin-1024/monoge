@@ -52,7 +52,7 @@ RSpec.describe "Microposts", type: :system do
       end
       example "トップページを描画" do
         create_invalid_micropost
-        is_expected.to have_css('.micropost_form')
+        is_expected.to have_css('#micropost_form')
       end
     end
 
