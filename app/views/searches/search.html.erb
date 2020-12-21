@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="card">
+    <% if @search_results.any? %>
+      <ul class="list-group">
+        <% @search_results.each do |search_result| %>
+          <% if @search_model == "User" %>
+            <li class="list-group-item">
+              <%= link_to search_result.name, user_path(search_result) %>
+            </li>
+          <% else @search_model == "Micropost" %>
+            <li class="list-group-item">
+              <span class="micropost-name">
+                <%= link_to search_result.user.name, user_path(search_result.user) %>
+              </span>
+              <span class="micropost-content">
+                <p><%= search_result.content %></p>
+                <%= image_tag search_result.display_image if search_result.image.attached? %>
+              </span>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+
+      <%= will_paginate @search_results, params: { controller: :searches, action: :search } %>
+    <% end %>
+  </div>
+</div>

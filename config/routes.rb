@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get '/search', to: 'search#search'
+  get '/search', to: 'searches#search'
   get 'likes/create'
   get 'likes/destroy'
   root 'static_pages#home'

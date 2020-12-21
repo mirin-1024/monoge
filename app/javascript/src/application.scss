@@ -14,7 +14,9 @@ footer {
   }
 }
 
-/* home */
+
+
+///* トップページ *///
 
 /* header section */
 .header-section {
@@ -53,7 +55,9 @@ footer {
   }
 }
 
-/* signup page */
+
+
+///* ユーザー登録ページ *///
 .signup-container {
   h1 {
     padding-top: 3rem;
@@ -79,7 +83,7 @@ footer {
   }
 }
 
-/* login page */
+///* ログインページ *///
 .login-container {
   h1 {
     padding-top: 3rem;
@@ -106,14 +110,14 @@ footer {
 }
 
 
-/* contact page */
+///* お問い合わせページ *///
 .contact-container {
   h1 {
     padding-bottom: 1rem;
   }
 }
 
-/* edit page */
+///* ユーザー情報の編集ページ *///
 .useredit-container {
   h1 {
     padding-top: 3rem;
@@ -135,12 +139,12 @@ footer {
   }
 }
 
-/* index page */
+///* ユーザー一覧ページ *///
 .users-section {
   list-style: none;
 }
 
-/* password change page */
+///* パスワード変更ページ *///
 .change-container {
   h1 {
     padding-top: 3rem;
@@ -162,7 +166,7 @@ footer {
   }
 }
 
-/* password reset page */
+///* パスワード再設定ページ *///
 .reset-container {
   h1 {
     padding-top: 3rem;
@@ -266,4 +270,22 @@ footer {
   input {
     margin-right: 0.25rem;
   }
+}
+
+/* 検索結果 */
+#search-result {
+  ul {
+    list-style: none;
+  }
+}
+
+/* デバッグ表示 */
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box
 }
