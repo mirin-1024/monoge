@@ -9,7 +9,7 @@
             </li>
           <% else @search_model == "Micropost" %>
             <li class="list-group-item">
-              <span class="micropost-name">
+              <span class="micropost-">
                 <%= link_to search_result.user.name, user_path(search_result.user) %>
               </span>
               <span class="micropost-content">

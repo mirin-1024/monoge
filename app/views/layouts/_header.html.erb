@@ -36,7 +36,7 @@
             <%= form_with(url: search_path, method: :get, class: "form-inline", local: true) do |f| %>
               <%= f.select :model, options_for_select([["ユーザー", "User"], ["投稿", "Micropost"]]), {}, { class: "custom-select custom-select-sm" } %>
               <%= f.text_field :keyword, class: "form-control form-control-sm" %>
-              <%= f.button class: "btn btn-outline-primary btn-sm" do %>
+              <%= f.button id: "search-btn", class: "btn btn-outline-primary btn-sm" do %>
                 <i class="fas fa-search"></i>
               <% end %>
             <% end %>
