@@ -1,6 +1,6 @@
 <div class="reset-container container">
   <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-4 col-sm-3">
+    <div class="col-lg-5 col-md-4 col-md-3">
       <h1>パスワードの再設定</h1>
       <div class="reset-form">
         <%= form_with(model: @user, url: password_reset_path(params[:id]), local: true, class: "form-group") do |f| %>
