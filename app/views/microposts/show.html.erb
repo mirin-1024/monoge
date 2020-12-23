@@ -26,8 +26,15 @@
         <% if @comments.any? %>
           <li class="list-group-item">
             <% @comments.each do |comment| %>
-              <%= link_to comment.user.name, comment.user %>
-              <%= comment.content %>
+              <span class="comment-name mr-3">
+                <%= link_to comment.user.name, comment.user %>
+              </span>
+              <span class="comment-content mr-5">
+                <%= comment.content %>
+              </span>
+              <span class="comment-delete">
+                <%= link_to "削除", micropost_comment_path(@micropost, comment), method: :delete %>
+              </span>
             <% end %>
           </li>
         <% end %>
