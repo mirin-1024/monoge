@@ -1,0 +1,28 @@
+<aside class="row">
+  <div id="comment-form" class="card col-8 offset-2 pt-3 mt-5">
+    <%= form_with(model: @comment, class: "form-group", local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.hidden_field :micropost_id, value: @micropost.id %>
+      <%= f.hidden_field :user_id, value: @current_user.id %>
+
+      <%= f.text_area :content, class: "form-control", id: "content", placeholder: "コメントを記入してください" %>
+      <%= f.submit "コメントする", class: "btn btn-primary mt-2" %>
+    <% end %>
+  </div>
+  <div class="card col-8 offset-2">
+    <div class="row">
+      <ul class="post-comments">
+        <% if @comments.any? %>
+          <% @comments.each do |comment| %>
+            <li class="post-comment">
+              <p><%= link_to comment.user.name, comment.user %></p>
+              <p><%= comment.content %></p>
+              <p><%= link_to "削除", comment, method: :delete %></p>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</aside>
