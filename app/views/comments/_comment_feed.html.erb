@@ -1,0 +1,14 @@
+<div id="post-comments">
+  <ul>
+    <% if @comments.any? %>
+      <% @comments.each do |comment| %>
+        <li id="comment-<%= comment.id %>">
+          <p><%= link_to comment.user.name, comment.user %></p>
+          <p><%= comment.content %></p>
+          <%#= hidden_field_tag :micropost_id, comment.micropost_id %>
+          <p><%= link_to "削除", comment, method: :delete, remote: true %></p>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

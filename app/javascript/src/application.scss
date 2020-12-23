@@ -299,7 +299,9 @@ footer {
 }
 
 /* post-comment */
-.post-comment {
-  list-style: none;
-  border-bottom: 1px soild;
+#post-comments {
+  ul {
+    list-style: none;
+    border-bottom: 1px soild #e8e8e8;
+  }
 }
