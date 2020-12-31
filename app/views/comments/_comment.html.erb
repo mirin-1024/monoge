@@ -1,7 +1,9 @@
 <aside id="comment-form" class="row">
   <div class="card col-8 offset-2 pt-3 mt-5">
     <%= form_with(model: @comment, class: "form-group", remote: true) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+      <div id="comment-error">
+        <%= render 'shared/error_messages', object: f.object %>
+      </div>
 
       <%= f.hidden_field :micropost_id, value: @micropost.id %>
       <%= f.hidden_field :user_id, value: @current_user.id %>
