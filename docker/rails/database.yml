@@ -16,6 +16,11 @@ test:
 
 production:
   <<: *default
-  database: monoge_production
-  username: <%= ENV.fetch('MYSQL_USER') %>
-  password: <%= ENV.fetch('MYSQL_PASSWORD') %>
+  database: <%= ENV['DB_DATABASE'] %>
+  adapter: mysql2
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_general_ci
+  host: <%= ENV['DB_HOST'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
