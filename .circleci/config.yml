@@ -2,66 +2,69 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@6.15.2
   aws-ecs: circleci/aws-ecs@1.4.0
+jobs:
+  build:
+    working_directory: ~/monoge
+    docker:
+      - image: circleci/ruby:2.7.1-node-browsers
+        environment:
+          BUNDLER_VERSION: 2.1.4
+          RAILS_ENV: test
+          DB_HOST: 127.0.0.1
+          MYSQL_USER: 'root'
+          MYSQL_PASSWORD: ''
+          MYSQL_TEST_HOST: '127.0.0.1'
+      - image: circleci/mysql:8.0
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+          MYSQL_DATABASE: app_test
+          MYSQL_USER: 'root'
+          MYSQL_PASSWORD: ''
+          MYSQL_TEST_HOST: '127.0.0.1'
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-
+      - run:
+          name: Bundler install
+          command: |
+            gem update --system
+            gem install bundler -v 2.1.4
+      - run:
+          name: Bundle Install
+          command: bundle check --path vendor/bundle || bundle install -j4
+      - save_cache:
+          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+      - restore_cache:
+          keys:
+            - yarn-cache-v1-{{ checksum "yarn.lock" }}
+            - yarn-cache-v1-
+      - run:
+          name: Yarnをinstall
+          command: yarn install --cache-folder ~/.cache/yarn
+      - save_cache:
+          key: yarn-cache-v1-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+      - run:
+          name: Database setup
+          command: bin/rails db:create db:schema:load --trace
+      # webpackのビルド、 bootstrap@4.3.1, jquery, popper.jsのインストール（不要？）
+      - run:
+          name: execute rspec
+          command: bundle exec rspec
 workflows:
   build_and_test:
     jobs:
-      build:
-        working_directory: ~/monoge
-        docker:
-          - image: circleci/ruby:2.7.1-node-browsers
-            environment:
-              BUNDLER_VERSION: 2.1.4
-              RAILS_ENV: test
-              DB_HOST: 127.0.0.1
-              MYSQL_USER: 'root'
-              MYSQL_PASSWORD: ''
-              MYSQL_TEST_HOST: '127.0.0.1'
-          - image: circleci/mysql:8.0
-            command: --default-authentication-plugin=mysql_native_password
-            environment:
-              MYSQL_DATABASE: app_test
-              MYSQL_USER: 'root'
-              MYSQL_PASSWORD: ''
-              MYSQL_TEST_HOST: '127.0.0.1'
-        steps:
-          - checkout
-          - restore_cache:
-              keys:
-                - gem-cache-v1-{{ checksum "Gemfile.lock" }}
-                - gem-cache-v1-
-          - run:
-              name: Bundler install
-              command: |
-                gem update --system
-                gem install bundler -v 2.1.4
-          - run:
-              name: Bundle Install
-              command: bundle check --path vendor/bundle || bundle install -j4
-          - save_cache:
-              key: gem-cache-v1-{{ checksum "Gemfile.lock" }}
-              paths:
-                - ./vendor/bundle
-          - restore_cache:
-              keys:
-                - yarn-cache-v1-{{ checksum "yarn.lock" }}
-                - yarn-cache-v1-
-          - run:
-              name: Yarnをinstall
-              command: yarn install --cache-folder ~/.cache/yarn
-          - save_cache:
-              key: yarn-cache-v1-{{ checksum "yarn.lock" }}
-              paths:
-                - ~/.cache/yarn
-          - run:
-              name: Wait for DB
-              command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
-          - run:
-              name: Database setup
-              command: bin/rails db:create db:schema:load --trace
-          # webpackのビルド、 bootstrap@4.3.1, jquery, popper.jsのインストール（不要？）
-          - run:
-              name: execute rspec
-              command: bundle exec rspec
+      - build
+      # require buildを追加してCI後にCDが走るように設定
   nginx-build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
@@ -83,6 +86,8 @@ workflows:
           cluster-name: '${ECS_ARN}'
           service-name: 'monoge-app'
           container-image-name-updates: "container=monoge-nginx,tag=${CIRCLE_SHA1}"
+    requires:
+      - build
   rails-build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
@@ -104,6 +109,8 @@ workflows:
           cluster-name: '${ECS_ARN}'
           service-name: 'monoge-app'
           container-image-name-updates: "container=monoge-rails,tag=${CIRCLE_SHA1}"
+    requires:
+      - build
 ### 以下の環境変数をCircleCIに設定してください
 # AWS_ECR_ACCOUNT_URL
 # AWS_ACCESS_KEY_ID
