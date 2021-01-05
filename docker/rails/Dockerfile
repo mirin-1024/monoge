@@ -18,7 +18,7 @@ RUN apk update && \
         build-base \
         curl-dev
 
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY ./docker/rails/docker-entrypoint.sh /usr/local/bin/
 RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
 
 ENV READY_RAILS_DIR=/ready_rails
