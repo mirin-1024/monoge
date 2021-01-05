@@ -24,10 +24,10 @@ RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
 ENV READY_RAILS_DIR=/ready_rails
 WORKDIR $READY_RAILS_DIR
 
-COPY Gemfile .
-COPY application.rb .
-COPY database.yml .
-COPY puma.rb .
+COPY ./docker/rails/Gemfile .
+COPY ./docker/rails/application.rb .
+COPY ./docker/rails/database.yml .
+COPY ./docker/rails/puma.rb .
 
 WORKDIR /app
 EXPOSE 3000
