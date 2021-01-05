@@ -32,4 +32,4 @@ COPY ./docker/rails/puma.rb .
 WORKDIR /app
 EXPOSE 3000
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
