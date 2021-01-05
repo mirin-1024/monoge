@@ -106,6 +106,7 @@ workflows:
           container-image-name-updates: "container=monoge-rails,tag=${CIRCLE_SHA1}"
 ### 以下の環境変数をCircleCIに設定してください
 # AWS_ECR_ACCOUNT_URL
+# AWS_ACCESS_KEY_ID
 # AWS_SECRET_ACCESS_KEY
-# AWS_DEFAULT_REGION
+# AWS_REGION
 # ECS_ARN

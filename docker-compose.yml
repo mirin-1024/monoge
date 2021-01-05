@@ -2,6 +2,8 @@ version: '3'
 services:
   db:
     build: docker/mysql
+    ports:
+      - 3306:3306
     env_file:
       - ./environments/common.env
       - ./environments/db.env
@@ -14,12 +16,15 @@ services:
       - seccomp:unconfined
   app:
     build: docker/rails
+    ports:
+      - 3000:3000
     env_file:
       - ./environments/common.env
       - ./environments/db.env
     command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/app:delegated
+      - sockets:/app/tmp/sockets:delegated
     depends_on:
       - db
   web:
@@ -30,6 +35,7 @@ services:
       - .:/app:delegated
       - log-data:/var/log/nginx/:delegated
       - cert-data:/etc/nginx/cert/:delegated
+      - sockets:/app/tmp/sockets:delegated
     ports:
       - 80:80     # 443:443
     depends_on:
@@ -43,3 +49,4 @@ volumes:
   log-data:
   cert-data:
   bundle_path:
+  sockets:

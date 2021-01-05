@@ -30,4 +30,6 @@ COPY database.yml .
 COPY puma.rb .
 
 WORKDIR /app
+EXPOSE 3000
+
 ENTRYPOINT ["docker-entrypoint.sh"]
