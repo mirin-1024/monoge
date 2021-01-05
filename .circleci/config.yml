@@ -64,7 +64,6 @@ workflows:
   build_and_test:
     jobs:
       - build
-      # require buildを追加してCI後にCDが走るように設定
   nginx-build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
@@ -86,8 +85,6 @@ workflows:
           cluster-name: '${ECS_ARN}'
           service-name: 'monoge-app'
           container-image-name-updates: "container=monoge-nginx,tag=${CIRCLE_SHA1}"
-    requires:
-      - build
   rails-build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
@@ -109,8 +106,6 @@ workflows:
           cluster-name: '${ECS_ARN}'
           service-name: 'monoge-app'
           container-image-name-updates: "container=monoge-rails,tag=${CIRCLE_SHA1}"
-    requires:
-      - build
 ### 以下の環境変数をCircleCIに設定してください
 # AWS_ECR_ACCOUNT_URL
 # AWS_ACCESS_KEY_ID
