@@ -83,7 +83,7 @@ workflows:
             - aws-ecr/build-and-push-image
           family: 'monoge-task'
           cluster-name: 'monoge-cluster'
-          service-name: 'monoge-app'
+          service-name: 'monoge-service'
           container-image-name-updates: "container=monoge-nginx,tag=${CIRCLE_SHA1}"
   rails-build-and-deploy:
     jobs:
@@ -104,7 +104,7 @@ workflows:
             - aws-ecr/build-and-push-image
           family: 'monoge-task'
           cluster-name: 'monoge-cluster'
-          service-name: 'monoge-app'
+          service-name: 'monoge-service'
           container-image-name-updates: "container=monoge-rails,tag=${CIRCLE_SHA1}"
 ### 以下の環境変数をCircleCIに設定してください
 # AWS_ECR_ACCOUNT_URL
