@@ -75,9 +75,9 @@ workflows:
           dockerfile: ./docker/nginx/Dockerfile
           repo: monoge-nginx
           tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
+          # filters:
+          #   branches:
+          #     only: master
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
@@ -96,9 +96,9 @@ workflows:
           dockerfile: ./docker/rails/Dockerfile
           repo: monoge-rails
           tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
+          # filters:
+          #   branches:
+          #     only: master
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
