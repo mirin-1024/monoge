@@ -1,52 +1,43 @@
 version: '3'
 services:
-  db:
-    build: docker/mysql
-    ports:
-      - 3306:3306
-    env_file:
-      - ./environments/common.env
-      - ./environments/db.env
-    volumes:
-      - db-data:/var/lib/mysql:delegated
-      - bundle_path:/bundle:delegated
-    environment:
-      - BUNDLE_PATH=/bundle
-    security_opt:
-      - seccomp:unconfined
   app:
-    build: docker/rails
+    build:
+      context: .
+      dockerfile: docker/rails/Dockerfile
     ports:
       - 3000:3000
     env_file:
-      - ./environments/common.env
       - ./environments/db.env
     command: bundle exec puma -C config/puma.rb
     volumes:
-      - .:/app:delegated
-      - sockets:/app/tmp/sockets:delegated
+      - .:/monoge:delegated
     depends_on:
       - db
   web:
-    build: docker/nginx
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
     env_file:
       - ./environments/common.env
-    volumes:
-      - .:/app:delegated
-      - log-data:/var/log/nginx/:delegated
-      - cert-data:/etc/nginx/cert/:delegated
-      - sockets:/app/tmp/sockets:delegated
     ports:
       - 80:80     # 443:443
     depends_on:
       - app
+  db:
+    build:
+      context: .
+      dockerfile: docker/mysql/Dockerfile
+    ports:
+      - 3306:3306
+    env_file:
+      - ./environments/db.env
+    volumes:
+      - db-data:/var/lib/mysql:delegated
+    security_opt:
+      - seccomp:unconfined
   chrome:
     image: selenium/standalone-chrome:latest
     ports:
       - 4444:4444
 volumes:
   db-data:
-  log-data:
-  cert-data:
-  bundle_path:
-  sockets:

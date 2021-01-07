@@ -1,10 +1,10 @@
 default: &default
   adapter: mysql2
-  encoding: utf8
+  encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV.fetch('MYSQL_USER') { 'root' }  %>
   password: <%= ENV.fetch('MYSQL_PASSWORD') { 'password' }  %>
-  host: db
+  host: <%= ENV.fetch('MYSQL_HOST') { 'db' }  %>
 
 development:
   <<: *default
@@ -12,13 +12,15 @@ development:
 
 test:
   <<: *default
-  port: 3306
-  host: <%= ENV.fetch('MYSQL_TEST_HOST') { 'db' } %>
   database: monoge_test
 
 production:
   <<: *default
-  database: <%= ENV["DATABASE_NAME"] %>
-  username: <%= ENV["DATABASE_USERNAME"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
-  host: <%= ENV["DATABASE_HOST"] %>
+  adapter: mysql2
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_general_ci
+  database: <%= ENV['DB_DATABASE'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>

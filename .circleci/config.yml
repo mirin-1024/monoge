@@ -13,14 +13,14 @@ jobs:
           DB_HOST: 127.0.0.1
           MYSQL_USER: 'root'
           MYSQL_PASSWORD: ''
-          MYSQL_TEST_HOST: '127.0.0.1'
+          MYSQL_HOST: '127.0.0.1'
       - image: circleci/mysql:8.0
         command: --default-authentication-plugin=mysql_native_password
         environment:
-          MYSQL_DATABASE: app_test
+          MYSQL_DATABASE: monoge_test
           MYSQL_USER: 'root'
           MYSQL_PASSWORD: ''
-          MYSQL_TEST_HOST: '127.0.0.1'
+          MYSQL_HOST: '127.0.0.1'
     steps:
       - checkout
       - restore_cache:
@@ -56,59 +56,62 @@ jobs:
       - run:
           name: Database setup
           command: bin/rails db:create db:schema:load --trace
-      # webpackのビルド、 bootstrap@4.3.1, jquery, popper.jsのインストール（不要？）
       - run:
           name: execute rspec
           command: bundle exec rspec
-workflows:
-  build_and_test:
-    jobs:
-      - build
-  nginx-build-and-deploy:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          dockerfile: ./docker/nginx/Dockerfile
-          repo: monoge-nginx
-          tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: 'monoge-task'
-          cluster-name: '${ECS_ARN}'
-          service-name: 'monoge-app'
-          container-image-name-updates: "container=monoge-nginx,tag=${CIRCLE_SHA1}"
-  rails-build-and-deploy:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          dockerfile: ./docker/rails/Dockerfile
-          repo: monoge-rails
-          tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: 'monoge-task'
-          cluster-name: '${ECS_ARN}'
-          service-name: 'monoge-app'
-          container-image-name-updates: "container=monoge-rails,tag=${CIRCLE_SHA1}"
+# workflows:
+#   build_and_test:
+#     jobs:
+#       - build
+#   nginx-build-and-deploy:
+#     jobs:
+#       - aws-ecr/build-and-push-image:
+#           account-url: AWS_ECR_ACCOUNT_URL
+#           region: AWS_REGION
+#           aws-access-key-id: AWS_ACCESS_KEY_ID
+#           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+#           # create-repo: true
+#           dockerfile: ./docker/nginx/Dockerfile
+#           repo: 'monoge-nginx'
+#           tag: "${CIRCLE_SHA1}"
+#           # filters:
+#           #   branches:
+#           #     only: master
+#       - aws-ecs/deploy-service-update:
+#           requires:
+#             - aws-ecr/build-and-push-image
+#           family: 'monoge-task'
+#           cluster-name: 'monoge-cluster'
+#           service-name: 'monoge-service'
+#           container-image-name-updates: "container=monoge-nginx,tag=${CIRCLE_SHA1}"
+#   rails-build-and-deploy:
+#     jobs:
+#       - aws-ecr/build-and-push-image:
+#           account-url: AWS_ECR_ACCOUNT_URL
+#           region: AWS_REGION
+#           aws-access-key-id: AWS_ACCESS_KEY_ID
+#           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+#           # create-repo: true
+#           dockerfile: ./docker/rails/Dockerfile
+#           repo: 'monoge-rails'
+#           tag: "${CIRCLE_SHA1}"
+#           # filters:
+#           #   branches:
+#           #     only: master
+#       - aws-ecs/deploy-service-update:
+#           requires:
+#             - aws-ecr/build-and-push-image
+#           family: 'monoge-task'
+#           cluster-name: 'monoge-cluster'
+#           service-name: 'monoge-service'
+#           container-image-name-updates: "container=monoge-rails,tag=${CIRCLE_SHA1}"
+
 ### 以下の環境変数をCircleCIに設定してください
 # AWS_ECR_ACCOUNT_URL
 # AWS_ACCESS_KEY_ID
 # AWS_SECRET_ACCESS_KEY
 # AWS_REGION
 # ECS_ARN
+
+# タスク定義・クラスター作成・サービス作成からやり直す
+# vcpuが足りていない

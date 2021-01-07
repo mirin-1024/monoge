@@ -1,4 +1,11 @@
 FROM ruby:2.7.1-alpine3.12
+
+ENV ROOT="/monoge"
+ENV LANG=C.UTF-8
+ENV TZ=Asia/Tokyo
+
+WORKDIR ${ROOT}
+
 RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
@@ -12,24 +19,19 @@ RUN apk update && \
         mysql-client \
         mysql-dev \
         tzdata \
-        yarn \
-        imagemagick && \
+        yarn && \
     apk add --virtual build-packs --no-cache \
         build-base \
         curl-dev
 
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod 744 /usr/local/bin/docker-entrypoint.sh
+COPY Gemfile ${ROOT}
+COPY Gemfile.lock ${ROOT}
 
-ENV READY_RAILS_DIR=/ready_rails
-WORKDIR $READY_RAILS_DIR
+RUN bundle install -j4
+RUN apk del build-packs
 
-COPY Gemfile .
-COPY application.rb .
-COPY database.yml .
-COPY puma.rb .
+COPY . ${ROOT}
 
-WORKDIR /app
+RUN mkdir -p tmp/sockets
+
 EXPOSE 3000
-
-ENTRYPOINT ["docker-entrypoint.sh"]
