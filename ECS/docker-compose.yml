@@ -1,0 +1,35 @@
+version: 3
+services:
+  app:
+    image: 486601415720.dkr.ecr.ap-northeast-1.amazonaws.com/monoge-rails
+    command: bash -c "bundle exec rails db:migrate && bundle exec rails assets:precompile && bundle exec puma -C config/puma.rb"
+    environment:
+      RAILS_ENV: production
+      RAILS_MASTER_KEY: dd35c9a74609881e02f0b940ec585cc2
+      DATABASE_NAME: monoge_db_prod
+      DATABASE_USERNAME: monoge_admin
+      DATABASE_PASSWORD: monogepass
+      DATABASE_HOST: monoge-db.czyhogiciodt.ap-northeast-1.rds.amazonaws.com
+      TZ: Japan
+    working_dir: /monoge
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: ap-northeast-1
+        awslogs-group: monoge/app
+        awslogs-stream-prefix: monoge
+  nginx:
+    image: 486601415720.dkr.ecr.ap-northeast-1.amazonaws.com/monoge-nginx
+    ports:
+      - 80:80
+    links:
+      - app
+    volumes_from:
+      - app
+    working_dir: /monoge
+    logging:
+      driver: awslogs
+      options:
+        awslogs-region: ap-northeast-1
+        awslogs-group: monoge/nginx
+        awslogs-stream-prefix: monoge
