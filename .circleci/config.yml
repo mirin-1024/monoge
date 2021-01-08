@@ -113,5 +113,4 @@ jobs:
 # AWS_REGION
 # ECS_ARN
 
-# タスク定義・クラスター作成・サービス作成からやり直す
-# vcpuが足りていない
+# ECRへのimage push からやり直す
