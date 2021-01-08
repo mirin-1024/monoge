@@ -1,6 +1,6 @@
 version: 2
 services:
-  app:
+  monoge-rails:
     image: 486601415720.dkr.ecr.ap-northeast-1.amazonaws.com/monoge-rails
     command: ash -c "bundle exec rails db:migrate && bundle exec rails assets:precompile && bundle exec puma -C config/puma.rb"
     environment:
@@ -10,26 +10,28 @@ services:
       DB_USERNAME: monoge_admin
       DB_PASSWORD: monogepass
       DB_HOST: monoge-db.czyhogiciodt.ap-northeast-1.rds.amazonaws.com
-      TZ: Japan
+      TZ: Asia/Tokyo
     working_dir: /monoge
     logging:
       driver: awslogs
       options:
         awslogs-region: ap-northeast-1
-        awslogs-group: monoge/app
+        awslogs-group: monoge/monoge-rails
         awslogs-stream-prefix: monoge
-  nginx:
+  monoge-nginx:
     image: 486601415720.dkr.ecr.ap-northeast-1.amazonaws.com/monoge-nginx
     ports:
       - 80:80
     links:
-      - app
+      - monoge-rails
+    # version2のみ
     volumes_from:
-      - app
+      - monoge-rails
     working_dir: /monoge
     logging:
       driver: awslogs
       options:
         awslogs-region: ap-northeast-1
-        awslogs-group: monoge/nginx
+        awslogs-group: monoge/monoge-nginx
         awslogs-stream-prefix: monoge
+# sockets /monoge/tmp/socketsをボリュームに追加
