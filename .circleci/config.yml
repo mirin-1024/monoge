@@ -70,13 +70,12 @@ workflows:
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          # create-repo: true
           dockerfile: ./docker/nginx/Dockerfile
           repo: 'monoge-nginx'
           tag: "${CIRCLE_SHA1}"
-          # filters:
-          #   branches:
-          #     only: master
+          filters:
+            branches:
+              only: master
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
@@ -91,13 +90,12 @@ workflows:
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          # create-repo: true
           dockerfile: ./docker/rails/Dockerfile
           repo: 'monoge-rails'
           tag: "${CIRCLE_SHA1}"
-          # filters:
-          #   branches:
-          #     only: master
+          filters:
+            branches:
+              only: master
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image

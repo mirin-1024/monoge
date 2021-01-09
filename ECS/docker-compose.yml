@@ -34,4 +34,5 @@ services:
         awslogs-region: ap-northeast-1
         awslogs-group: monoge/monoge-nginx
         awslogs-stream-prefix: monoge
-# sockets /monoge/tmp/socketsをボリュームに追加
+# sockets /monoge/tmp/socketsをボリュームとしてマウント
+# public /monoge/publicをボリュームとしてマウント
