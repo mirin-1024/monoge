@@ -3,9 +3,11 @@ require 'rails_helper'
 RSpec.describe "Likes", type: :system do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:test_user) }
-  # let(:other_user_micropost) { create(:test_micropost, user: other_user) }
 
-  before { user.active_relationships.create!(followed_id: other_user.id) }
+  before do
+    create(:test_micropost, user: other_user)
+    user.active_relationships.create!(followed_id: other_user.id)
+  end
 
   context "いいねをする場合" do
     before {

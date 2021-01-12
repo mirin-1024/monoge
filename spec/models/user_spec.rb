@@ -79,7 +79,8 @@ RSpec.describe User, type: :model do
 
   describe "ユーザーの投稿" do
     let!(:user) { create(:user) }
-    # let(:micropost) { create(:micropost, user: user) }
+
+    before { create(:micropost, user: user) }
 
     example "ユーザーが削除された時に削除される" do
       expect do
