@@ -5,7 +5,7 @@ FactoryBot.define do
     association :user
   end
 
-  factory :test_micropost, class: Micropost do
+  factory :test_micropost, class: 'Micropost' do
     content { Faker::Lorem.sentence(word_count: 5) }
     created_at { Time.zone.now }
     association :user

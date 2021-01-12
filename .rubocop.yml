@@ -1,1 +1,79 @@
 inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 6.0
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'tmp/**/*'
+    - 'node_modules/**/*'
+    - 'lib/tasks/auto_annotate_models.rake'
+
+Rails:
+  Enabled: true
+
+### rubocop setting
+Style/AsciiComments:
+  Enabled: false
+
+### rubocop-rails setting
+Metrics/BlockLength:
+  Exclude:
+    - Gemfile
+    - spec/**/*
+
+### rubocop-rspec setting
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/NotToNot:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 8
+
+# 一時的に調整（デフォルトは3）
+RSpec/NestedGroups:
+  Max: 6
+
+# テストパフォーマンス向上のため
+FactoryBot/FactoryClassName:
+  Enabled: true
+
+### 一時的に設定（後から消す）
+RSpec/InstanceVariable:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/EmptyExampleGroup:
+  Enabled: false
+
+RSpec/PredicateMatcher:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
