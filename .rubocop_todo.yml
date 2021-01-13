@@ -6,45 +6,29 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 113
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, always_true, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-# Offense count: 5
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/likes_controller.rb'
-    - 'app/controllers/password_resets_controller.rb'
-    - 'app/controllers/static_pages_controller.rb'
-
 # Offense count: 4
-Style/IdenticalConditionalBranches:
-  Exclude:
-    - 'app/controllers/comments_controller.rb'
+# Style/IdenticalConditionalBranches:
+#   Exclude:
+#     - 'app/controllers/comments_controller.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'bin/bundle'
+# Style/IfUnlessModifier:
+#   Exclude:
+#     - 'bin/bundle'
 
 # Offense count: 1
-Style/MixinUsage:
-  Exclude:
-    - 'spec/rails_helper.rb'
+# Style/MixinUsage:
+#   Exclude:
+#     - 'spec/rails_helper.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'app/models/user.rb'
+# Style/MutableConstant:
+#   Exclude:
+#     - 'app/models/user.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.

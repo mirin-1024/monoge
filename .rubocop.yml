@@ -47,6 +47,13 @@ Style/Documentation:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
+Style/FrozenStringLiteralComment: # 必要に応じてtrueに
+  Enabled: false
+
+Style/MutableConstant: # FrozenStringLiteralCommentに依存
+  Exclude:
+    - app/models/user.rb
+
 ### rubocop-rails setting
 Bundler/OrderedGems:
   Exclude:
