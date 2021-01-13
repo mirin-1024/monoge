@@ -11,7 +11,7 @@ class SearchesController < ApplicationController
     def search_for(model, keyword)
       if model == "User"
         User.where("name LIKE ?", "%#{keyword}%").paginate(page: params[:page])
-      else model == "Micropost"
+      elsif model == "Micropost"
         Micropost.where("content LIKE ?", "%#{keyword}%").paginate(page: params[:page])
       end
     end

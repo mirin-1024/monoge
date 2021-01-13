@@ -20,41 +20,62 @@ Rails:
   Enabled: true
 
 ### rubocop setting
-Layout/IndentationWidth: #一時的に設定
-  Exclude:
-    - app/controllers/searches_controller.rb
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
 
-Style/AsciiComments:
-  Enabled: false
+Metrics/AbcSize: # リファクタリング対象
+  Max: 30
 
-### rubocop-rails setting
 Metrics/BlockLength:
   Exclude:
     - Gemfile
     - spec/**/*
 
-### rubocop-rspec setting
-RSpec/ImplicitSubject:
+Metrics/MethodLength:
+  Max: 15
+
+Style/AsciiComments:
   Enabled: false
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+### rubocop-rails setting
+Bundler/OrderedGems:
+  Exclude:
+    - Gemfile # 機能ごとにまとめて管理したいため除外
+
+Rails/HelperInstanceVariable:
+  Exclude:
+    - app/helpers/sessions_helper.rb
+
+Rails/InverseOf: # 1対多の関連付けなので不可能?
+  Exclude:
+    - app/models/user.rb
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - app/controllers/password_resets_controller.rb
+    - app/models/user.rb
+    - spec/system/password_resets_spec.rb
+
+### rubocop-rspec setting
+RSpec/AnyInstance: # sessionテストを代替できる方法があれば変更
+  Exclude:
+    - spec/requests/sessions_request_spec.rb
 
 RSpec/ContextWording:
   Enabled: false
 
-RSpec/NotToNot:
-  Enabled: false
-
 RSpec/DescribedClass:
   Enabled: false
-
-RSpec/ExampleLength:
-  Max: 8
-
-RSpec/NestedGroups: # 一時的に調整（デフォルトは3）
-  Max: 6
-
-RSpec/PredicateMatcher:
-  Exclude:
-    - spec/models/user_spec.rb
 
 RSpec/EmptyExampleGroup: # 一時的に調整（最終的に不要なら消去）
   Exclude:
@@ -66,31 +87,22 @@ RSpec/EmptyExampleGroup: # 一時的に調整（最終的に不要なら消去�
     - spec/requests/searches_request_spec.rb
     - spec/requests/static_pages_request_spec.rb
 
-Rails/SkipsModelValidations:
+RSpec/ExampleLength:
+  Max: 8
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/NestedGroups: # 一時的に調整（デフォルトは3）
+  Max: 6
+
+RSpec/NotToNot:
+  Enabled: false
+
+RSpec/PredicateMatcher:
   Exclude:
-    - app/controllers/password_resets_controller.rb
-    - app/models/user.rb
-    - spec/system/password_resets_spec.rb
+    - spec/models/user_spec.rb
 
 # テストパフォーマンス向上のため
 FactoryBot/FactoryClassName:
   Enabled: true
-
-### 一時的に設定（後から消す）
-RSpec/InstanceVariable:
-  Enabled: false
-
-# Rails/SkipsModelValidations:
-#   Enabled: false
-
-RSpec/AnyInstance:
-  Enabled: false
-
-# Rails/UniqueValidationWithoutIndex:
-#   Enabled: false
-
-Rails/InverseOf:
-  Enabled: false
-
-Rails/HelperInstanceVariable:
-  Enabled: false

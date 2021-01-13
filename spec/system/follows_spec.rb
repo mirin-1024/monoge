@@ -4,10 +4,10 @@ RSpec.describe "Follows", type: :system do
   subject { page }
 
   let!(:user) { create(:user) }
-  let(:other_users) { create_list(:test_user, @user_count) }
+  let(:user_count) { 5 }
+  let(:other_users) { create_list(:test_user, user_count) }
 
   before do
-    @user_count = 5
     other_users.each do |other_user|
       user.active_relationships.create!(followed_id: other_user.id)
       user.passive_relationships.create!(follower_id: other_user.id)
@@ -30,7 +30,7 @@ RSpec.describe "Follows", type: :system do
       end
 
       example "フォロー人数が適切である" do
-        expect(user.following.count).to eq @user_count
+        expect(user.following.count).to eq user_count
       end
 
       example "フォローしているユーザーのリンクが表示される" do
@@ -57,7 +57,7 @@ RSpec.describe "Follows", type: :system do
       end
 
       example "フォロワーの数が適切である" do
-        expect(user.followers.count).to eq @user_count
+        expect(user.followers.count).to eq user_count
       end
 
       example "フォロワーのリンクが表示される" do

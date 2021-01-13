@@ -27,13 +27,13 @@ class User < ApplicationRecord
                        allow_nil: true
 
   # 渡された文字列のハッシュを返す
-  def User.digest(string)
+  def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
   # ランダムに生成されたトークンを返す
-  def User.new_token
+  def self.new_token
     SecureRandom.urlsafe_base64
   end
 
@@ -69,7 +69,7 @@ class User < ApplicationRecord
   end
 
   def send_password_reset_email
-    UserMailer::password_reset(self).deliver_now
+    UserMailer.password_reset(self).deliver_now
   end
 
   def password_reset_expired?
@@ -95,12 +95,12 @@ class User < ApplicationRecord
 
   private
 
-  def downcase_email
-    self.email.downcase!
-  end
+    def downcase_email
+      self.email.downcase!
+    end
 
-  def create_activation_digest
-    self.activation_token = User.new_token
-    self.activation_digest = User.digest(activation_token)
-  end
+    def create_activation_digest
+      self.activation_token = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
 end

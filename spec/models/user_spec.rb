@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
 
       example "大文字のメールアドレスが、登録されている小文字のメールアドレスと重複すると登録できない" do
         mixed_case_email = "Foo@ExAMPle.CoM"
-        user = create(:user, email: mixed_case_email.downcase)
+        create(:user, email: mixed_case_email.downcase)
         expect(build(:other_user, email: mixed_case_email)).to_not be_valid
       end
     end

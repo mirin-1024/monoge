@@ -30,7 +30,7 @@ RSpec.describe "PasswordResets", type: :request do
       before do
         patch password_reset_path(user.reset_token, params: { email: user.email,
                                                               user: { password: user.password,
-                                                                      password_confirmation: user.password } } )
+                                                                      password_confirmation: user.password } })
       end
 
       example "再設定ダイジェストがnilである" do
@@ -42,7 +42,7 @@ RSpec.describe "PasswordResets", type: :request do
       before do
         patch password_reset_path(user.reset_token, params: { email: user.email,
                                                               user: { password: 'newpassword',
-                                                                      password_confirmation: 'newpassward' } } )
+                                                                      password_confirmation: 'newpassward' } })
       end
 
       example "再設定ダイジェストがnilである" do

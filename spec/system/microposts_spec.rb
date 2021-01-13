@@ -6,6 +6,7 @@ RSpec.describe "Microposts", type: :system do
   subject { page }
 
   let!(:user) { create(:user) }
+  let(:micropost_count) { 0 }
 
   describe "投稿の作成" do
     before do
@@ -14,12 +15,10 @@ RSpec.describe "Microposts", type: :system do
     end
 
     context "投稿が適切な場合" do
-      let(:create_valid_micropost) {
+      let(:create_valid_micropost) do
         fill_in 'micropost_content', with: "適切な投稿"
         click_button '投稿'
-      }
-
-      before { @micropost_count = 0 }
+      end
 
       example "投稿一覧の投稿が増える" do
         create_valid_micropost
@@ -28,7 +27,7 @@ RSpec.describe "Microposts", type: :system do
 
       example "投稿数の表示が増える" do
         create_valid_micropost
-        is_expected.to have_css(".post_count", text: "#{@micropost_count + 1} 投稿")
+        is_expected.to have_css(".post_count", text: "#{micropost_count + 1} 投稿")
       end
 
       example "サクセスメッセージを表示" do
@@ -43,10 +42,10 @@ RSpec.describe "Microposts", type: :system do
     end
 
     context "投稿が不正な場合" do
-      let(:create_invalid_micropost) {
+      let(:create_invalid_micropost) do
         fill_in 'micropost_content', with: ""
         click_button '投稿'
-      }
+      end
 
       example "投稿一覧が変化しない" do
         create_invalid_micropost
@@ -55,7 +54,7 @@ RSpec.describe "Microposts", type: :system do
 
       example "投稿数の表示が変化しない" do
         create_invalid_micropost
-        is_expected.to have_css(".post_count", text: "#{@micropost_count} 投稿")
+        is_expected.to have_css(".post_count", text: "#{micropost_count} 投稿")
       end
 
       example "トップページを描画" do
@@ -65,16 +64,17 @@ RSpec.describe "Microposts", type: :system do
     end
 
     describe "画像の投稿" do
+      let(:image_name) { "neko.jpg" }
+
       before do
         # ボタンをクリックでアップロードする際のテスト
-        @image_name = "neko.jpg"
-        attach_file 'micropost_image', "#{Rails.root}/spec/fixtures/#{@image_name}", make_visible: true
+        attach_file 'micropost_image', "#{Rails.root}/spec/fixtures/#{image_name}", make_visible: true
         fill_in 'micropost_content', with: "適切な投稿"
         click_button '投稿'
       end
 
       example "画像が投稿一覧に表示される" do
-        is_expected.to have_selector "img[src$='#{@image_name}']"
+        is_expected.to have_selector "img[src$='#{image_name}']"
       end
       # リサイズのテスト
     end

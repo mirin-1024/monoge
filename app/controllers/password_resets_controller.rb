@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  before_action :get_user, only: [:edit, :update]
+  before_action :user, only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]
 
@@ -38,25 +38,25 @@ class PasswordResetsController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:password, :password_confirmation)
-  end
-
-  def get_user
-    @user = User.find_by(email: params[:email])
-  end
-
-  def valid_user
-    unless (@user && @user.activated? &&
-            @user.authenticated?(:reset, params[:id]))
-      redirect_to root_url
+    def user_params
+      params.require(:user).permit(:password, :password_confirmation)
     end
-  end
 
-  def check_expiration
-    if @user.password_reset_expired?
-      flash[:danger] = "パスワード再設定期限が終了しました"
-      redirect_to new_password_reset_url
+    def user
+      @user = User.find_by(email: params[:email])
     end
-  end
+
+    def valid_user
+      unless (@user && @user.activated? &&
+              @user.authenticated?(:reset, params[:id]))
+        redirect_to root_url
+      end
+    end
+
+    def check_expiration
+      if @user.password_reset_expired?
+        flash[:danger] = "パスワード再設定期限が終了しました"
+        redirect_to new_password_reset_url
+      end
+    end
 end

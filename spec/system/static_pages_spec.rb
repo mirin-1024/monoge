@@ -5,11 +5,9 @@ RSpec.describe "StaticPages", type: :system do
 
   describe "トップページ" do
     let!(:user) { create(:user) }
+    let(:post_count) { 50 }
 
-    before do
-      @post_count = 50
-      create_list(:test_micropost, @post_count, user: user)
-    end
+    before { create_list(:test_micropost, post_count, user: user) }
 
     context "ログインしている場合" do
       before do
@@ -19,7 +17,7 @@ RSpec.describe "StaticPages", type: :system do
 
       describe "ユーザー情報" do
         example "ユーザー情報が表示されている" do
-          is_expected.to have_content "#{@post_count} 投稿"
+          is_expected.to have_content "#{post_count} 投稿"
         end
       end
 
