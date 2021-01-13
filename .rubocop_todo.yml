@@ -6,16 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 5
-# Cop supports --auto-correct.
-# Style/ExpandPathArguments:
-#   Exclude:
-#     - 'bin/bundle'
-#     - 'bin/rails'
-#     - 'bin/rake'
-#     - 'config/puma.rb'
-#     - 'docker/rails/puma.rb'
-
 # Offense count: 113
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
