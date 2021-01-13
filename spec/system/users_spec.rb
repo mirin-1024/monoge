@@ -125,10 +125,10 @@ RSpec.describe "Users", type: :system do
     end
 
     context "異なるユーザーでログインした場合" do
-      before {
+      before do
         sign_in(other_user)
         visit edit_user_path(user)
-      }
+      end
 
       example "トップページに遷移する" do
         is_expected.to have_current_path root_path
@@ -142,10 +142,10 @@ RSpec.describe "Users", type: :system do
     before { create_list(:test_micropost, 51, user: user) }
 
     context "ユーザーが有効化されている時" do
-      before {
+      before do
         log_in_as(user)
         visit user_path(user)
-      }
+      end
 
       example "ユーザーページにアクセスできる" do
         is_expected.to have_current_path user_path(user)
@@ -171,10 +171,10 @@ RSpec.describe "Users", type: :system do
     context "ユーザーが有効化されていない時" do
       let!(:non_activated_user) { create(:test_user, :non_activated) }
 
-      before {
+      before do
         log_in_as(non_activated_user)
         visit user_path(non_activated_user)
-      }
+      end
 
       example "トップページに遷移する" do
         is_expected.to have_current_path root_path
@@ -185,10 +185,10 @@ RSpec.describe "Users", type: :system do
       let(:user_follower) { create(:test_user) }
       let(:other_user) { create(:test_user) }
 
-      before {
+      before do
         sign_in(user_follower)
         user_follower.active_relationships.create!(followed_id: user.id)
-      }
+      end
 
       example "フォローしているユーザーの投稿が存在する" do
         user.microposts.each do |following_post|
@@ -217,10 +217,10 @@ RSpec.describe "Users", type: :system do
 
     context "ログインしている場合" do
       context "管理者ユーザーであるとき" do
-        before {
+        before do
           sign_in(admin_user)
           visit users_path
-        }
+        end
 
         describe "ページネーションの検証" do
           example "paginationクラスが存在している" do
@@ -252,10 +252,10 @@ RSpec.describe "Users", type: :system do
       end
 
       context "通常のユーザーであるとき" do
-        before {
+        before do
           sign_in(user)
           visit users_path
-        }
+        end
 
         describe "ページネーションの検証" do
           example "paginationクラスが存在している" do

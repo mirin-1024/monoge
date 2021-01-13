@@ -9,9 +9,7 @@ RSpec.describe "PasswordResets", type: :request do
     before { get new_password_reset_path }
 
     context "送信されたメールアドレスがデータベースに存在する" do
-      before {
-        post password_resets_path, params: { password_reset: { email: user.email } }
-      }
+      before { post password_resets_path, params: { password_reset: { email: user.email } } }
 
       example "再設定用のダイジェストが更新されている" do
         expect(user.reset_digest).to_not eq user.reload.reset_digest
@@ -19,9 +17,7 @@ RSpec.describe "PasswordResets", type: :request do
     end
 
     context "送信されたメールアドレスがデータベースに存在しない" do
-      before {
-        post password_resets_path, params: { password_reset: { email: "" } }
-      }
+      before { post password_resets_path, params: { password_reset: { email: "" } } }
 
       example "再設定用のダイジェストが更新されていない" do
         expect(user.reset_digest).to eq user.reload.reset_digest
@@ -31,11 +27,11 @@ RSpec.describe "PasswordResets", type: :request do
 
   describe "PATCH #update" do
     context "適切なパスワードを送信した場合" do
-      before {
+      before do
         patch password_reset_path(user.reset_token, params: { email: user.email,
                                                               user: { password: user.password,
                                                                       password_confirmation: user.password } } )
-      }
+      end
 
       example "再設定ダイジェストがnilである" do
         expect(user.reload.reset_digest).to eq nil
@@ -43,11 +39,11 @@ RSpec.describe "PasswordResets", type: :request do
     end
 
     context "不正なパスワードを送信した場合" do
-      before {
+      before do
         patch password_reset_path(user.reset_token, params: { email: user.email,
                                                               user: { password: 'newpassword',
                                                                       password_confirmation: 'newpassward' } } )
-      }
+      end
 
       example "再設定ダイジェストがnilである" do
         expect(user.reload.reset_digest).to_not eq nil

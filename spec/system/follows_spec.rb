@@ -6,13 +6,13 @@ RSpec.describe "Follows", type: :system do
   let!(:user) { create(:user) }
   let(:other_users) { create_list(:test_user, @user_count) }
 
-  before {
+  before do
     @user_count = 5
     other_users.each do |other_user|
       user.active_relationships.create!(followed_id: other_user.id)
       user.passive_relationships.create!(follower_id: other_user.id)
     end
-  }
+  end
 
   describe "フォローしている人数を表示" do
     context "ログインしていない場合" do
@@ -24,10 +24,10 @@ RSpec.describe "Follows", type: :system do
     end
 
     context "ログインしている場合" do
-      before {
+      before do
         sign_in(user)
         visit following_user_path(user)
-      }
+      end
 
       example "フォロー人数が適切である" do
         expect(user.following.count).to eq @user_count
@@ -51,10 +51,10 @@ RSpec.describe "Follows", type: :system do
     end
 
     context "ログインしている場合" do
-      before {
+      before do
         sign_in(user)
         visit followers_user_path(user)
-      }
+      end
 
       example "フォロワーの数が適切である" do
         expect(user.followers.count).to eq @user_count
@@ -69,10 +69,10 @@ RSpec.describe "Follows", type: :system do
   end
 
   describe "フォローボタン" do
-    before {
+    before do
       sign_in(user)
       visit user_path(other_users.last.id)
-    }
+    end
 
     context "Unfollowをクリック" do
       example "フォローしている人数が1人減る", :aggregate_failures do

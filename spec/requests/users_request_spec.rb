@@ -56,92 +56,90 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "GET #edit" do
-    # context "正常にログインした場合" do
-    #   before {
-    #     log_in_as(user)
-    #     get edit_user_path(user)
-    #   }
+  # describe "GET #edit" do
+  #   context "正常にログインした場合" do
+  #     before do
+  #       log_in_as(user)
+  #       get edit_user_path(user)
+  #     end
 
-    #   example "200レスポンスを返す" do
-    #     is_expected.to have_http_status(:ok)
-    #   end
-    # end
+  #     example "200レスポンスを返す" do
+  #       is_expected.to have_http_status(:ok)
+  #     end
+  #   end
 
-    # context "ログインしていない場合" do
-    #   before { get edit_user_path(user) }
+  #   context "ログインしていない場合" do
+  #     before { get edit_user_path(user) }
 
-    #   example "302レスポンスを返す" do
-    #     is_expected.to have_http_status(:found)
-    #   end
-    # end
+  #     example "302レスポンスを返す" do
+  #       is_expected.to have_http_status(:found)
+  #     end
+  #   end
 
-    # context "異なるユーザーでログインした場合" do
-    #   before {
-    #     log_in_as(other_user)
-    #     get edit_user_path(user)
-    #   }
+  #   context "異なるユーザーでログインした場合" do
+  #     before do
+  #       log_in_as(other_user)
+  #       get edit_user_path(user)
+  #     end
 
-    #   example "302レスポンスを返す" do
-    #     is_expected.to have_http_status(:found)
-    #   end
-    # end
-  end
+  #     example "302レスポンスを返す" do
+  #       is_expected.to have_http_status(:found)
+  #     end
+  #   end
+  # end
 
-  describe "PATCH #update" do
-    # context "正常にログインした場合" do
-    #   before {
-    #     log_in_as(user)
-    #     patch user_path(user), params: { user: attributes_for(:user) }
-    #   }
+  # describe "PATCH #update" do
+  #   context "正常にログインした場合" do
+  #     before do
+  #       log_in_as(user)
+  #       patch user_path(user), params: { user: attributes_for(:user) }
+  #     end
 
-    #   example "302レスポンスを返す" do
-    #     is_expected.to have_http_status(:found)
-    #   end
-    # end
+  #     example "302レスポンスを返す" do
+  #       is_expected.to have_http_status(:found)
+  #     end
+  #   end
 
-    # context "ログインしていない場合" do
-    #   before {
-    #     patch user_path(user), params: { user: attributes_for(:user) }
-    #   }
+  #   context "ログインしていない場合" do
+  #     before { patch user_path(user), params: { user: attributes_for(:user) } }
 
-    #   example "302レスポンスを返す" do
-    #     is_expected.to have_http_status(:found)
-    #   end
-    # end
+  #     example "302レスポンスを返す" do
+  #       is_expected.to have_http_status(:found)
+  #     end
+  #   end
 
-    # context "異なるユーザーでログインした場合" do
-    #   before {
-    #     log_in_as(other_user)
-    #     patch user_path(user), params: { user: attributes_for(:user) }
-    #   }
+  #   context "異なるユーザーでログインした場合" do
+  #     before do
+  #       log_in_as(other_user)
+  #       patch user_path(user), params: { user: attributes_for(:user) }
+  #     end
 
-    #   example "302レスポンスを返す" do
-    #     is_expected.to have_http_status(:found)
-    #   end
-    # end
-  end
+  #     example "302レスポンスを返す" do
+  #       is_expected.to have_http_status(:found)
+  #     end
+  #   end
+  # end
 
-  describe "GET #index" do
-    # context "ログインしている場合" do
-    #   before {
-    #     log_in_as(user)
-    #     get users_path
-    #   }
+  # describe "GET #index" do
+  #   context "ログインしている場合" do
+  #     before do
+  #       log_in_as(user)
+  #       get users_path
+  #     end
 
-    #   example "200レスポンスを返す" do
-    #     is_expected.to have_http_status(:ok)
-    #   end
-    # end
+  #     example "200レスポンスを返す" do
+  #       is_expected.to have_http_status(:ok)
+  #     end
+  #   end
 
-    # context "ログインしていない場合" do
-    #   before { get users_path }
+  #   context "ログインしていない場合" do
+  #     before { get users_path }
 
-    #   example "302レスポンスを返す" do
-    #     is_expected.to have_http_status(:found)
-    #   end
-    # end
-  end
+  #     example "302レスポンスを返す" do
+  #       is_expected.to have_http_status(:found)
+  #     end
+  #   end
+  # end
 
   describe "DELETE #destroy" do
     let!(:user) { create(:user) }
@@ -164,9 +162,7 @@ RSpec.describe "Users", type: :request do
       end
 
       context "通常のユーザーであるとき" do
-        before {
-          log_in_as(other_user)
-        }
+        before { log_in_as(other_user) }
 
         example "データベースからユーザーが削除されない" do
           expect do

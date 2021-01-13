@@ -8,10 +8,10 @@ RSpec.describe "MicropostComments", type: :system do
   let!(:user_micropost) { create(:micropost, user: user) }
   let!(:comment_content) { "コメント内容" }
 
-  before {
+  before do
     sign_in(other_user)
     visit micropost_path(user_micropost)
-  }
+  end
 
   describe "コメントの投稿" do
     example "コメントがデータベースに保存される" do
@@ -29,10 +29,10 @@ RSpec.describe "MicropostComments", type: :system do
   end
 
   describe "コメントの削除" do
-    before {
+    before do
       find("textarea").set(comment_content)
       click_on "コメントする"
-    }
+    end
 
     example "コメントがデータベースから削除される" do
       expect do

@@ -8,10 +8,10 @@ RSpec.describe "Microposts", type: :system do
   let!(:user) { create(:user) }
 
   describe "投稿の作成" do
-    before {
+    before do
       sign_in(user)
       visit root_path
-    }
+    end
 
     context "投稿が適切な場合" do
       let(:create_valid_micropost) {
@@ -65,13 +65,13 @@ RSpec.describe "Microposts", type: :system do
     end
 
     describe "画像の投稿" do
-      before {
+      before do
         # ボタンをクリックでアップロードする際のテスト
         @image_name = "neko.jpg"
         attach_file 'micropost_image', "#{Rails.root}/spec/fixtures/#{@image_name}", make_visible: true
         fill_in 'micropost_content', with: "適切な投稿"
         click_button '投稿'
-      }
+      end
 
       example "画像が投稿一覧に表示される" do
         is_expected.to have_selector "img[src$='#{@image_name}']"
@@ -81,12 +81,12 @@ RSpec.describe "Microposts", type: :system do
   end
 
   describe "投稿の削除" do
-    before {
+    before do
       sign_in(user)
       visit root_path
       fill_in 'micropost_content', with: "適切な投稿"
       click_button '投稿'
-    }
+    end
 
     example "投稿が削除される" do
       click_link '削除', match: :first

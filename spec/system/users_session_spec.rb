@@ -43,11 +43,11 @@ RSpec.describe "UsersSession", type: :system do
     end
 
     context "不正な情報を入力した場合" do
-      before {
+      before do
         fill_in "メールアドレス", with: ""
         fill_in "パスワード", with: ""
         click_button "ログイン"
-      }
+      end
 
       example "エラーメッセージを表示" do
         is_expected.to have_selector(".alert-danger")
@@ -70,11 +70,11 @@ RSpec.describe "UsersSession", type: :system do
   end
 
   describe "ユーザーのログアウト" do
-    before {
+    before do
       sign_in(user)
       find('a.dropdown-toggle', text: 'ユーザー').click
       click_link "ログアウト"
-    }
+    end
 
     describe "未ログインユーザーのヘッダーメニューを表示" do
       example "「ユーザー」項目が表示される" do

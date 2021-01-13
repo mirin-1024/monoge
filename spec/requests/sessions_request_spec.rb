@@ -54,9 +54,7 @@ RSpec.describe "Sessions", type: :request do
 
         describe "リダイレクト先" do
           context "ログイン前に保護されたページにアクセスした場合" do
-            before {
-              allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(forwarding_url: edit_user_path(user))
-            }
+            before { allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(forwarding_url: edit_user_path(user)) }
 
             example "ユーザーフレンドリーなURLにリダイレクト" do
               log_in_as(user)
@@ -65,9 +63,7 @@ RSpec.describe "Sessions", type: :request do
           end
 
           context "ログイン前に保護されたページにアクセスしていない場合" do
-            before {
-              allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(forwarding_url: nil)
-            }
+            before { allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(forwarding_url: nil) }
 
             example "ユーザーページへリダイレクト" do
               log_in_as(user)
@@ -88,9 +84,7 @@ RSpec.describe "Sessions", type: :request do
     end
 
     # context "パラメータが不正な場合" do
-    #   before {
-    #     post login_path, params: { session: attributes_for(:other_user) }
-    #   }
+    #   before { post login_path, params: { session: attributes_for(:other_user) } }
 
     #   example "200レスポンスを返す" do
     #     is_expected.to have_http_status(:ok)

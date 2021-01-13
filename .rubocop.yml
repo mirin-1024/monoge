@@ -20,6 +20,10 @@ Rails:
   Enabled: true
 
 ### rubocop setting
+Layout/IndentationWidth: #一時的に設定
+  Exclude:
+    - app/controllers/searches_controller.rb
+
 Style/AsciiComments:
   Enabled: false
 
@@ -45,9 +49,28 @@ RSpec/DescribedClass:
 RSpec/ExampleLength:
   Max: 8
 
-# 一時的に調整（デフォルトは3）
-RSpec/NestedGroups:
+RSpec/NestedGroups: # 一時的に調整（デフォルトは3）
   Max: 6
+
+RSpec/PredicateMatcher:
+  Exclude:
+    - spec/models/user_spec.rb
+
+RSpec/EmptyExampleGroup: # 一時的に調整（最終的に不要なら消去）
+  Exclude:
+    - spec/models/comment_spec.rb
+    - spec/models/like_spec.rb
+    - spec/requests/account_activations_request_spec.rb
+    - spec/requests/comments_request_spec.rb
+    - spec/requests/likes_request_spec.rb
+    - spec/requests/searches_request_spec.rb
+    - spec/requests/static_pages_request_spec.rb
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - app/controllers/password_resets_controller.rb
+    - app/models/user.rb
+    - spec/system/password_resets_spec.rb
 
 # テストパフォーマンス向上のため
 FactoryBot/FactoryClassName:
@@ -57,20 +80,14 @@ FactoryBot/FactoryClassName:
 RSpec/InstanceVariable:
   Enabled: false
 
-Rails/SkipsModelValidations:
-  Enabled: false
+# Rails/SkipsModelValidations:
+#   Enabled: false
 
 RSpec/AnyInstance:
   Enabled: false
 
-RSpec/EmptyExampleGroup:
-  Enabled: false
-
-RSpec/PredicateMatcher:
-  Enabled: false
-
-Rails/UniqueValidationWithoutIndex:
-  Enabled: false
+# Rails/UniqueValidationWithoutIndex:
+#   Enabled: false
 
 Rails/InverseOf:
   Enabled: false

@@ -49,9 +49,7 @@ RSpec.describe "Microposts", type: :request do
       end
 
       context "不正なユーザーが削除する場合" do
-        before {
-          log_in_as(other_user)
-        }
+        before { log_in_as(other_user) }
 
         example "投稿が削除されない" do
           expect { delete_request }.to change(Micropost, :count).by(0)

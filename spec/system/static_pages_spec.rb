@@ -6,16 +6,16 @@ RSpec.describe "StaticPages", type: :system do
   describe "トップページ" do
     let!(:user) { create(:user) }
 
-    before {
+    before do
       @post_count = 50
-      @post_count.times { create(:test_micropost, user: user) }
-    }
+      create_list(:test_micropost, @post_count, user: user)
+    end
 
     context "ログインしている場合" do
-      before {
+      before do
         sign_in(user)
         visit root_path
-      }
+      end
 
       describe "ユーザー情報" do
         example "ユーザー情報が表示されている" do

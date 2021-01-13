@@ -10,10 +10,10 @@ RSpec.describe "Likes", type: :system do
   end
 
   context "いいねをする場合" do
-    before {
+    before do
       sign_in(user)
       visit root_path
-    }
+    end
 
     example "正常にいいねができる" do
       expect do
@@ -28,11 +28,11 @@ RSpec.describe "Likes", type: :system do
   end
 
   context "いいねを取り消す場合" do
-    before {
+    before do
       sign_in(user)
       visit root_path
       page.first(".like_btn").click
-    }
+    end
 
     example "正常にいいねが取り消せる" do
       expect do
