@@ -7,31 +7,31 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # メインユーザーを作成
-User.create!(name:                  "Foo Bar",
-             email:                 "foobar@example.com",
-             password:              "password",
-             password_confirmation: "password",
+User.create!(name: 'Foo Bar',
+             email: 'foobar@example.com',
+             password: 'password',
+             password_confirmation: 'password',
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
 
 # 管理者ユーザーの作成
-User.create!(name:                  "Admin User",
-             email:                 "adminuser@example.com",
-             password:              "password",
-             password_confirmation: "password",
+User.create!(name: 'Admin User',
+             email: 'adminuser@example.com',
+             password: 'password',
+             password_confirmation: 'password',
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
 
 # 追加のユーザーを作成
-99.times do |n|
+99.times do
   name = Faker::Name.name
   email = Faker::Internet.email
-  password = "password"
-  User.create!(name:                  name,
-               email:                 email,
-               password:              password,
+  password = 'password'
+  User.create!(name: name,
+               email: email,
+               password: password,
                password_confirmation: password,
                activated: true,
                activated_at: Time.zone.now)

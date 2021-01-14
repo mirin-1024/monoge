@@ -1,1 +1,111 @@
-inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.7
+  TargetRailsVersion: 6.0
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - db/migrate/*
+    - node_modules/**/*
+
+Rails:
+  Enabled: true
+
+### rubocop setting
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Layout/LineLength:
+  Exclude:
+    - spec/requests/sessions_request_spec.rb
+
+Metrics/AbcSize: # リファクタリング対象
+  Max: 30
+
+Metrics/BlockLength:
+  Exclude:
+    - Gemfile
+    - spec/**/*
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/FrozenStringLiteralComment: # 必要に応じてtrueに
+  Enabled: false
+
+Style/MutableConstant: # FrozenStringLiteralCommentに依存
+  Exclude:
+    - app/models/user.rb
+
+### rubocop-rails setting
+Bundler/OrderedGems:
+  Exclude:
+    - Gemfile # 機能ごとにまとめて管理したいため除外
+
+Rails/HelperInstanceVariable:
+  Exclude:
+    - app/helpers/sessions_helper.rb
+
+Rails/InverseOf: # 1対多の関連付けなので不可能?
+  Exclude:
+    - app/models/user.rb
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - app/controllers/password_resets_controller.rb
+    - app/models/user.rb
+    - spec/system/password_resets_spec.rb
+
+### rubocop-rspec setting
+RSpec/AnyInstance: # sessionテストを代替できる方法があれば変更
+  Exclude:
+    - spec/requests/sessions_request_spec.rb
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/DescribedClass:
+  Enabled: false
+
+RSpec/EmptyExampleGroup: # 一時的に調整（最終的に不要なら消去）
+  Exclude:
+    - spec/models/comment_spec.rb
+    - spec/models/like_spec.rb
+    - spec/requests/account_activations_request_spec.rb
+    - spec/requests/comments_request_spec.rb
+    - spec/requests/likes_request_spec.rb
+    - spec/requests/searches_request_spec.rb
+    - spec/requests/static_pages_request_spec.rb
+
+RSpec/ExampleLength:
+  Max: 8
+
+RSpec/ImplicitSubject:
+  Enabled: false
+
+RSpec/NestedGroups: # 一時的に調整（デフォルトは3）
+  Max: 6
+
+RSpec/NotToNot:
+  Enabled: false
+
+RSpec/PredicateMatcher:
+  Exclude:
+    - spec/models/user_spec.rb

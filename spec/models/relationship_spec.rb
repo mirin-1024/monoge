@@ -5,16 +5,16 @@ RSpec.describe Relationship, type: :model do
   let(:other_user) { create(:other_user) }
   let!(:relationship) { create(:relationship, follower_id: user.id, followed_id: other_user.id) }
 
-  example "ユーザーをフォローできる" do
+  example 'ユーザーをフォローできる' do
     expect(relationship).to be_valid
   end
 
-  example "フォロワーのIDが存在する" do
+  example 'フォロワーのIDが存在する' do
     relationship.follower_id = nil
     expect(relationship).to_not be_valid
   end
 
-  example "フォローしているユーザーのIDが存在する" do
+  example 'フォローしているユーザーのIDが存在する' do
     relationship.followed_id = nil
     expect(relationship).to_not be_valid
   end

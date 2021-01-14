@@ -1,5 +1,4 @@
 module SessionsHelper
-
   # 渡されたユーザーでログイン
   def log_in(user)
     session[:user_id] = user.id
@@ -19,7 +18,7 @@ module SessionsHelper
     elsif (user_id = cookies.signed[:user_id])
       user = User.find_by(id: user_id)
       # ユーザーが存在し、かつ記憶トークンと記憶ダイジェストが一致した場合
-      if user && user.authenticated?(:remember, cookies[:remember_token])
+      if user&.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end

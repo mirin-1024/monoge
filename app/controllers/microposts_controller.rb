@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: %i[create destroy]
   before_action :correct_user, only: :destroy
 
   def show
@@ -12,7 +12,7 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     @micropost.image.attach(params[:micropost][:image])
     if @micropost.save
-      flash[:success] = "投稿を作成しました"
+      flash[:success] = '投稿を作成しました'
       redirect_to root_url
     else
       @feed_items = current_user.feed.paginate(page: params[:page])
@@ -22,11 +22,12 @@ class MicropostsController < ApplicationController
 
   def destroy
     @micropost.destroy
-    flash[:success] = "投稿が削除されました"
+    flash[:success] = '投稿が削除されました'
     redirect_back(fallback_location: root_url)
   end
 
   private
+
     def micropost_params
       params.require(:micropost).permit(:content)
     end

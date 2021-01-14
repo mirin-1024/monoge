@@ -5,19 +5,11 @@ class CommentsController < ApplicationController
   def create
     @micropost = Micropost.find(params[:comment][:micropost_id])
     @comment = Comment.new(comment_params)
-    if @comment.save
-      @comments = @micropost.comments
-      # flash[:success] = "コメントを作成しました"
-      respond_to do |format|
-        format.html { redirect_back(fallback_location: root_url) }
-        format.js
-      end
-    else
-      @comments = @micropost.comments
-      respond_to do |format|
-        format.html { redirect_back(fallback_location: root_url) }
-        format.js
-      end
+    @comment.save
+    @comments = @micropost.comments
+    respond_to do |format|
+      format.html { redirect_back(fallback_location: root_url) }
+      format.js
     end
   end
 
@@ -26,7 +18,7 @@ class CommentsController < ApplicationController
     @micropost = @comment.micropost
     @comment.destroy
     @comments = @micropost.comments
-    # flash[:success] = "コメントを削除しました"
+    flash[:success] = 'コメントを削除しました'
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
       format.js
