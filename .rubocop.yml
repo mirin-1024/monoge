@@ -109,7 +109,3 @@ RSpec/NotToNot:
 RSpec/PredicateMatcher:
   Exclude:
     - spec/models/user_spec.rb
-
-# テストパフォーマンス向上のため
-FactoryBot/FactoryClassName:
-  Enabled: true
