@@ -14,9 +14,9 @@ Rails.application.routes.draw do
     end
   end
   resources :account_activations, only: [:edit]
-  resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :microposts, only: [:create, :destroy, :show]
-  resources :relationships, only: [:create, :destroy]
-  resources :likes, only: [:create, :destroy]
-  resources :comments, only: [:create, :destroy]
+  resources :password_resets, only: %i[new create edit update]
+  resources :microposts, only: %i[create destroy show]
+  resources :relationships, only: %i[create destroy]
+  resources :likes, only: %i[create destroy]
+  resources :comments, only: %i[create destroy]
 end

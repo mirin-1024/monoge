@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @micropost = @comment.micropost
     @comment.destroy
     @comments = @micropost.comments
-    flash[:success] = "コメントを削除しました"
+    flash[:success] = 'コメントを削除しました'
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
       format.js

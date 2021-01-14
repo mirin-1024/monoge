@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Follows", type: :system do
+RSpec.describe 'Follows', type: :system do
   subject { page }
 
   let!(:user) { create(:user) }
@@ -14,26 +14,26 @@ RSpec.describe "Follows", type: :system do
     end
   end
 
-  describe "フォローしている人数を表示" do
-    context "ログインしていない場合" do
+  describe 'フォローしている人数を表示' do
+    context 'ログインしていない場合' do
       before { visit following_user_path(user) }
 
-      example "ログインページへリダイレクト" do
+      example 'ログインページへリダイレクト' do
         is_expected.to have_current_path login_path
       end
     end
 
-    context "ログインしている場合" do
+    context 'ログインしている場合' do
       before do
         sign_in(user)
         visit following_user_path(user)
       end
 
-      example "フォロー人数が適切である" do
+      example 'フォロー人数が適切である' do
         expect(user.following.count).to eq user_count
       end
 
-      example "フォローしているユーザーのリンクが表示される" do
+      example 'フォローしているユーザーのリンクが表示される' do
         user.following.each do |u|
           is_expected.to have_link u.name, href: user_path(u)
         end
@@ -41,26 +41,26 @@ RSpec.describe "Follows", type: :system do
     end
   end
 
-  describe "フォロワーの人数を表示" do
-    context "ログインしていない場合" do
+  describe 'フォロワーの人数を表示' do
+    context 'ログインしていない場合' do
       before { visit followers_user_path(user) }
 
-      example "ログインページへリダイレクト" do
+      example 'ログインページへリダイレクト' do
         is_expected.to have_current_path login_path
       end
     end
 
-    context "ログインしている場合" do
+    context 'ログインしている場合' do
       before do
         sign_in(user)
         visit followers_user_path(user)
       end
 
-      example "フォロワーの数が適切である" do
+      example 'フォロワーの数が適切である' do
         expect(user.followers.count).to eq user_count
       end
 
-      example "フォロワーのリンクが表示される" do
+      example 'フォロワーのリンクが表示される' do
         user.followers.each do |u|
           is_expected.to have_link u.name, href: user_path(u)
         end
@@ -68,28 +68,28 @@ RSpec.describe "Follows", type: :system do
     end
   end
 
-  describe "フォローボタン" do
+  describe 'フォローボタン' do
     before do
       sign_in(user)
       visit user_path(other_users.last.id)
     end
 
-    context "Unfollowをクリック" do
-      example "フォローしている人数が1人減る", :aggregate_failures do
+    context 'Unfollowをクリック' do
+      example 'フォローしている人数が1人減る', :aggregate_failures do
         expect do
-          click_button "Unfollow"
-          is_expected.to_not have_link "Unfollow"
+          click_button 'Unfollow'
+          is_expected.to_not have_link 'Unfollow'
         end.to change(user.following, :count).by(-1)
       end
     end
 
-    context "Followをクリック" do
-      before { click_button "Unfollow" }
+    context 'Followをクリック' do
+      before { click_button 'Unfollow' }
 
-      example "フォローしている人数が1人増える", :aggregate_failures do
+      example 'フォローしている人数が1人増える', :aggregate_failures do
         expect do
-          click_button "Follow"
-          is_expected.to_not have_link "Follow"
+          click_button 'Follow'
+          is_expected.to_not have_link 'Follow'
         end.to change(user.following, :count).by(1)
       end
     end

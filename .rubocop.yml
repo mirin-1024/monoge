@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 require:
   - rubocop-rails
   - rubocop-rspec
@@ -22,6 +20,10 @@ Rails:
 ### rubocop setting
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
+
+Layout/LineLength:
+  Exclude:
+    - spec/requests/sessions_request_spec.rb
 
 Metrics/AbcSize: # リファクタリング対象
   Max: 30

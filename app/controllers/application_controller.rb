@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
       return if logged_in?
 
       store_location
-      flash[:danger] = "ログインしてください"
+      flash[:danger] = 'ログインしてください'
       redirect_to login_url
     end
 end
