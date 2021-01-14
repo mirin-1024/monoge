@@ -7,12 +7,10 @@ AllCops:
   TargetRubyVersion: 2.7
   TargetRailsVersion: 6.0
   Exclude:
-    - 'vendor/**/*'
-    - 'bin/**/*'
-    - 'db/**/*'
-    - 'tmp/**/*'
-    - 'node_modules/**/*'
-    - 'lib/tasks/auto_annotate_models.rake'
+    - bin/*
+    - db/schema.rb
+    - db/migrate/*
+    - node_modules/**/*
 
 Rails:
   Enabled: true
