@@ -47,6 +47,8 @@ group :development, :test do
   gem 'webdrivers'
   gem 'capybara'
   gem 'factory_bot_rails'
+  # springを使用してRSpecを実行
+  gem 'spring-commands-rspec'
   # メール本文の日本語をJISコードに書き換える
   gem 'mail-iso-2022-jp'
   # テストDBのデータを削除

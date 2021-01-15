@@ -65,5 +65,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # dockerコンテナのipを許可
-  config.web_console.whitelisted_ips = '192.168.160.1'
+  config.web_console.allowed_ips = '192.168.160.1'
 end
