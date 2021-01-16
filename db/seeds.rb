@@ -24,6 +24,15 @@ User.create!(name: 'Admin User',
              activated: true,
              activated_at: Time.zone.now)
 
+# ゲストユーザーの作成
+User.create!(name: 'Guest User',
+             email: 'guest@example.com',
+             password: 'password',
+             password_confirmation: 'password',
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
+
 # 追加のユーザーを作成
 99.times do
   name = Faker::Name.name
