@@ -13,6 +13,7 @@ FactoryBot.define do
     password_confirmation { 'passward' }
   end
 
+  # 削除
   factory :other_user, class: 'User', traits: %i[non_admin activated] do
     name { 'Foobar1' }
     email { 'foobar1@example.com' }

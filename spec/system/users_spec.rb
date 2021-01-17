@@ -48,7 +48,7 @@ RSpec.describe 'Users', type: :system do
 
   describe 'ユーザーの編集' do
     let!(:user) { create(:user) }
-    let!(:other_user) { create(:other_user) }
+    let!(:other_user) { create(:test_user) }
 
     context 'ログインしている場合' do
       before { sign_in(user) }

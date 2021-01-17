@@ -4,7 +4,7 @@ RSpec.describe 'Users', type: :request do
   subject { response }
 
   let(:user) { create(:user) }
-  let(:other_user) { create(:other_user) }
+  let(:other_user) { create(:test_user) }
   let!(:admin_user) { create(:admin_user) }
 
   # describe 'GET #new' do
