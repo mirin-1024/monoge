@@ -1,3 +1,4 @@
+<% provide(:title, "#{@micropost.user.name} / #{@micropost.content}") %>
 <div class="container">
   <div class="row">
     <div id="micropost-<%= @micropost.id %>" class="card col-8 offset-2">
