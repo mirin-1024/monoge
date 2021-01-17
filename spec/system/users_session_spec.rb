@@ -70,7 +70,7 @@ RSpec.describe 'UsersSession', type: :system do
   end
 
   describe 'ゲストユーザーのログイン' do
-    let!(:guest_user) { create(:guest_user) }
+    let!(:guest_user) { create(:test_user, :guest) }
 
     before do
       visit root_path
