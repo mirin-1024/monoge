@@ -10,7 +10,7 @@ FactoryBot.define do
 
   factory :invalid_user, class: 'User' do
     name { 'Invalid User' }
-    email { 'a' * 39 + '@example.com' }
+    email { "#{'a' * 39}@example.com" }
     password { 'password' }
     password_confirmation { 'passward' }
     activated { true }

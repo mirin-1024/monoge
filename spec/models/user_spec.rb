@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
       end
 
       example '255字を超過していると登録できない' do
-        expect(build(:user, email: 'a' * 244 + '@example.com')).to_not be_valid
+        expect(build(:user, email: "#{'a' * 244}@example.com")).to_not be_valid
       end
 
       example '~@~.~ 以外の形式では登録できない' do
