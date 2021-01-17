@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe UserMailer, type: :mailer do
+  let!(:user) { create(:user) }
+
   describe 'アカウントの有効化メール' do
     let(:mail) { UserMailer.account_activation(user) }
-    let(:user) { create(:user) }
 
     describe 'ヘッダーが適切であること' do
       example '件名が適切である' do
@@ -21,22 +22,21 @@ RSpec.describe UserMailer, type: :mailer do
 
     describe '内容が適切であること' do
       example 'ユーザー名が表示されている' do
-        expect(mail.body.encoded).to match user.name
+        expect(mail.html_part.body.encoded).to match user.name
       end
 
       example 'アカウントの有効化トークンが表示されている' do
-        expect(mail.body.encoded).to match user.activation_token
+        expect(mail.html_part.body.encoded).to match user.activation_token
       end
 
       example 'エスケープされたメールアドレスが表示されている' do
-        expect(mail.body.encoded).to match CGI.escape(user.email)
+        expect(mail.html_part.body.encoded).to match CGI.escape(user.email)
       end
     end
   end
 
   describe 'パスワードの再設定メール' do
     let(:mail) { UserMailer.password_reset(user) }
-    let(:user) { create(:user) }
 
     before { user.reset_token = User.new_token }
 
@@ -56,11 +56,11 @@ RSpec.describe UserMailer, type: :mailer do
 
     describe '内容が適切であること' do
       example 'パスワードの再設定トークンが表示されている' do
-        expect(mail.body.encoded).to match user.reset_token
+        expect(mail.html_part.body.encoded).to match user.reset_token
       end
 
       example 'エスケープされたメールアドレスが表示されている' do
-        expect(mail.body.encoded).to match CGI.escape(user.email)
+        expect(mail.html_part.body.encoded).to match CGI.escape(user.email)
       end
     end
   end

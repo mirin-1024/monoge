@@ -39,5 +39,9 @@ services:
     image: selenium/standalone-chrome:latest
     ports:
       - 4444:4444
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - 8025:8025
 volumes:
   db-data:
