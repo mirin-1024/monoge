@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
   let(:user) { create(:user) }
-  let(:other_user) { create(:other_user) }
+  let(:other_user) { create(:test_user) }
   let!(:relationship) { create(:relationship, follower_id: user.id, followed_id: other_user.id) }
 
   example 'ユーザーをフォローできる' do

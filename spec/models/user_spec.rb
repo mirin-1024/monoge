@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
       end
 
       example '255字を超過していると登録できない' do
-        expect(build(:user, email: 'a' * 244 + '@example.com')).to_not be_valid
+        expect(build(:user, email: "#{'a' * 244}@example.com")).to_not be_valid
       end
 
       example '~@~.~ 以外の形式では登録できない' do
@@ -38,13 +38,13 @@ RSpec.describe User, type: :model do
       end
 
       example '重複するメールアドレスは登録できない' do
-        expect(build(:other_user, email: user.email)).to_not be_valid
+        expect(build(:test_user, email: user.email)).to_not be_valid
       end
 
       example '大文字のメールアドレスが、登録されている小文字のメールアドレスと重複すると登録できない' do
         mixed_case_email = 'Foo@ExAMPle.CoM'
         create(:user, email: mixed_case_email.downcase)
-        expect(build(:other_user, email: mixed_case_email)).to_not be_valid
+        expect(build(:test_user, email: mixed_case_email)).to_not be_valid
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe User, type: :model do
 
   describe 'フォロー機能' do
     let!(:user) { create(:user) }
-    let!(:other_user) { create(:other_user) }
+    let!(:other_user) { create(:test_user) }
 
     describe '他のユーザーをフォロー' do
       example 'フォローできる' do

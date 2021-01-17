@@ -30,6 +30,7 @@ Metrics/BlockLength:
   Exclude:
     - Gemfile
     - spec/**/*
+    - config/environments/development.rb
 
 Metrics/MethodLength:
   Max: 15

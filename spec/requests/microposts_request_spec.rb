@@ -4,7 +4,7 @@ RSpec.describe 'Microposts', type: :request do
   subject { response }
 
   let!(:user) { create(:user) }
-  let(:other_user) { create(:other_user) }
+  let(:other_user) { create(:test_user) }
 
   describe '投稿の作成' do
     let(:create_request) { post microposts_path, params: { micropost: attributes_for(:micropost, user: user) } }

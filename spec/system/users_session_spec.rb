@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'UsersSession', type: :system do
   subject { page }
 
-  let!(:user) { create(:user, :activated) }
+  let!(:user) { create(:user) }
 
   describe 'ユーザーのログイン' do
     before { visit login_path }
@@ -66,6 +66,23 @@ RSpec.describe 'UsersSession', type: :system do
       example 'ログインページが描画される' do
         is_expected.to have_selector('h1', text: 'ログイン')
       end
+    end
+  end
+
+  describe 'ゲストユーザーのログイン' do
+    let!(:guest_user) { create(:test_user, :guest) }
+
+    before do
+      visit root_path
+      click_on 'ゲストログイン'
+    end
+
+    example 'トップページに遷移' do
+      is_expected.to have_current_path root_path
+    end
+
+    example '名前が正しく表示されている' do
+      is_expected.to have_selector('h1', text: guest_user.name)
     end
   end
 

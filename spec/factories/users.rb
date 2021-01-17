@@ -1,48 +1,38 @@
 FactoryBot.define do
-  factory :user do
+  factory :user, traits: %i[password non_admin activated] do
     name { 'Foo Bar' }
     email { 'foobar@example.com' }
-    password { 'password' }
-    password_confirmation { 'password' }
-    activated { true }
-    activated_at { Time.zone.now }
   end
 
-  factory :invalid_user, class: 'User' do
+  factory :invalid_user, class: 'User', traits: %i[non_admin activated] do
     name { 'Invalid User' }
-    email { 'a' * 39 + '@example.com' }
+    email { "#{'a' * 39}@example.com" }
     password { 'password' }
     password_confirmation { 'passward' }
-    activated { true }
-    activated_at { Time.zone.now }
   end
 
-  factory :other_user, class: 'User' do
-    name { 'Foobar1' }
-    email { 'foobar1@example.com' }
-    password { 'password' }
-    password_confirmation { 'password' }
-    activated { true }
-    activated_at { Time.zone.now }
-  end
-
-  factory :test_user, class: 'User' do
+  factory :test_user, class: 'User', traits: %i[password non_admin activated] do
     name { Faker::Name.name }
     email { Faker::Internet.email }
-    password { 'password' }
-    password_confirmation { 'password' }
-    activated { true }
-    activated_at { Time.zone.now }
   end
 
-  factory :admin_user, class: 'User' do
+  factory :admin_user, class: 'User', traits: %i[password admin activated] do
     name { 'Admin User' }
     email { 'adminuser@example.com' }
+  end
+
+  # trait
+  trait :password do
     password { 'password' }
     password_confirmation { 'password' }
+  end
+
+  trait :admin do
     admin { true }
-    activated { true }
-    activated_at { Time.zone.now }
+  end
+
+  trait :non_admin do
+    admin { false }
   end
 
   trait :activated do
@@ -53,5 +43,11 @@ FactoryBot.define do
   trait :non_activated do
     activated { false }
     activated_at { nil }
+  end
+
+  # personal trait
+  trait :guest do
+    name { 'Guest User' }
+    email { 'guest@example.com' }
   end
 end

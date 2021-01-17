@@ -4,7 +4,7 @@ RSpec.describe 'Sessions', type: :request do
   subject { response }
 
   let!(:user) { create(:user, :activated) }
-  let(:other_user) { create(:other_user) }
+  let(:other_user) { create(:test_user) }
 
   before 'ユーザーID、メールアドレス、パスワード、remember_meをセッションから取り出せるようにする' do
     allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id,
@@ -84,7 +84,7 @@ RSpec.describe 'Sessions', type: :request do
     end
 
     # context 'パラメータが不正な場合' do
-    #   before { post login_path, params: { session: attributes_for(:other_user) } }
+    #   before { post login_path, params: { session: attributes_for(:test_user) } }
 
     #   example '200レスポンスを返す' do
     #     is_expected.to have_http_status(:ok)
