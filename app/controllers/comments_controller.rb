@@ -3,10 +3,10 @@ class CommentsController < ApplicationController
   before_action :correct_user, only: [:destroy]
 
   def create
-    @micropost = Micropost.find(params[:comment][:micropost_id])
+    @post = Post.find(params[:comment][:post_id])
     @comment = Comment.new(comment_params)
     @comment.save
-    @comments = @micropost.comments
+    @comments = @post.comments
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
       format.js
@@ -15,9 +15,9 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    @micropost = @comment.micropost
+    @post = @comment.post
     @comment.destroy
-    @comments = @micropost.comments
+    @comments = @post.comments
     flash[:success] = 'コメントを削除しました'
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_url) }
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
   private
 
     def comment_params
-      params.require(:comment).permit(:user_id, :micropost_id, :content)
+      params.require(:comment).permit(:user_id, :post_id, :content)
     end
 
     def correct_user

@@ -193,8 +193,8 @@ footer {
   margin-top: 1rem;
 }
 
-/* microposts */
-.microposts {
+/* posts */
+.posts {
   list-style: none;
   li {
     padding: 0.5rem 0;
@@ -219,8 +219,8 @@ footer {
   }
 }
 
-/* micropost_form */
-#micropost_form {
+/* post_form */
+#post_form {
   .image {
     input {
       display: none;
@@ -291,7 +291,7 @@ footer {
 
 /* ステータスフィード */
 #status-feed {
-  .microposts {
+  .posts {
     li:hover {
       opacity: 0.7;
     }

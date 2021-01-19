@@ -1,28 +1,28 @@
-<li id="micropost-<%= micropost.id %>" class="list-group-item">
+<li id="post-<%= post.id %>" class="list-group-item">
   <%#= ユーザーの画像 %>
   <span class="user card-title">
-    <%= link_to micropost.user.name, micropost.user %>
+    <%= link_to post.user.name, post.user %>
   </span>
   <div class="w-100"></div>
   <span class="content card-text">
-    <%= micropost.content %>
-    <%= image_tag micropost.display_image if micropost.image.attached? %>
+    <%= post.content %>
+    <%= image_tag post.display_image if post.image.attached? %>
   </span>
   <div class="w-100"></div>
   <div class="post_stamps row d-flex justify-content-end">
     <div class="like_button col-3">
-      <%= render "likes/like", micropost: micropost %>
+      <%= render "likes/like", post: post %>
     </div>
     <div class="delete_button col-3">
-      <% if current_user?(micropost.user) %>
-        <%= link_to "削除", micropost, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+      <% if current_user?(post.user) %>
+        <%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %>
       <% end %>
     </div>
     <div class="timestamp col-3">
-      <%= time_ago_in_words(micropost.created_at) %>前
+      <%= time_ago_in_words(post.created_at) %>前
     </div>
     <div class="col-3">
-      <%= link_to '→', micropost %>
+      <%= link_to '→', post %>
     </div>
   <div>
 </li>

@@ -1,17 +1,17 @@
-class MicropostsController < ApplicationController
+class PostsController < ApplicationController
   before_action :logged_in_user, only: %i[create destroy]
   before_action :correct_user, only: :destroy
 
   def show
-    @micropost = Micropost.find(params[:id])
+    @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @micropost.comments
+    @comments = @post.comments
   end
 
   def create
-    @micropost = current_user.microposts.build(micropost_params)
-    @micropost.image.attach(params[:micropost][:image])
-    if @micropost.save
+    @post = current_user.posts.build(post_params)
+    @post.image.attach(params[:post][:image])
+    if @post.save
       flash[:success] = '投稿を作成しました'
       redirect_to root_url
     else
@@ -21,19 +21,19 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
-    @micropost.destroy
+    @post.destroy
     flash[:success] = '投稿が削除されました'
     redirect_back(fallback_location: root_url)
   end
 
   private
 
-    def micropost_params
-      params.require(:micropost).permit(:content)
+    def post_params
+      params.require(:post).permit(:content)
     end
 
     def correct_user
-      @micropost = current_user.microposts.find_by(id: params[:id])
-      redirect_to root_url if @micropost.nil?
+      @post = current_user.posts.find_by(id: params[:id])
+      redirect_to root_url if @post.nil?
     end
 end

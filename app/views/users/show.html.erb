@@ -14,12 +14,12 @@
       </section>
     </div>
     <div class="col-lg-5 col-md-4 col-md-3">
-      <% if @user.microposts.any? %>
-        <h3>投稿 (<%= @user.microposts.count %>)</h3>
-        <ol class="microposts">
-          <%= render @microposts %>
+      <% if @user.posts.any? %>
+        <h3>投稿 (<%= @user.posts.count %>)</h3>
+        <ol class="posts">
+          <%= render @posts %>
         </ol>
-        <%= will_paginate @microposts %>
+        <%= will_paginate @posts %>
       <% end %>
     </div>
   </div>

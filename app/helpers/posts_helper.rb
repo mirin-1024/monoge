@@ -1,2 +1,2 @@
-module MicropostsHelper
+module PostsHelper
 end

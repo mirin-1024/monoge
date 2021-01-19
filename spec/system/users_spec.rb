@@ -139,7 +139,7 @@ RSpec.describe 'Users', type: :system do
   describe 'ユーザーの表示' do
     let!(:user) { create(:user, :activated) }
 
-    before { create_list(:test_micropost, 51, user: user) }
+    before { create_list(:test_post, 51, user: user) }
 
     context 'ユーザーが有効化されている時' do
       before do
@@ -161,8 +161,8 @@ RSpec.describe 'Users', type: :system do
         end
 
         example '投稿の内容が表示されている' do
-          user.microposts.paginate(page: 1).each do |micropost|
-            is_expected.to have_css('.content', text: micropost.content)
+          user.posts.paginate(page: 1).each do |post|
+            is_expected.to have_css('.content', text: post.content)
           end
         end
       end
@@ -191,19 +191,19 @@ RSpec.describe 'Users', type: :system do
       end
 
       example 'フォローしているユーザーの投稿が存在する' do
-        user.microposts.each do |following_post|
+        user.posts.each do |following_post|
           expect(user_follower.feed).to be_include following_post
         end
       end
 
       example '自分自身の投稿が存在する' do
-        user_follower_micropost = create(:test_micropost, user: user_follower)
-        expect(user_follower.feed).to be_include user_follower_micropost
+        user_follower_post = create(:test_post, user: user_follower)
+        expect(user_follower.feed).to be_include user_follower_post
       end
 
       example 'フォローしていないユーザーの投稿が存在しない' do
-        other_user_micropost = create(:test_micropost, user: other_user)
-        expect(user_follower.feed).to_not be_include other_user_micropost
+        other_user_post = create(:test_post, user: other_user)
+        expect(user_follower.feed).to_not be_include other_user_post
       end
     end
   end

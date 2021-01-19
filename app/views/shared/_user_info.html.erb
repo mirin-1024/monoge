@@ -1,4 +1,4 @@
 <%# ユーザー画像を表示 %>
 <h1><%= current_user.name %></h1>
 <span><%= link_to "プロフィール", current_user %></span>
-<span class="post_count"><%= current_user.microposts.count %> 投稿</span>
+<span class="post_count"><%= current_user.posts.count %> 投稿</span>

@@ -5,7 +5,7 @@ RSpec.describe 'Likes', type: :system do
   let!(:other_user) { create(:test_user) }
 
   before do
-    create(:test_micropost, user: other_user)
+    create(:test_post, user: other_user)
     user.active_relationships.create!(followed_id: other_user.id)
   end
 
@@ -23,7 +23,7 @@ RSpec.describe 'Likes', type: :system do
 
     example 'いいねの数が増える' do
       page.first('.like_btn').click
-      expect(other_user.microposts.last.likes_count).to eq 1
+      expect(other_user.posts.last.likes_count).to eq 1
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.describe 'Likes', type: :system do
 
     example 'いいねの数が減る' do
       page.first('.like_btn').click
-      expect(other_user.microposts.last.likes_count).to eq 0
+      expect(other_user.posts.last.likes_count).to eq 0
     end
   end
 end

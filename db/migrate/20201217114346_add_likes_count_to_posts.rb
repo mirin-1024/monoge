@@ -1,5 +1,5 @@
-class AddLikesCountToMicroposts < ActiveRecord::Migration[6.0]
+class AddLikesCountToPosts < ActiveRecord::Migration[6.0]
   def change
-    add_column :microposts, :likes_count, :integer, default: 0
+    add_column :posts, :likes_count, :integer, default: 0
   end
 end

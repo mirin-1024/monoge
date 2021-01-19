@@ -1,4 +1,4 @@
-<%= form_with(model: @micropost, local: true) do |f| %>
+<%= form_with(model: @post, local: true) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_area :content, placeholder: "投稿を作成" %>
@@ -15,11 +15,11 @@
 <%
 =begin%>
  <script type="text/javascript">
-  $("#micropost_image").bind("change", function() {
+  $("#post_image").bind("change", function() {
     var size_in_megabytes = this.files[0].size/1024/1024;
     if (size_in_megabytes > 5) {
       alert("アップロード可能な画像は5MBまでです。より容量の小さい画像を選択してください。");
-      $("#micropost_image").val("");
+      $("#post_image").val("");
     }
   });
 </script> 
