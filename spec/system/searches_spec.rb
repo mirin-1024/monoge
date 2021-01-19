@@ -5,7 +5,7 @@ RSpec.describe 'Searches', type: :system do
 
   let!(:user) { create(:user) }
   let!(:other_user) { create(:test_user) }
-  let!(:micropost) { create(:micropost, user: user) }
+  let!(:post) { create(:post, user: user) }
 
   before do
     sign_in(user)
@@ -27,12 +27,12 @@ RSpec.describe 'Searches', type: :system do
   context '投稿を検索する場合' do
     before do
       select '投稿', from: 'model'
-      fill_in 'keyword', with: micropost.content
+      fill_in 'keyword', with: post.content
       find('#search-btn').click
     end
 
     example '投稿一覧が表示される' do
-      is_expected.to have_css('p', text: micropost.content)
+      is_expected.to have_css('p', text: post.content)
     end
   end
 end

@@ -6,7 +6,7 @@
         <%#= 画像の表示 %>
         <h1><%= @user.name %></h1>
         <span><%= link_to "プロフィールを表示", @user %></span>
-        <span><b>投稿：</b> <%= @user.microposts.count %></span>
+        <span><b>投稿：</b> <%= @user.posts.count %></span>
       </section>
       <section class="stats">
         <%= render 'shared/stats' %>

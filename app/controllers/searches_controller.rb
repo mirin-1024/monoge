@@ -12,8 +12,8 @@ class SearchesController < ApplicationController
       case model
       when 'User'
         User.where('name LIKE ?', "%#{keyword}%").paginate(page: params[:page])
-      when 'Micropost'
-        Micropost.where('content LIKE ?', "%#{keyword}%").paginate(page: params[:page])
+      when 'Post'
+        Post.where('content LIKE ?', "%#{keyword}%").paginate(page: params[:page])
       end
     end
 end

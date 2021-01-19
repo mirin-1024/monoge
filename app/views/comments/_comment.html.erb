@@ -5,7 +5,7 @@
         <%= render 'shared/error_messages', object: f.object %>
       </div>
 
-      <%= f.hidden_field :micropost_id, value: @micropost.id %>
+      <%= f.hidden_field :post_id, value: @post.id %>
       <%= f.hidden_field :user_id, value: @current_user.id %>
 
       <%= f.text_area :content, class: "form-control", id: "comment-content", placeholder: "コメントを記入してください" %>

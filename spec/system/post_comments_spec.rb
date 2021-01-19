@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe 'MicropostComments', type: :system do
+RSpec.describe 'PostComments', type: :system do
   subject { page }
 
   let!(:user) { create(:user) }
   let!(:other_user) { create(:test_user) }
-  let!(:user_micropost) { create(:micropost, user: user) }
+  let!(:user_post) { create(:post, user: user) }
   let!(:comment_content) { 'コメント内容' }
 
   before do
     sign_in(other_user)
-    visit micropost_path(user_micropost)
+    visit post_path(user_post)
   end
 
   describe 'コメントの投稿' do

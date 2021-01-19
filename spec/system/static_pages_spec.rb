@@ -7,7 +7,7 @@ RSpec.describe 'StaticPages', type: :system do
     let!(:user) { create(:user) }
     let(:post_count) { 50 }
 
-    before { create_list(:test_micropost, post_count, user: user) }
+    before { create_list(:test_post, post_count, user: user) }
 
     context 'ログインしている場合' do
       before do

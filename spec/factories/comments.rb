@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :comment do
     content { 'MyText' }
     user { nil }
-    micropost { nil }
+    post { nil }
   end
 end

@@ -1,11 +1,11 @@
 FactoryBot.define do
-  factory :micropost do
+  factory :post do
     content { 'MyText' }
     created_at { Time.zone.now }
     association :user
   end
 
-  factory :test_micropost, class: 'Micropost' do
+  factory :test_post, class: 'Post' do
     content { Faker::Lorem.sentence(word_count: 5) }
     created_at { Time.zone.now }
     association :user

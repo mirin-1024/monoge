@@ -8,12 +8,12 @@
             <li class="list-group-item">
               <%= link_to search_result.name, user_path(search_result) %>
             </li>
-          <% else @search_model == "Micropost" %>
+          <% else @search_model == "Post" %>
             <li class="list-group-item">
-              <span class="micropost-">
+              <span class="post-">
                 <%= link_to search_result.user.name, user_path(search_result.user) %>
               </span>
-              <span class="micropost-content">
+              <span class="post-content">
                 <p><%= search_result.content %></p>
                 <%= image_tag search_result.display_image if search_result.image.attached? %>
               </span>

@@ -80,12 +80,12 @@ RSpec.describe User, type: :model do
   describe 'ユーザーの投稿' do
     let!(:user) { create(:user) }
 
-    before { create(:micropost, user: user) }
+    before { create(:post, user: user) }
 
     example 'ユーザーが削除された時に削除される' do
       expect do
         user.destroy
-      end.to change(Micropost, :count).by(-1)
+      end.to change(Post, :count).by(-1)
     end
   end
 
