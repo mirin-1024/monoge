@@ -114,11 +114,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'https://monoge.net' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:"smtp.gmail.com",
+    address: 'smtp.gmail.com',
     domain: 'gmail.com',
-    port:587,
+    port: 587,
     user_name: Rails.application.credentials.gmail[:user_name],
-    #gmail２段階認証回避のためにアプリケーションでの利用パスワードを取得、必ずcredentials.yml.endに設定を！！
     password: Rails.application.credentials.gmail[:password],
     authentication: :login
   }
