@@ -48,16 +48,17 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   # メール本文の日本語をJISコードに書き換える
-  gem 'mail-iso-2022-jp'
+  # gem 'mail-iso-2022-jp'
   # テストDBのデータを削除
   gem 'database_cleaner-active_record'
   # 画像処理用のgem
   gem 'image_processing'
-  gem 'mini_magick'
   # Active Storageのバリデーション
   gem 'active_storage_validations'
-  # 画像テスト用のgem
+  # 画像をアップロード
   gem 'carrierwave'
+  # 画像をリサイズ
+  gem 'mini_magick'
 end
 
 group :development do

@@ -26,7 +26,7 @@ class User < ApplicationRecord
   validates :password, presence: true,
                        length: { minimum: 6 },
                        allow_nil: true
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, UserImageUploader
 
   # 渡された文字列のハッシュを返す
   def self.digest(string)

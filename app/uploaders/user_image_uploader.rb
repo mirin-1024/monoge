@@ -1,9 +1,9 @@
-class ImageUploader < CarrierWave::Uploader::Base
+class UserImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
-  process :resize_to_limit => [700, 700]
+  process :resize_to_fill => [500, 500]
 
   process :convert => 'jpg'
 
@@ -34,7 +34,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fit: [300, 300]
+    process resize_to_fill: [50, 50]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -49,17 +49,20 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
-  # ファイル名と拡張子を変更
+  # トークンを使用したファイル名
   def filename
-    super.chomp(File.extname(super)) + '.jpg'
+    "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
-  # 日付名で保存
-  def filename
-    if original_filename.present?
-      time = Time.now
-      name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
-      name.downcase
-    end
+  # ファイルサイズの指定
+  def size_range
+    1..5.megabytes
   end
+
+  protected
+
+    def secure_token
+      var = :"@#{mounted_as}_secure_token"
+      model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+    end
 end
