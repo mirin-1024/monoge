@@ -6,7 +6,7 @@
   <div class="w-100"></div>
   <span class="content card-text">
     <%= post.content %>
-    <%= image_tag post.display_image if post.image.attached? %>
+    <%= image_tag post.image_url if post.image? %>
   </span>
   <div class="w-100"></div>
   <div class="post_stamps row d-flex justify-content-end">

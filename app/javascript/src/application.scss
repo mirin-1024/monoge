@@ -3,27 +3,38 @@
 @import '~bootswatch/dist/simplex/bootswatch';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
-/// 共通 ///
+///* 共通 *///
 
 body {
   padding-top: 4.1rem;
 }
 
+/* フラッシュメッセージ */
+.flash-message {
+  margin-top: 1rem;
+}
 
-/// トップページ ///
 
-// トップセクション
-.top-wrapper {
-  padding: 1.5rem 0 3rem 0;
+///* トップページ *///
+
+//* 未ログイン時 *//
+
+/* トップセクション */
+.head-wrapper {
+  padding: 2rem 0 6rem 0;
   text-align: center;
+  h1 {
+    font-size: 3rem;
+  }
   p {
-    padding: 1.5rem;
+    font-size: 1rem;
+    padding: 2rem;
     color: #5D6778;
   }
 }
-// 対象者セクション
+/* 対象者セクション */
 .target-wrapper {
-  padding: 1rem 0;
+  padding: 2rem 0;
   .target {
     .target-detail {
       padding: 3rem;
@@ -38,6 +49,60 @@ body {
     }
   }
 }
+
+//* ログイン時 *//
+
+/* ユーザー情報 */
+.user-info {
+  div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .user-image {
+    img {
+      border-radius: 50%
+    }
+  }
+  .user-detail {
+    span {
+      display: block;
+    }
+    a {
+      font-size: 1rem;
+      text-decoration: none;
+    }
+  }
+}
+
+/* フォロー中/フォロワーの統計 */
+.stats {
+  .stats-divider {
+    color: gray;
+  }
+  a {
+    color: #5D6778;
+    &:hover {
+      text-decoration: none;
+      opacity: 0.8;
+    }
+  }
+}
+
+/* 投稿フォーム */
+.post-form {
+  textarea {
+    width: 80vh;
+    height: 30vh;
+  }
+  .image {
+    input {
+      display: none;
+    }
+  }
+}
+
+
+
 
 // ///* ユーザー登録ページ *///
 // .signup-container {
@@ -170,10 +235,6 @@ body {
 //   }
 // }
 
-// /* error message */
-// .flash-message {
-//   margin-top: 1rem;
-// }
 
 // /* posts */
 // .posts {
@@ -198,39 +259,6 @@ body {
 //     color: gray;
 //     padding-bottom: 0.25rem;
 //     text-align: center;
-//   }
-// }
-
-// /* post_form */
-// #post_form {
-//   .image {
-//     input {
-//       display: none;
-//     }
-//   }
-// }
-
-// /* follow/follower partial */
-// .stats {
-//   overflow: auto;
-//   margin-top: 0;
-//   padding: 0;
-//   a {
-//     float: left;
-//     padding: 0 0.25rem;
-//     border-left: 1px solid #e8e8e8;
-//     color: gray;
-//     &:first-child {
-//       padding-left: 0;
-//       border: 0;
-//     }
-//     &:hover {
-//       text-decoration: none;
-//       color: blue;
-//     }
-//   }
-//   strong {
-//     display: block;
 //   }
 // }
 

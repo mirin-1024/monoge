@@ -53,7 +53,7 @@ group :development, :test do
   gem 'database_cleaner-active_record'
   # 画像処理用のgem
   gem 'image_processing'
-  # Active Storageのバリデーション
+  # Active Storageのバリデーション（carrierwave使用のため削除検討）
   gem 'active_storage_validations'
   # 画像をアップロード
   gem 'carrierwave'

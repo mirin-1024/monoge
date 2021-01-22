@@ -1,8 +1,9 @@
-<div>
-  <%= image_tag current_user.image_url(:thumb) if current_user.image? %>
-  <div>
-    <%= current_user.name %>
-    <%= link_to "プロフィール", current_user %>
-    <span class="post_count"><%= current_user.posts.count %> 投稿</span>
+<section class="user-info">
+  <div class="user-image">
+    <%= image_tag current_user.image_url(:thumb) if current_user.image? %>
   </div>
-</div>
+  <div class="user-detail">
+    <span><%= link_to current_user.name, current_user %></span>
+    <span><%= current_user.posts.count %> 投稿</span>
+  </div>
+</section>

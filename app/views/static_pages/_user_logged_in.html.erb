@@ -1,19 +1,11 @@
-<div class="container">
-  <div class="row">
-    <div id="user_form" class="col-md-4">
-      <section class="user_info">
-        <%= render 'shared/user_info' %>
-      </section>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
-      <section id="post_form">
-        <%= render 'shared/post_form' %>
-      </section>
-    </div>
-    <div id="status-feed" class="col-md-8">
-      <h3>投稿一覧</h3>
-      <%= render 'shared/feed' %>
-    </div>
+<section class="top-wrapper row">
+  <div class="col-md-4">
+    <%= render 'shared/user_info' %>
+    <%= render 'shared/stats' %>
+    <%= render 'shared/post_form' %>
   </div>
-</div>
+  <div id="status-feed" class="col-md-8">
+    <h3>投稿一覧</h3>
+    <%= render 'shared/feed' %>
+  </div>
+</section>
