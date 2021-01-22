@@ -1,8 +1,13 @@
-<% if @feed_items.any? %>
-  <div class="card">
-    <ol class="posts list-group list-group-flush">
-      <%= render @feed_items %>
-    </ol>
-  </div>
-  <%= will_paginate @feed_items, params: { controller: :static_pages, action: :home } %>
-<% end %>
+<section class="status-feed">
+  <h3>投稿一覧</h3>
+  <% if @feed_items.any? %>
+    <div class="card">
+      <ol class="posts list-group list-group-flush">
+        <%= render @feed_items %>
+      </ol>
+    </div>
+    <%= will_paginate @feed_items, params: { controller: :static_pages, action: :home } %>
+  <% end %>
+</section>
+
+<%# feedのUI編集 %>

@@ -8,10 +8,6 @@ class Post < ApplicationRecord
   validates :content, presence: true, length: { maximum: 140 }
   mount_uploader :image, PostImageUploader
 
-  def display_image
-    image.variant(resize_to_limit: [500, 500])
-  end
-
   # 名前に注意(?)
   def like(user)
     likes.create(user_id: user.id)
