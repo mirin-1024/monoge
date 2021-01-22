@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-lg-5 col-md-4 col-md-3">
       <h1>
-        <%#= ユーザーの画像を表示 %>
+        <%= image_tag @user.image.url if @user.image? %>
         <%= @user.name %>
       </h1>
       <section class="stats">
