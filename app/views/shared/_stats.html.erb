@@ -1,10 +1,10 @@
 <section class="stats">
   <% @user ||= current_user %>
   <%= link_to following_user_path(@user) do %>
-    <span><%= @user.following.count %></span> フォロー中
+    <span class="following"><%= @user.following.count %></span> フォロー中
   <% end %>
   <span> | </span>
   <%= link_to followers_user_path(@user) do %>
-    <span><%= @user.followers.count %></span> フォロワー
+    <span class="followers"><%= @user.followers.count %></span> フォロワー
   <% end %>
 </section>

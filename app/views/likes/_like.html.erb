@@ -1,20 +1,20 @@
 <% if !current_user?(post.user) %>
   <span class="like">
-  <% if post.like?(current_user) %>
-    <%= form_with(model: post.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
-        <%= button_tag class: "like_btn btn btn-outline-primary btn-sm" do %>
-          <i class="fas fa-thumbs-up"></i>
-          <%= post.likes_count %>
-        <% end %>
+    <% if post.like?(current_user) %>
+      <%= form_with(model: post.likes.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
+          <%= button_tag class: "like_btn btn btn-outline-primary btn-sm" do %>
+            <i class="fas fa-thumbs-up"></i>
+            <%= post.likes_count %>
+          <% end %>
+      <% end %>
+    <% else %>
+      <%= form_with(model: post.likes.build, remote: true) do |f| %>
+        <div><%= hidden_field_tag :post_id, post.id %></div>
+          <%= button_tag class: "btn btn-outline-primary btn-sm" do %>
+            <i class="far fa-thumbs-up"></i>
+            <%= post.likes_count %>
+          <% end %>
+      <% end %>
     <% end %>
-  <% else %>
-    <%= form_with(model: post.likes.build, remote: true) do |f| %>
-      <div><%= hidden_field_tag :post_id, post.id %></div>
-        <%= button_tag class: "like_btn btn btn-outline-primary btn-sm" do %>
-          <i class="far fa-thumbs-up"></i>
-          <%= post.likes_count %>
-        <% end %>
-    <% end %>
-  <% end %>
   </span>
 <% end %>

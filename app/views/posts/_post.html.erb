@@ -1,30 +1,27 @@
-<li id="post-<%= post.id %>" class="list-group-item">
-  <%#= ユーザーの画像 %>
-  <span class="user card-title">
+<li id="post-<%= post.id %>" class="post shadow rounded">
+  <div class="post-top">
     <%= link_to post.user.name, post.user %>
-  </span>
-  <div class="w-100"></div>
-  <span class="content card-text">
+    <%= render "likes/like", post: post %>
+  </div>
+  <div class="post-content">
     <%= post.content %>
-    <div class="post-image">
-      <%= image_tag post.image_url(:thumb) if post.image? %>
-    </div>
-  </span>
-  <div class="w-100"></div>
-  <div class="post_stamps row d-flex justify-content-end">
-    <div class="like_button col-3">
-      <%= render "likes/like", post: post %>
-    </div>
-    <div class="delete_button col-3">
+  </div>
+  <div class="post-image">
+    <%= image_tag post.image_url(:thumb) if post.image? %>
+  </div>
+  <div class="post-stamps">
+    <span class="delete_button">
       <% if current_user?(post.user) %>
         <%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %>
       <% end %>
-    </div>
-    <div class="timestamp col-3">
+    </span>
+    <span class="timestamp">
       <%= time_ago_in_words(post.created_at) %>前
-    </div>
-    <div class="col-3">
-      <%= link_to '→', post %>
-    </div>
+    </span>
+    <span class="post-link">
+      <%= link_to post_path(post) do %>
+        <i class="fas fa-arrow-right"></i>
+      <% end %>
+    </span>
   <div>
 </li>

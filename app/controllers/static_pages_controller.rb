@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     return unless logged_in?
 
     @post = current_user.posts.build
-    @feed_items = current_user.feed.paginate(page: params[:page])
+    @posts = current_user.feed.paginate(page: params[:page])
   end
 
   def contact
