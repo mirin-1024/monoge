@@ -1,5 +1,5 @@
 <li class="index-user-info rounded shadow">
-  <%= image_tag user.image_url(:thumb60) %>
+  <%= link_to image_tag(user.image_url(:thumb60)), user %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
     <%= link_to "削除", user, class: "delete-btn", method: :delete, data: { confirm: "本当に削除しますか？" } %>

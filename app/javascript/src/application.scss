@@ -293,6 +293,18 @@ body {
 }
 
 
+///* フォロー中/フォロワー一覧ページ *///
+#show-follow {
+  .user-icons {
+    width: 75%;
+    margin-top: 1rem;
+    img {
+      border: 1px solid #dcdcdc;
+      border-radius: 50%;
+    }
+  }
+}
+
 
 
 // /* ユーザーのフォーム */
