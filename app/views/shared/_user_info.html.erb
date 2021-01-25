@@ -1,4 +1,10 @@
-<%# ユーザー画像を表示 %>
-<h1><%= current_user.name %></h1>
-<span><%= link_to "プロフィール", current_user %></span>
-<span class="post_count"><%= current_user.posts.count %> 投稿</span>
+<section class="user-info">
+  <% @user ||= current_user %>
+  <div class="user-image">
+    <%= image_tag @user.image_url(:thumb60) %>
+  </div>
+  <div class="user-detail">
+    <span><%= link_to @user.name, @user %></span>
+    <span class="post-count"><%= @user.posts.count %> 投稿</span>
+  </div>
+</section>

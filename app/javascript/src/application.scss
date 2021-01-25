@@ -3,307 +3,330 @@
 @import '~bootswatch/dist/simplex/bootswatch';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+///* 共通 *///
+
 body {
-  /* 4.5remから変更 */
   padding-top: 4.1rem;
 }
 
-footer {
-  li {
-    display: inline-block;
-  }
-}
-
-
-
-///* トップページ *///
-
-/* header section */
-.header-section {
-  background-image: url("/header-section-bg.jpg");
-  background-size: cover;
-}
-
-/* banner */
-.banner {
-  h1 {
-    padding-top: 6rem;
-    text-align: center;
-  }
-  p {
-    padding: 1.5rem 0;
-    text-align: center;
-    color: #5D6778;
-  }
-  .banner-btn {
-    padding-bottom: 9rem;
-  }
-  .banner-image {
-    .image-fluid {
-      max-width: 100%;
-      height: auto;
-    }
-    padding-bottom: 3rem;
-  }
-}
-
-/* target-section */
-.target-section {
-  padding-top: 3rem;
-  h4 {
-    text-align: center;
-  }
-}
-
-
-
-///* ユーザー登録ページ *///
-.signup-container {
-  h1 {
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-    text-align: center;
-  }
-  p {
-    text-align: center;
-    margin-top: 1rem;
-  }
-  .signup-btn {
-    text-align: center;
-    padding-top: 1rem;
-  }
-  input {
-    margin-bottom: 0.5rem;
-  }
-  .signup-form {
-    padding: 1rem;
-    border: 1px solid gray;
-    border-radius: 30px;
-    background-color: #F5F7FA;
-  }
-}
-
-///* ログインページ *///
-.login-container {
-  h1 {
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-    text-align: center;
-  }
-  p {
-    text-align: center;
-    margin-top: 1rem;
-  }
-  .login-btn {
-    text-align: center;
-    padding-top: 1rem;
-  }
-  input {
-    margin-bottom: 0.5rem;
-  }
-  .login-form {
-    padding: 1rem;
-    border: 1px solid gray;
-    border-radius: 30px;
-    background-color: #F5F7FA;
-  }
-}
-
-
-///* お問い合わせページ *///
-.contact-container {
-  h1 {
-    padding-bottom: 1rem;
-  }
-}
-
-///* ユーザー情報の編集ページ *///
-.useredit-container {
-  h1 {
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-    text-align: center;
-  }
-  .useredit-btn {
-    text-align: center;
-    padding-top: 1rem;
-  }
-  input {
-    margin-bottom: 0.5rem;
-  }
-  .useredit-form {
-    padding: 1rem;
-    border: 1px solid gray;
-    border-radius: 30px;
-    background-color: #F5F7FA;
-  }
-}
-
-///* ユーザー一覧ページ *///
-.users-section {
-  list-style: none;
-}
-
-///* パスワード変更ページ *///
-.change-container {
-  h1 {
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-    text-align: center;
-  }
-  .change-btn {
-    text-align: center;
-    padding-top: 1rem;
-  }
-  input {
-    margin-bottom: 0.5rem;
-  }
-  .change-form {
-    padding: 1rem;
-    border: 1px solid gray;
-    border-radius: 30px;
-    background-color: #F5F7FA;
-  }
-}
-
-///* パスワード再設定ページ *///
-.reset-container {
-  h1 {
-    padding-top: 3rem;
-    padding-bottom: 1rem;
-    text-align: center;
-  }
-  .reset-btn {
-    text-align: center;
-    padding-top: 1rem;
-  }
-  input {
-    margin-bottom: 0.5rem;
-  }
-  .reset-form {
-    padding: 1rem;
-    border: 1px solid gray;
-    border-radius: 30px;
-    background-color: #F5F7FA;
-  }
-}
-
-/* error message */
+/* フラッシュメッセージ */
 .flash-message {
   margin-top: 1rem;
 }
 
-/* posts */
-.posts {
-  list-style: none;
-  li {
-    padding: 0.5rem 0;
-    border-top: 1px solid #e8e8e8;
+
+///* トップページ *///
+
+//* 未ログイン時 *//
+
+/* トップセクション */
+.head-wrapper {
+  padding: 2rem 0 6rem 0;
+  text-align: center;
+  h1 {
+    font-size: 3rem;
   }
-  .user {
-    margin-top: 0.25rem;
-    padding-top: 0;
-  }
-  .content {
-    display: block;
-    margin-left: 4rem;
-  }
-  .delete_button {
-    padding-bottom: 0.25rem;
-    text-align: center;
-  }
-  .timestamp {
-    color: gray;
-    padding-bottom: 0.25rem;
-    text-align: center;
+  p {
+    font-size: 1rem;
+    padding: 2rem;
+    color: #5D6778;
   }
 }
-
-/* post_form */
-#post_form {
-  .image {
-    input {
-      display: none;
+/* 対象者セクション */
+.target-wrapper {
+  padding: 2rem 0;
+  .target {
+    .target-detail {
+      padding: 3rem;
+      .target-icon {
+        color: #D9230F;
+        text-align: center;
+        padding-bottom: 1rem;
+      }
+      h4 {
+        text-align: center;
+      }
     }
   }
 }
 
-/* follow/follower partial */
+//* ログイン時 *//
+
+/* ユーザー情報 */
+.user-info {
+  div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .user-image {
+    img {
+      border-radius: 50%
+    }
+  }
+  .user-detail {
+    margin-left: 0.5rem;
+    span {
+      display: block;
+    }
+    a {
+      font-size: 1rem;
+      text-decoration: none;
+    }
+  }
+}
+
+/* フォロー中/フォロワーの統計 */
 .stats {
-  overflow: auto;
-  margin-top: 0;
-  padding: 0;
+  margin: 0.5rem 0;
   a {
-    float: left;
-    padding: 0 0.25rem;
-    border-left: 1px solid #e8e8e8;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
+    color: #5D6778;
+    span {
+      color: #D9230F;
     }
     &:hover {
       text-decoration: none;
-      color: blue;
+      opacity: 0.8;
     }
   }
-  strong {
-    display: block;
+}
+
+/* 投稿フォーム */
+.post-form {
+  textarea {
+    width: 22rem;
+    height: 10rem;
+    max-width: 100%;
   }
-}
-
-/* like button */
-.like {
-  input {
-    display: none;
+  .post-btns {
+    label {
+      input {
+        display: none;
+      }
+    }
+    .image-btn {
+      font-size: 2rem;
+      color: #D9230F;
+    }
+    .post-btn {
+      float: right;
+    }
   }
-}
-
-/* ユーザーのフォーム */
-#user_form {
-  border-right: 1px solid #e8e8e8;
-}
-
-/* 検索フォーム */
-#search-form {
-  input {
-    margin-right: 0.25rem;
-  }
-}
-
-/* 検索結果 */
-#search-result {
-  ul {
-    list-style: none;
-  }
-}
-
-/* デバッグ表示 */
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  -moz-box-sizing:    border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing:         border-box
 }
 
 /* ステータスフィード */
-#status-feed {
-  .posts {
-    li:hover {
-      opacity: 0.7;
+.status-feed {
+  h3 {
+    padding-left: 0.5rem;
+  }
+}
+
+///* 投稿 *///
+.posts {
+  list-style: none;
+  padding-left: 0;
+  .post {
+    display: inline-block;
+    vertical-align: top;
+    padding: 1rem;
+    width: 20rem;
+    height: 25rem;
+    margin: 0.5rem;
+    .post-top {
+      margin: 0.25rem 0;
+      height: 10%;
+      vertical-align: middle;
+      img {
+        border-radius: 50%;
+      }
+      a {
+        text-decoration: none;
+        margin: 0 0.25rem;
+      }
+      .like {
+        float: right;
+      }
+    }
+    .post-content {
+      height: 45%;
+    }
+    .post-image {
+      text-align: center;
+      height: 35%;
+      img {
+        max-width: 100%;
+        border-radius: 5% / 10%;
+      }
+    }
+    .post-stamps {
+      height: 10%;
+      text-align: right;
+      span {
+        display: inline-block;
+        margin: 0 0.25rem;
+      }
+      .timestamp {
+        color:#5D6778;
+      }
     }
   }
 }
 
-/* post-comment */
-#post-comments {
-  ul {
-    list-style: none;
-    li {
-      border-bottom: 1px soild #e8e8e8;
-    }
-  }
-}
+// ///* ユーザー登録ページ *///
+// .signup-container {
+//   h1 {
+//     padding-top: 3rem;
+//     padding-bottom: 1rem;
+//     text-align: center;
+//   }
+//   p {
+//     text-align: center;
+//     margin-top: 1rem;
+//   }
+//   .signup-btn {
+//     text-align: center;
+//     padding-top: 1rem;
+//   }
+//   input {
+//     margin-bottom: 0.5rem;
+//   }
+//   .signup-form {
+//     padding: 1rem;
+//     border: 1px solid gray;
+//     border-radius: 30px;
+//     background-color: #F5F7FA;
+//   }
+// }
+
+// ///* ログインページ *///
+// .login-container {
+//   h1 {
+//     padding-top: 3rem;
+//     padding-bottom: 1rem;
+//     text-align: center;
+//   }
+//   p {
+//     text-align: center;
+//     margin-top: 1rem;
+//   }
+//   .login-btn {
+//     text-align: center;
+//     padding-top: 1rem;
+//   }
+//   input {
+//     margin-bottom: 0.5rem;
+//   }
+//   .login-form {
+//     padding: 1rem;
+//     border: 1px solid gray;
+//     border-radius: 30px;
+//     background-color: #F5F7FA;
+//   }
+// }
+
+
+// ///* お問い合わせページ *///
+// .contact-container {
+//   h1 {
+//     padding-bottom: 1rem;
+//   }
+// }
+
+// ///* ユーザー情報の編集ページ *///
+// .useredit-container {
+//   h1 {
+//     padding-top: 3rem;
+//     padding-bottom: 1rem;
+//     text-align: center;
+//   }
+//   .useredit-btn {
+//     text-align: center;
+//     padding-top: 1rem;
+//   }
+//   input {
+//     margin-bottom: 0.5rem;
+//   }
+//   .useredit-form {
+//     padding: 1rem;
+//     border: 1px solid gray;
+//     border-radius: 30px;
+//     background-color: #F5F7FA;
+//   }
+// }
+
+// ///* ユーザー一覧ページ *///
+// .users-section {
+//   list-style: none;
+// }
+
+// ///* パスワード変更ページ *///
+// .change-container {
+//   h1 {
+//     padding-top: 3rem;
+//     padding-bottom: 1rem;
+//     text-align: center;
+//   }
+//   .change-btn {
+//     text-align: center;
+//     padding-top: 1rem;
+//   }
+//   input {
+//     margin-bottom: 0.5rem;
+//   }
+//   .change-form {
+//     padding: 1rem;
+//     border: 1px solid gray;
+//     border-radius: 30px;
+//     background-color: #F5F7FA;
+//   }
+// }
+
+// ///* パスワード再設定ページ *///
+// .reset-container {
+//   h1 {
+//     padding-top: 3rem;
+//     padding-bottom: 1rem;
+//     text-align: center;
+//   }
+//   .reset-btn {
+//     text-align: center;
+//     padding-top: 1rem;
+//   }
+//   input {
+//     margin-bottom: 0.5rem;
+//   }
+//   .reset-form {
+//     padding: 1rem;
+//     border: 1px solid gray;
+//     border-radius: 30px;
+//     background-color: #F5F7FA;
+//   }
+// }
+
+// /* ユーザーのフォーム */
+// #user_form {
+//   border-right: 1px solid #e8e8e8;
+// }
+
+// /* 検索フォーム */
+// #search-form {
+//   input {
+//     margin-right: 0.25rem;
+//   }
+// }
+
+// /* 検索結果 */
+// #search-result {
+//   ul {
+//     list-style: none;
+//   }
+// }
+
+// /* post-comment */
+// #post-comments {
+//   ul {
+//     list-style: none;
+//     li {
+//       border-bottom: 1px soild #e8e8e8;
+//     }
+//   }
+// }

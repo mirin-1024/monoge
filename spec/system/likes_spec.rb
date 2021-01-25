@@ -17,12 +17,12 @@ RSpec.describe 'Likes', type: :system do
 
     example '正常にいいねができる' do
       expect do
-        page.first('.like_btn').click
+        page.first('.like-btn').click
       end.to change(Like, :count).by(1)
     end
 
     example 'いいねの数が増える' do
-      page.first('.like_btn').click
+      page.first('.like-btn').click
       expect(other_user.posts.last.likes_count).to eq 1
     end
   end
@@ -31,17 +31,17 @@ RSpec.describe 'Likes', type: :system do
     before do
       sign_in(user)
       visit root_path
-      page.first('.like_btn').click
+      page.first('.like-btn').click
     end
 
     example '正常にいいねが取り消せる' do
       expect do
-        page.first('.like_btn').click
+        page.first('.like-btn').click
       end.to change(Like, :count).by(-1)
     end
 
     example 'いいねの数が減る' do
-      page.first('.like_btn').click
+      page.first('.like-btn').click
       expect(other_user.posts.last.likes_count).to eq 0
     end
   end

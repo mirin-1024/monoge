@@ -23,6 +23,10 @@ Layout/LineLength:
   Exclude:
     - spec/requests/sessions_request_spec.rb
 
+Lint/UnusedMethodArgument:
+  Exclude:
+    - app/uploaders/user_image_uploader.rb
+
 Metrics/AbcSize: # リファクタリング対象
   Max: 30
 

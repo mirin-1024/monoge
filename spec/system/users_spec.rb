@@ -54,8 +54,11 @@ RSpec.describe 'Users', type: :system do
       before { sign_in(user) }
 
       context '正しい情報を入力した場合' do
+        let(:image_path) { Rails.root.join('spec/fixtures/neko.jpg').to_s }
+
         before do
           visit edit_user_path(user)
+          attach_file 'user_image', image_path
           fill_in '名前', with: 'Foo Foo'
           fill_in 'メールアドレス', with: 'foofoo@example.com'
           fill_in 'パスワード', with: 'password'
@@ -70,6 +73,10 @@ RSpec.describe 'Users', type: :system do
 
           example 'メールアドレスが更新される' do
             expect(user.reload.email).to eq 'foofoo@example.com'
+          end
+
+          example '画像が変更される' do
+            expect(user.reload.image).to be_present
           end
         end
 
@@ -152,7 +159,11 @@ RSpec.describe 'Users', type: :system do
       end
 
       example 'ユーザーの名前が表示されている' do
-        is_expected.to have_css('h1', text: user.name)
+        is_expected.to have_css('a', text: user.name)
+      end
+
+      example 'デフォルトのユーザー画像が表示されている' do
+        is_expected.to have_css('.user-image img')
       end
 
       describe 'ユーザー投稿におけるページネーションの検証' do
@@ -162,7 +173,7 @@ RSpec.describe 'Users', type: :system do
 
         example '投稿の内容が表示されている' do
           user.posts.paginate(page: 1).each do |post|
-            is_expected.to have_css('.content', text: post.content)
+            is_expected.to have_css('.post-content', text: post.content)
           end
         end
       end

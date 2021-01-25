@@ -15,7 +15,7 @@
               </span>
               <span class="post-content">
                 <p><%= search_result.content %></p>
-                <%= image_tag search_result.display_image if search_result.image.attached? %>
+                <%= image_tag search_result.image_url if search_result.image? %>
               </span>
             </li>
           <% end %>
