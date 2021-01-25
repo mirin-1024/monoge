@@ -1,19 +1,12 @@
 <% provide(:title, 'パスワードの変更') %>
-<div class="change-container container">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-4 col-md-3">
-      <h1>パスワードの変更</h1>
-      <div class="change-form">
-        <%= form_with(url: password_resets_path, scope: :password_reset, local: true, class: "form-group") do |f| %>
+<section id="password-reset" class="row">
+  <div class="col-md-4">
+    <h3 class="page-title">パスワードの変更</h3>
+    <%= form_with(url: password_resets_path, scope: :password_reset, local: true, class: "form-group") do |f| %>
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: "form-control" %>
 
-          <%= f.label :email, "メールアドレス" %>
-          <%= f.email_field :email, class: "form-control" %>
-
-          <div class="change-btn mx-auto">
-            <%= f.submit "送信", class: "btn btn-primary btn-block" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+      <%= f.submit "送信", class: "form-btn btn btn-primary btn-block" %>
+    <% end %>
   </div>
-</div>
+</section>
