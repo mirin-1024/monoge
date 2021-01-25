@@ -1,5 +1,6 @@
 <li id="post-<%= post.id %>" class="post shadow rounded">
   <div class="post-top">
+    <%= image_tag post.user.image_url(:thumb25) %>
     <%= link_to post.user.name, post.user %>
     <%= render "likes/like", post: post %>
   </div>

@@ -39,3 +39,4 @@ yarn-debug.log*
 /environments
 /.devcontainer
 /ECS
+/spec/examples.txt

@@ -135,8 +135,12 @@ body {
       margin: 0.25rem 0;
       height: 10%;
       vertical-align: middle;
+      img {
+        border-radius: 50%;
+      }
       a {
         text-decoration: none;
+        margin: 0 0.25rem;
       }
       .like {
         float: right;
@@ -166,15 +170,6 @@ body {
     }
   }
 }
-
-///* いいねボタン *///
-.like-btn {
-  height: 1rem;
-  .like-img {
-    height: 0.6rem;
-  }
-}
-
 
 // ///* ユーザー登録ページ *///
 // .signup-container {
