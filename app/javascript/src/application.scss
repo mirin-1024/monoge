@@ -280,13 +280,18 @@ body {
 
 
 ///* パスワード変更ページ *///
-#password-reset {
+#pass-reset {
+  justify-content: center;
+}
+
+///* パスワード再設定ページ *///
+#pass-edit {
   justify-content: center;
 }
 
 
 
-// ///* パスワード再設定ページ *///
+
 // .reset-container {
 //   h1 {
 //     padding-top: 3rem;
