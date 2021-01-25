@@ -1,8 +1,8 @@
 <% provide(:title, 'ユーザー登録') %>
 <section class="signup-wrapper row">
-  <div class="col-md-5">
+  <div class="col-md-4">
     <div class="signup-title">
-      <h2>ユーザー登録</h2>
+      <h3>ユーザー登録</h3>
     </div>
     <div class="signup-form">
       <%= form_with model: @user, local: true, class: "form-group" do |f| %>
@@ -20,9 +20,7 @@
         <%= f.label :password_confirmation, "パスワード（確認）" %>
         <%= f.password_field :password_confirmation, class: "form-control" %>
 
-        <div class="signup-btn">
-          <%= f.submit "登録", class: "btn btn-primary btn-block" %>
-        </div>
+        <%= f.submit "登録", class: "signup-btn btn btn-primary btn-block" %>
       <% end %>
     </div>
     <div class="signup-opt">

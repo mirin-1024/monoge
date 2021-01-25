@@ -3,6 +3,7 @@
 @import '~bootswatch/dist/simplex/bootswatch';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
+
 ///* 共通 *///
 
 body {
@@ -33,6 +34,7 @@ body {
     color: #5D6778;
   }
 }
+
 /* 対象者セクション */
 .target-wrapper {
   padding: 2rem 0;
@@ -121,6 +123,7 @@ body {
   }
 }
 
+
 ///* 投稿 *///
 .posts {
   list-style: none;
@@ -172,6 +175,7 @@ body {
   }
 }
 
+
 ///* お問い合わせページ *///
 .contact-wrapper {
   justify-content: center;
@@ -179,6 +183,7 @@ body {
     text-align: center;
   }
 }
+
 
 ///* ユーザー登録ページ *///
 .signup-wrapper {
@@ -196,7 +201,7 @@ body {
       margin-bottom: 0.5rem;
     }
     .signup-btn {
-      margin-top: 1.5rem;
+      margin-top: 1.25rem;
     }
   }
   .signup-opt {
@@ -204,42 +209,59 @@ body {
     padding: 0.5rem;
     border: 1px solid #dcdcdc;
     border-radius: 3% / 15%;
+    a {
+      text-decoration: none;
+    }
   }
 }
 
 
+///* ログインページ *///
+.login-wrapper {
+  justify-content: center;
+  .login-title {
+    text-align: center;
+  }
+  .login-form {
+    padding: 1rem 1rem 0 1rem;
+    margin: 1rem 0;
+    border: 1px solid #dcdcdc;
+    border-radius: 3%;
+    background-color: #f5f5f5;
+    .form-control {
+      margin-bottom: 0.5rem;
+    }
+    .forgot-pass {
+      a {
+        float: right;
+        text-decoration: none;
+      }
+    }
+    .login-btn {
+      margin-top: 1.25rem;
+    }
+  }
+  .login-opt {
+    text-align: center;
+    padding: 0.5rem;
+    border: 1px solid #dcdcdc;
+    border-radius: 3% / 15%;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+
+///* ユーザー情報の編集ページ *///
 
 
 
 
 
-// ///* ログインページ *///
-// .login-container {
-//   h1 {
-//     padding-top: 3rem;
-//     padding-bottom: 1rem;
-//     text-align: center;
-//   }
-//   p {
-//     text-align: center;
-//     margin-top: 1rem;
-//   }
-//   .login-btn {
-//     text-align: center;
-//     padding-top: 1rem;
-//   }
-//   input {
-//     margin-bottom: 0.5rem;
-//   }
-//   .login-form {
-//     padding: 1rem;
-//     border: 1px solid gray;
-//     border-radius: 30px;
-//     background-color: #F5F7FA;
-//   }
-// }
 
-// ///* ユーザー情報の編集ページ *///
+
+
 // .useredit-container {
 //   h1 {
 //     padding-top: 3rem;
