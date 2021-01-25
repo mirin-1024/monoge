@@ -2,17 +2,6 @@
 <section id="user-index" class="row">
   <div class="col-md-5">
     <h3 class="page-title">ユーザー一覧</h3>
-    <ul class="users-info">
-      <% @users.each do |user| %>
-        <li class="rounded shadow">
-          <%= image_tag user.image_url(:thumb60) %>
-          <%= link_to user.name, user %>
-          <% if current_user.admin? && !current_user?(user) %>
-            <%= link_to "削除", user, class: "delete-btn", method: :delete, data: { confirm: "本当に削除しますか？" } %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-    <%= will_paginate %>
+    <%= render 'user_index' %>
   </div>
 </section>
