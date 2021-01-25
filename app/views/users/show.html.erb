@@ -1,26 +1,17 @@
 <% provide(:title, @user.name) %>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-5 col-md-4 col-md-3">
-      <h1>
-        <%#= ユーザーの画像を表示 %>
-        <%= @user.name %>
-      </h1>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-      </section>
-      <section>
-        <%= render 'follow_form' if logged_in? %>
-      </section>
-    </div>
-    <div class="col-lg-5 col-md-4 col-md-3">
-      <% if @user.posts.any? %>
-        <h3>投稿 (<%= @user.posts.count %>)</h3>
-        <ol class="posts">
-          <%= render @posts %>
-        </ol>
-        <%= will_paginate @posts %>
-      <% end %>
-    </div>
+<section class="user-wrapper row">
+  <div class="col-md-4">
+    <%= render 'shared/user_info' %>
+    <%= render 'shared/stats' %>
+    <%= render 'follow_form' if logged_in? %>
   </div>
-</div>
+  <div class="col-md-8">
+    <% if @user.posts.any? %>
+      <h3>投稿 (<%= @user.posts.count %>)</h3>
+      <ol class="posts">
+        <%= render @posts %>
+      </ol>
+      <%= will_paginate @posts, params: { controller: :users, action: :show } %>
+    <% end %>
+  </div>
+</section>

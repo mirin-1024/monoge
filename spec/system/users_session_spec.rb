@@ -82,7 +82,7 @@ RSpec.describe 'UsersSession', type: :system do
     end
 
     example '名前が正しく表示されている' do
-      is_expected.to have_selector('h1', text: guest_user.name)
+      is_expected.to have_selector('a', text: guest_user.name)
     end
   end
 

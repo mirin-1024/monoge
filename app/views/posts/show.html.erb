@@ -7,7 +7,7 @@
       </h2>
       <p class="card-text">
         <%= @post.content %>
-        <%= image_tag @post.display_image if @post.image.attached? %>
+        <%= image_tag @post.image_url if @post.image? %>
       </p>
       <div class="row">
         <div class="col-3">

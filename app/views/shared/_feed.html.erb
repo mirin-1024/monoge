@@ -1,8 +1,9 @@
-<% if @feed_items.any? %>
-  <div class="card">
-    <ol class="posts list-group list-group-flush">
-      <%= render @feed_items %>
+<section class="status-feed">
+  <h3>投稿一覧</h3>
+  <% if @posts.any? %>
+    <ol class="posts">
+      <%= render @posts %>
     </ol>
-  </div>
-  <%= will_paginate @feed_items, params: { controller: :static_pages, action: :home } %>
-<% end %>
+    <%= will_paginate @posts, params: { controller: :static_pages, action: :home } %>
+  <% end %>
+</section>

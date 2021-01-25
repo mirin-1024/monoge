@@ -1,5 +1,5 @@
-<div class="flash-message container">
+<section class="flash-message">
   <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
-</div>
+</section>

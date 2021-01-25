@@ -6,6 +6,7 @@ RSpec.describe 'Posts', type: :system do
   subject { page }
 
   let!(:user) { create(:user) }
+  let(:post) { create(:post, user: user) }
   let(:post_count) { 0 }
 
   describe '投稿の作成' do
@@ -22,12 +23,12 @@ RSpec.describe 'Posts', type: :system do
 
       example '投稿一覧の投稿が増える' do
         create_valid_post
-        is_expected.to have_css('span.content', text: '適切な投稿')
+        is_expected.to have_css('.post-content', text: '適切な投稿')
       end
 
       example '投稿数の表示が増える' do
         create_valid_post
-        is_expected.to have_css('.post_count', text: "#{post_count + 1} 投稿")
+        is_expected.to have_css('.post-count', text: "#{post_count + 1} 投稿")
       end
 
       example 'サクセスメッセージを表示' do
@@ -49,34 +50,32 @@ RSpec.describe 'Posts', type: :system do
 
       example '投稿一覧が変化しない' do
         create_invalid_post
-        is_expected.to_not have_css('span.content', text: '')
+        is_expected.to_not have_css('.post-content', text: '')
       end
 
       example '投稿数の表示が変化しない' do
         create_invalid_post
-        is_expected.to have_css('.post_count', text: "#{post_count} 投稿")
+        is_expected.to have_css('.post-count', text: "#{post_count} 投稿")
       end
 
       example 'トップページを描画' do
         create_invalid_post
-        is_expected.to have_css('#post_form')
+        is_expected.to have_css('.post-form')
       end
     end
 
     describe '画像の投稿' do
-      let(:image_name) { 'neko.jpg' }
+      let(:image_path) { Rails.root.join('spec/fixtures/neko.jpg').to_s }
 
       before do
-        # ボタンをクリックでアップロードする際のテスト
-        attach_file 'post_image', "#{Rails.root}/spec/fixtures/#{image_name}", make_visible: true
-        fill_in 'post_content', with: '適切な投稿'
+        fill_in 'post_content', with: '画像テスト'
+        attach_file 'post_image', image_path
         click_button '投稿'
       end
 
       example '画像が投稿一覧に表示される' do
-        is_expected.to have_selector "img[src$='#{image_name}']"
+        is_expected.to have_css '.user-image img'
       end
-      # リサイズのテスト
     end
   end
 
