@@ -37,6 +37,10 @@ gem 'faker'
 gem 'will_paginate'
 # Bootstrap4に即したページネーションの実装
 gem 'will_paginate-bootstrap4'
+# 画像処理用のgem
+gem 'carrierwave'
+# 画像のリサイズ
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,11 +57,8 @@ group :development, :test do
   gem 'database_cleaner-active_record'
   # 画像処理用のgem
   gem 'image_processing'
-  gem 'mini_magick'
   # Active Storageのバリデーション
   gem 'active_storage_validations'
-  # 画像テスト用のgem
-  gem 'carrierwave'
 end
 
 group :development do
