@@ -23,6 +23,7 @@ body {
 .head-wrapper {
   padding: 2rem 0 6rem 0;
   text-align: center;
+  justify-content: center;
   h1 {
     font-size: 3rem;
   }
@@ -171,6 +172,16 @@ body {
   }
 }
 
+///* お問い合わせページ *///
+.contact-wrapper {
+  justify-content: center;
+  .contact-title {
+    text-align: center;
+  }
+}
+
+
+
 // ///* ユーザー登録ページ *///
 // .signup-container {
 //   h1 {
@@ -220,14 +231,6 @@ body {
 //     border: 1px solid gray;
 //     border-radius: 30px;
 //     background-color: #F5F7FA;
-//   }
-// }
-
-
-// ///* お問い合わせページ *///
-// .contact-container {
-//   h1 {
-//     padding-bottom: 1rem;
 //   }
 // }
 
