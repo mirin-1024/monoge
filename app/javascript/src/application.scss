@@ -91,6 +91,7 @@ body {
   }
   .user-image {
     img {
+      border: 1px solid #dcdcdc;
       border-radius: 50%
     }
   }
@@ -157,17 +158,22 @@ body {
   list-style: none;
   padding-left: 0;
   .post {
+    border: 1px solid #dcdcdc;
     display: inline-block;
     vertical-align: top;
     padding: 1rem;
     width: 20rem;
     height: 25rem;
     margin: 0.5rem;
+    &:hover {
+      opacity: 0.8;
+    }
     .post-top {
       margin: 0.25rem 0;
       height: 10%;
       vertical-align: middle;
       img {
+        border: 1px solid #dcdcdc;
         border-radius: 50%;
       }
       a {
@@ -186,6 +192,7 @@ body {
       height: 35%;
       img {
         max-width: 100%;
+        border: 1px solid #dcdcdc;
         border-radius: 5% / 10%;
       }
     }
@@ -243,12 +250,36 @@ body {
   }
 }
 
+///* ユーザー一覧ページ *///
+#user-index {
+  justify-content: center;
+  .users-info {
+    list-style: none;
+    padding-left: 0;
+    li {
+      padding: 0.5rem;
+      margin-bottom: 0.25rem;
+      border: 1px solid #dcdcdc;
+      &:hover {
+        opacity: 0.8;
+      }
+      img {
+        border: 1px solid #dcdcdc;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+      }
+      a {
+        text-decoration: none;
+      }
+      .delete-btn {
+        float: right;
+      }
+    }
+  }
+}
 
 
-// ///* ユーザー一覧ページ *///
-// .users-section {
-//   list-style: none;
-// }
+
 
 // ///* パスワード変更ページ *///
 // .change-container {

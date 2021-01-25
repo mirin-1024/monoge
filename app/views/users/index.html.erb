@@ -1,21 +1,18 @@
 <% provide(:title, 'ユーザー一覧') %>
-<div class="index-container container">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-4 col-md-3">
-      <h1>ユーザー一覧</h1>
-      <div class="users-section">
-        <ul>
-          <% @users.each do |user| %>
-            <li>
-              <%= link_to user.name, user %>
-              <% if current_user.admin? && !current_user?(user) %>
-              | <%= link_to "削除", user, method: :delete, data: { confirm: "本当に削除しますか？" } %>
-            <% end %>
-            </li>
+<section id="user-index" class="row">
+  <div class="col-md-5">
+    <h3 class="page-title">ユーザー一覧</h3>
+    <ul class="users-info">
+      <% @users.each do |user| %>
+        <li class="rounded shadow">
+          <%= image_tag user.image_url(:thumb60) %>
+          <%= link_to user.name, user %>
+          <% if current_user.admin? && !current_user?(user) %>
+            <%= link_to "削除", user, class: "delete-btn", method: :delete, data: { confirm: "本当に削除しますか？" } %>
           <% end %>
-        </ul>
-        <%= will_paginate %>
-      </div>
-    </div>
+        </li>
+      <% end %>
+    </ul>
+    <%= will_paginate %>
   </div>
-</div>
+</section>
