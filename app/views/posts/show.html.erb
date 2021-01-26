@@ -10,7 +10,7 @@
       <%= @post.content %>
     </div>
     <div class="post-image">
-      <%= image_tag(@post.image_url(:thumb)) if @post.image? %>
+      <%= link_to image_tag(@post.image_url(:thumb)), '#', 'data-toggle': 'modal', 'data-target': '#image-modal' %>
     </div>
     <div class="post-stamps">
       <span class="delete_btn">
@@ -25,3 +25,4 @@
   </section>
   <%= render 'comments/comment' %>
 </div>
+<%= render 'shared/image_modal', post: @post %>

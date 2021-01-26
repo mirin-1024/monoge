@@ -83,6 +83,12 @@ body {
   }
 }
 
+//* 画像用モーダル *//
+#image-modal {
+  button {
+    text-align: right;
+  }
+}
 
 ///* トップページ *///
 
@@ -409,11 +415,19 @@ body {
       &:hover {
         opacity: 0.8;
       }
-      img {
-        @include img-icon;
+      .post-user {
+        img {
+          @include img-icon;
+        }
       }
       .post-content {
         margin-top: 0.25rem;
+        .post-img {
+          text-align: center;
+          img {
+            @include box-rounded;
+          }
+        }
       }
       .post-stamps {
         text-align: right;
