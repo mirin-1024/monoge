@@ -1,4 +1,4 @@
-<li id="post-<%= post.id %>" class="post shadow rounded">
+<li id="post-<%= post.id %>" class="post">
   <div class="post-top">
     <%= image_tag post.user.image_url(:thumb25) %>
     <%= link_to post.user.name, post.user %>
@@ -11,7 +11,7 @@
     <%= image_tag post.image_url(:thumb) if post.image? %>
   </div>
   <div class="post-stamps">
-    <span class="delete_button">
+    <span class="delete_btn">
       <% if current_user?(post.user) %>
         <%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %>
       <% end %>

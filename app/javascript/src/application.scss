@@ -4,6 +4,22 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 
+///* mixin *///
+@mixin box-rounded {
+  border: 1px solid #dcdcdc;
+  border-radius: 0.25rem !important;
+}
+
+@mixin box-shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+@mixin img-icon {
+  border: 1px solid #dcdcdc;
+  border-radius: 50%;
+}
+
+
 ///* 共通 *///
 
 body {
@@ -24,9 +40,8 @@ body {
 .form-group {
   padding: 1rem 1rem 0 1rem;
   margin: 1rem 0;
-  border: 1px solid #dcdcdc;
-  border-radius: 3%;
   background-color: #f5f5f5;
+  @include box-rounded;
   .form-control {
     margin-bottom: 0.5rem;
   }
@@ -37,8 +52,7 @@ body {
 .form-opt {
   text-align: center;
   padding: 0.5rem;
-  border: 1px solid #dcdcdc;
-  border-radius: 3% / 15%;
+  @include box-rounded;
   a {
     text-decoration: none;
   }
@@ -51,14 +65,14 @@ body {
   .index-user-info {
     padding: 0.5rem;
     margin-bottom: 0.25rem;
-    border: 1px solid #dcdcdc;
+    @include box-rounded;
+    @include box-shadow;
     &:hover {
       opacity: 0.8;
     }
     img {
-      border: 1px solid #dcdcdc;
-      border-radius: 50%;
       margin-right: 0.5rem;
+      @include img-icon;
     }
     a {
       text-decoration: none;
@@ -95,6 +109,8 @@ body {
   .target {
     .target-detail {
       padding: 3rem;
+      @include box-rounded;
+      @include box-shadow;
       .target-icon {
         color: #D9230F;
         text-align: center;
@@ -117,8 +133,7 @@ body {
   }
   .user-image {
     img {
-      border: 1px solid #dcdcdc;
-      border-radius: 50%
+      @include img-icon;
     }
   }
   .user-detail {
@@ -184,13 +199,14 @@ body {
   list-style: none;
   padding-left: 0;
   .post {
-    border: 1px solid #dcdcdc;
     display: inline-block;
     vertical-align: top;
     padding: 1rem;
     width: 20rem;
     height: 25rem;
     margin: 0.5rem;
+    @include box-rounded;
+    @include box-shadow;
     &:hover {
       opacity: 0.8;
     }
@@ -199,8 +215,7 @@ body {
       height: 10%;
       vertical-align: middle;
       img {
-        border: 1px solid #dcdcdc;
-        border-radius: 50%;
+        @include img-icon;
       }
       a {
         text-decoration: none;
@@ -218,8 +233,7 @@ body {
       height: 35%;
       img {
         max-width: 100%;
-        border: 1px solid #dcdcdc;
-        border-radius: 5% / 10%;
+        @include box-rounded;
       }
     }
     .post-stamps {
@@ -299,18 +313,91 @@ body {
     width: 75%;
     margin-top: 1rem;
     img {
-      border: 1px solid #dcdcdc;
-      border-radius: 50%;
+      @include img-icon;
+    }
+  }
+}
+
+
+///* 投稿詳細ページ *///
+#post-show {
+  justify-content: center;
+  .post-section {
+    display: inline-block;
+    padding: 0.75rem;
+    @include box-rounded;
+    .post-top {
+      margin: 0.25rem 0;
+      vertical-align: middle;
+      img {
+        @include img-icon;
+      }
+      a {
+        text-decoration: none;
+        margin: 0 0.25rem;
+      }
+      .like {
+        float: right;
+      }
+    }
+    .post-content {
+      margin: 0.5rem;
+    }
+    .post-image {
+      text-align: center;
+      img {
+        max-width: 100%;
+        @include box-rounded;
+      }
+    }
+    .post-stamps {
+      text-align: right;
+      span {
+        display: inline-block;
+        margin: 0 0.25rem;
+      }
+      .timestamp {
+        color:#5D6778;
+      }
+    }
+  }
+  .comment-section {
+    .comment-btn {
+      text-align: right !important;
+      .form-btn {
+        margin: 0.25rem 0 0.5rem 0;
+      }
+    }
+    .post-comments {
+      ul {
+        list-style: none;
+        padding-left: 0;
+        .post-comment {
+          margin-bottom: 0.25rem;
+          padding: 0.25rem;
+          @include box-rounded;
+          @include box-shadow;
+          &:hover {
+            opacity: 0.8;
+          }
+          img {
+            @include img-icon;
+          }
+          .post-comment-content {
+            margin-left: 1rem;
+          }
+          .delete-btn {
+            float: right;
+          }
+        }
+      }
     }
   }
 }
 
 
 
-// /* ユーザーのフォーム */
-// #user_form {
-//   border-right: 1px solid #e8e8e8;
-// }
+
 
 // /* 検索フォーム */
 // #search-form {
@@ -323,15 +410,5 @@ body {
 // #search-result {
 //   ul {
 //     list-style: none;
-//   }
-// }
-
-// /* post-comment */
-// #post-comments {
-//   ul {
-//     list-style: none;
-//     li {
-//       border-bottom: 1px soild #e8e8e8;
-//     }
 //   }
 // }

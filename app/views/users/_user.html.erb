@@ -1,4 +1,4 @@
-<li class="index-user-info rounded shadow">
+<li class="index-user-info">
   <%= link_to image_tag(user.image_url(:thumb60)), user %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
