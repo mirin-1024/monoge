@@ -36,7 +36,7 @@ RSpec.describe 'PasswordResets', type: :system do
       end
 
       example 'パスワード変更ページが描画される' do
-        is_expected.to have_selector('h1', text: 'パスワードの変更')
+        is_expected.to have_selector('.page-title', text: 'パスワードの変更')
       end
     end
   end
@@ -91,7 +91,7 @@ RSpec.describe 'PasswordResets', type: :system do
           end
 
           example 'パスワード再設定ページを描画' do
-            is_expected.to have_selector('h1', text: 'パスワードの再設定')
+            is_expected.to have_selector('.page-title', text: 'パスワードの再設定')
           end
         end
       end

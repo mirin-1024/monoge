@@ -31,8 +31,8 @@ RSpec.describe 'Searches', type: :system do
       find('#search-btn').click
     end
 
-    example '投稿一覧が表示される' do
-      is_expected.to have_css('p', text: post.content)
+    example '投稿一覧に表示される' do
+      is_expected.to have_content post.content
     end
   end
 end

@@ -41,7 +41,7 @@ RSpec.describe 'Users', type: :system do
 
       example 'ユーザー登録ページが描画される' do
         click_button '登録'
-        is_expected.to have_selector('h1', text: 'ユーザー登録')
+        is_expected.to have_selector('.page-title', text: 'ユーザー登録')
       end
     end
   end
@@ -114,7 +114,7 @@ RSpec.describe 'Users', type: :system do
         end
 
         example 'ユーザー編集ページが描画される' do
-          is_expected.to have_selector('h1', text: 'ユーザー情報の編集')
+          is_expected.to have_selector('.page-title', text: 'ユーザー情報の編集')
         end
       end
     end

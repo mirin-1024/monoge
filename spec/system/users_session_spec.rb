@@ -64,7 +64,7 @@ RSpec.describe 'UsersSession', type: :system do
       end
 
       example 'ログインページが描画される' do
-        is_expected.to have_selector('h1', text: 'ログイン')
+        is_expected.to have_selector('.page-title', text: 'ログイン')
       end
     end
   end

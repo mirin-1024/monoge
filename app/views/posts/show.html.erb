@@ -10,7 +10,7 @@
       <%= @post.content %>
     </div>
     <div class="post-image">
-      <%= link_to image_tag(@post.image_url(:thumb)), '#', 'data-toggle': 'modal', 'data-target': '#image-modal' %>
+      <%= link_to image_tag(@post.image_url(:thumb)), '#', 'data-toggle': 'modal', 'data-target': '#image-modal' if @post.image? %>
     </div>
     <div class="post-stamps">
       <span class="delete_btn">
