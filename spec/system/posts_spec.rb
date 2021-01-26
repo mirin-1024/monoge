@@ -76,6 +76,11 @@ RSpec.describe 'Posts', type: :system do
       example '画像が投稿一覧に表示される' do
         is_expected.to have_css '.user-image img'
       end
+
+      example '画像のモーダルが表示される' do
+        find('.post-image img').click
+        is_expected.to have_css '.modal'
+      end
     end
   end
 

@@ -1,37 +1,40 @@
 <% provide(:title, 'ユーザー情報の編集') %>
-<div class="useredit-container container">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-4 col-md-3">
-      <h1>ユーザー情報の編集</h1>
-      <div class="useredit-form">
-        <%= form_with model: @user, local: true, class: "form-group" do |f| %>
-          <%= render 'shared/error_messages', object: f.object %>
+<section id="user-edit" class="row">
+  <div class="col-md-5">
+    <h3 class="page-title">ユーザー情報の編集</h3>
+    <%= form_with model: @user, local: true, class: "form-group" do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
 
-          <%= f.label :image, "アイコン画像" %>
-          <%= f.file_field :image %>
-
-          <%= f.hidden_field :image_cache %>
-          <div class="w-100"></div>
-
-          <%= f.label :name, "名前" %>
-          <%= f.text_field :name, class: "form-control" %>
-
-          <%= f.label :profile, "プロフィール" %>
-          <%= f.text_area :profile, class: "form-control" %>
-
-          <%= f.label :email, "メールアドレス" %>
-          <%= f.email_field :email, class: "form-control" %>
-
-          <%= f.label :password, "パスワード" %>
-          <%= f.password_field :password, class: "form-control" %>
-
-          <%= f.label :password_confirmation, "パスワード（確認）" %>
-          <%= f.password_field :password_confirmation, class: "form-control" %>
-          <div class="useredit-btn mx-auto">
-            <%= f.submit "変更", class: "btn btn-primary btn-block" %>
-          </div>
-        <% end %>
+      <%= f.label :image, "プロフィール画像" %>
+      <div class="custom-file">
+        <%= f.file_field :image, class: "custom-file-input" %>
+        <%= f.label :image, "ファイルを選択...", class: "custom-file-label", 'data-browse': "参照" %>
       </div>
-    </div>
+
+      <%= f.hidden_field :image_cache %>
+
+      <%= f.label :name, "名前" %>
+      <%= f.text_field :name, class: "form-control" %>
+
+      <%= f.label :profile, "プロフィール" %>
+      <%= f.text_area :profile, class: "form-control" %>
+
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.email_field :email, class: "form-control" %>
+
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-control" %>
+
+      <%= f.label :password_confirmation, "パスワード（確認）" %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+
+      <%= f.submit "変更", class: "form-btn btn btn-primary btn-block" %>
+    <% end %>
   </div>
-</div>
+</section>
+
+<script>
+  $('.custom-file-input').on('change',function(){
+    $(this).next('.custom-file-label').html($(this)[0].files[0].name);
+  })
+</script>

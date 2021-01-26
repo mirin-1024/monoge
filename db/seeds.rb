@@ -11,7 +11,7 @@ User.create!(name: 'Foo Bar',
              email: 'foobar@example.com',
              password: 'password',
              password_confirmation: 'password',
-             admin: true,
+             admin: false,
              activated: true,
              activated_at: Time.zone.now)
 
@@ -29,7 +29,7 @@ User.create!(name: 'Guest User',
              email: 'guest@example.com',
              password: 'password',
              password_confirmation: 'password',
-             admin: true,
+             admin: false,
              activated: true,
              activated_at: Time.zone.now)
 
@@ -42,6 +42,7 @@ User.create!(name: 'Guest User',
                email: email,
                password: password,
                password_confirmation: password,
+               admin: false,
                activated: true,
                activated_at: Time.zone.now)
 end

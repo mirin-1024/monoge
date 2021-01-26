@@ -1,32 +1,18 @@
 <% provide(:title, "#{@title}一覧") %>
-<div class="container">
-  <div class="row">
-    <div class="col-lg-5 col-md-4 col-md-3">
-      <section class="user_info">
-        <%#= 画像の表示 %>
-        <h1><%= @user.name %></h1>
-        <span><%= link_to "プロフィールを表示", @user %></span>
-        <span><b>投稿：</b> <%= @user.posts.count %></span>
-      </section>
-      <section class="stats">
-        <%= render 'shared/stats' %>
-        <% if @users.any? %>
-          <div class="user_avatars">
-            <%# @users.each do |user| %>
-              <%#= link_to gravatar_for(user, size: 30), user %>
-            <%# end %>
-          </div>
+<section id="show-follow" class="row">
+  <div class="col-md-4">
+    <%= render 'shared/user_info' %>
+    <%= render 'shared/stats' %>
+    <% if @users.any? %>
+      <div class="user-icons">
+        <% @users.each do |user| %>
+          <%= link_to image_tag(user.image_url(:thumb25)), user %>
         <% end %>
-      </section>
-    </div>
-    <div class="col-lg-5 col-md-4 col-md-3">
-      <h3><%= @title %></h3>
-      <% if @users.any? %>
-        <ul class="users follow">
-          <%= render @users %>
-        </ul>
-        <%= will_paginate %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
-</div>
+  <div class="col-md-5">
+    <h3 class="page-title"><%= @title %></h3>
+    <%= render 'user_index' %>
+  </div>
+</section>

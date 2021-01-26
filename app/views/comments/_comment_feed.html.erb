@@ -1,11 +1,12 @@
-<div id="post-comments">
+<div class="post-comments">
   <ul>
     <% if @comments.any? %>
       <% @comments.each do |comment| %>
-        <li id="comment-<%= comment.id %>">
-          <p><%= link_to comment.user.name, comment.user %></p>
-          <p><%= comment.content %></p>
-          <p><%= link_to "削除", comment, method: :delete, remote: true %></p>
+        <li id="comment-<%= comment.id %>" class="post-comment">
+          <%= link_to image_tag(comment.user.image_url(:thumb25)), comment.user %>
+          <%= link_to comment.user.name, comment.user %>
+          <span class="post-comment-content"><%= comment.content %></span>
+          <%= link_to "削除", comment, class: "delete-btn", method: :delete, remote: true %>
         </li>
       <% end %>
     <% end %>

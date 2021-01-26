@@ -1,4 +1,4 @@
-<li id="post-<%= post.id %>" class="post shadow rounded">
+<li id="post-<%= post.id %>" class="post">
   <div class="post-top">
     <%= image_tag post.user.image_url(:thumb25) %>
     <%= link_to post.user.name, post.user %>
@@ -8,10 +8,10 @@
     <%= post.content %>
   </div>
   <div class="post-image">
-    <%= image_tag post.image_url(:thumb) if post.image? %>
+    <%= link_to image_tag(post.image_url(:thumb)), '#', 'data-toggle': 'modal', 'data-target': '#image-modal' if post.image? %>
   </div>
   <div class="post-stamps">
-    <span class="delete_button">
+    <span class="delete-btn">
       <% if current_user?(post.user) %>
         <%= link_to "削除", post, method: :delete, data: { confirm: "本当に削除しますか？" } %>
       <% end %>
@@ -26,3 +26,4 @@
     </span>
   <div>
 </li>
+<%= render 'shared/image_modal', post: post %>

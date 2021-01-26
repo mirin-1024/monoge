@@ -1,20 +1,15 @@
-<aside id="comment-form" class="row">
-  <div class="card col-8 offset-2 pt-3 mt-5">
-    <%= form_with(model: @comment, class: "form-group", remote: true) do |f| %>
-      <div id="comment-error">
-        <%= render 'shared/error_messages', object: f.object %>
-      </div>
+<section class="comment-section col-md-8">
+  <%= form_with(model: @comment, class: "form-group", remote: true) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
 
-      <%= f.hidden_field :post_id, value: @post.id %>
-      <%= f.hidden_field :user_id, value: @current_user.id %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+    <%= f.hidden_field :user_id, value: @current_user.id %>
 
-      <%= f.text_area :content, class: "form-control", id: "comment-content", placeholder: "コメントを記入してください" %>
-      <%= f.submit "コメントする", class: "btn btn-primary mt-2" %>
-    <% end %>
-  </div>
-  <div class="card col-8 offset-2">
-    <div class="row">
-      <%= render 'comments/comment_feed' %>
+    <%= f.text_area :content, class: "form-control", id: "comment-content", placeholder: "コメントを記入してください" %>
+
+    <div class="comment-btn">
+      <%= f.submit "コメントする", class: "form-btn btn btn-sm btn-primary" %>
     </div>
-  </div>
-</aside>
+  <% end %>
+  <%= render 'comments/comment_feed' %>
+</section>

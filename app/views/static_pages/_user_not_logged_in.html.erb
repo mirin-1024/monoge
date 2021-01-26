@@ -1,4 +1,4 @@
-<section class="head-wrapper row justify-content-center">
+<section class="head-wrapper row">
   <div class="col-md-8">
     <h1>monoge</h1>
     <p class="lead">
@@ -10,7 +10,7 @@
     <%= link_to 'ユーザー登録', signup_path, class: "btn btn-lg btn-primary rounded-pill", 'role': "button" %>
   </div>
   <div class="col-md-4">
-    <%= link_to 'ゲストログイン', '/guest', method: :post, class: "btn btn-lg btn-dark rounded-pill", 'role': "button" %>
+    <%= link_to 'ゲストログイン', guest_path, method: :post, class: "btn btn-lg btn-dark rounded-pill", 'role': "button" %>
   </div>
 </section>
 <section class="target-wrapper row">
@@ -19,7 +19,7 @@
     <p>monogeは特に次の3種類の方々に導入をおすすめします。</p>
   </div>
   <div class="target col-md-3">
-    <div class="target-detail shadow rounded">
+    <div class="target-detail">
       <div class="target-icon">
         <i class="fas fa-user-tag fa-3x"></i>
       </div>
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="target col-md-3">
-    <div class="target-detail shadow rounded">
+    <div class="target-detail">
       <div class="target-icon">
         <i class="fas fa-people-carry fa-3x"></i>
       </div>
@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="target col-md-3">
-    <div class="target-detail shadow rounded">
+    <div class="target-detail">
       <div class="target-icon">
         <i class="fas fa-house-user fa-3x"></i>
       </div>
