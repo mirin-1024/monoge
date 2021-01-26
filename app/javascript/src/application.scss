@@ -395,20 +395,35 @@ body {
   }
 }
 
-
-
-
-
-// /* 検索フォーム */
-// #search-form {
-//   input {
-//     margin-right: 0.25rem;
-//   }
-// }
-
-// /* 検索結果 */
-// #search-result {
-//   ul {
-//     list-style: none;
-//   }
-// }
+///* 検索結果ページ *///
+#search {
+  justify-content: center;
+  .search-results {
+    list-style: none;
+    padding-left: 0;
+    .search-result {
+      @include box-rounded;
+      @include box-shadow;
+      margin-bottom: 0.25rem;
+      padding: 0.5rem;
+      &:hover {
+        opacity: 0.8;
+      }
+      img {
+        @include img-icon;
+      }
+      .post-content {
+        margin-top: 0.25rem;
+      }
+      .post-stamps {
+        text-align: right;
+        .timestamp {
+          color:#5D6778;
+        }
+        .post-link {
+          margin-left: 0.25rem;
+        }
+      }
+    }
+  }
+}

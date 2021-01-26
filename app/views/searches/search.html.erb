@@ -1,27 +1,38 @@
 <% provide(:title, "#{@search_word} / 検索") %>
-<div class="container">
-  <div class="card">
+<section id="search" class="row">
+  <div class="col-md-8">
     <% if @search_results.any? %>
-      <ul class="list-group">
+      <ul class="search-results">
         <% @search_results.each do |search_result| %>
           <% if @search_model == "User" %>
-            <li class="list-group-item">
-              <%= link_to search_result.name, user_path(search_result) %>
+            <li class="search-result">
+              <%= link_to image_tag(search_result.image_url(:thumb60)), search_result %>
+              <%= link_to search_result.name, search_result %>
             </li>
-          <% else @search_model == "Post" %>
-            <li class="list-group-item">
-              <span class="post-">
-                <%= link_to search_result.user.name, user_path(search_result.user) %>
-              </span>
-              <span class="post-content">
-                <p><%= search_result.content %></p>
+          <% elsif @search_model == "Post" %>
+            <li class="search-result">
+              <div class="post-user">
+                <%= link_to image_tag(search_result.user.image_url(:thumb25)), search_result.user %>
+                <%= link_to search_result.user.name, search_result.user %>
+              </div>
+              <div class="post-content">
+                <%= search_result.content %>
                 <%= image_tag search_result.image_url if search_result.image? %>
-              </span>
+              </div>
+              <div class="post-stamps">
+                <span class="timestamp">
+                  <%= time_ago_in_words(search_result.created_at) %>前
+                </span>
+                <span class="post-link">
+                  <%= link_to post_path(search_result) do %>
+                    <i class="fas fa-arrow-right"></i>
+                  <% end %>
+                </span>
+              <div>
             </li>
           <% end %>
         <% end %>
       </ul>
-
       <%= will_paginate @search_results, params: { controller: :searches, action: :search } %>
     <% end %>
   </div>
