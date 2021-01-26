@@ -6,7 +6,9 @@
         <% @search_results.each do |search_result| %>
           <% if @search_model == "User" %>
             <li class="search-result">
-              <%= link_to image_tag(search_result.image_url(:thumb60)), search_result %>
+              <span class="user-icon">
+                <%= link_to image_tag(search_result.image_url(:thumb60)), search_result %>
+              </span>
               <%= link_to search_result.name, search_result %>
             </li>
           <% elsif @search_model == "Post" %>

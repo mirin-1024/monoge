@@ -249,6 +249,11 @@ body {
         display: inline-block;
         margin: 0 0.25rem;
       }
+      .delete-btn {
+        a {
+          text-decoration: none;
+        }
+      }
       .timestamp {
         color:#5D6778;
       }
@@ -394,6 +399,7 @@ body {
           }
           .delete-btn {
             float: right;
+            text-decoration: none;
           }
         }
       }
@@ -414,6 +420,12 @@ body {
       padding: 0.5rem;
       &:hover {
         opacity: 0.8;
+      }
+      a {
+        text-decoration: none;
+      }
+      .user-icon {
+        @include img-icon;
       }
       .post-user {
         img {
