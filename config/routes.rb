@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'lists/show'
+  get 'lists/create'
+  get 'lists/destroy'
   get '/search', to: 'searches#search'
   get 'likes/create'
   get 'likes/destroy'
