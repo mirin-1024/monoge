@@ -1,0 +1,6 @@
+<li id="list-<%= list.id %>" class="list-item">
+  <%= list.content %>
+  <span class="list-delete">
+    <%= link_to "削除", list, method: :delete, class: "delete-btn btn btn-outline-secondary" %>
+  </span>
+</li>

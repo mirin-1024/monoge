@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :list do
-    label { "MyString" }
-    content { "MyText" }
+    label { "Label" }
+    content { "List Content" }
+    association :user
   end
 end

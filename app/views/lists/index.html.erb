@@ -1,0 +1,21 @@
+<% provide(:title, 'リスト') %>
+<div id="list-index" class="row">
+  <div class="col-md-8">
+    <div class="rakuten-search">
+      <%# 楽天APIでの検索結果を表示 %>
+    </div>
+    <section class="list-section">
+      <ul class="list-items">
+        <li class="list-form">
+          <%= form_with(model: @list, scope: :list, local: true, class: "input-group") do |f|  %>
+            <%= f.text_field :content, placeholder: "入力...", class: "text-form form-control"  %>
+            <div class="input-group-append">
+              <%= f.submit "追加", class: "btn btn-outline-secondary" %>
+            </div>
+          <% end %>
+        </li>
+        <%= render @lists, list: @list %>
+      </ul>
+    </div>
+  </div>
+</div>

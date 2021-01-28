@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'lists/show'
-  get 'lists/create'
-  get 'lists/destroy'
-  get '/search', to: 'searches#search'
-  get 'likes/create'
-  get 'likes/destroy'
   root 'static_pages#home'
   get '/contact',   to: 'static_pages#contact'
   get '/signup',    to: 'users#new'
@@ -12,6 +6,7 @@ Rails.application.routes.draw do
   post '/login',    to: 'sessions#create'
   post '/guest',    to: 'sessions#guest'
   delete '/logout', to: 'sessions#destroy'
+  get '/search', to: 'searches#search'
   resources :users do
     member do
       get :following, :followers
@@ -23,5 +18,5 @@ Rails.application.routes.draw do
   resources :relationships, only: %i[create destroy]
   resources :likes, only: %i[create destroy]
   resources :comments, only: %i[create destroy]
-  resources :list, only: %i[create destroy show]
+  resources :lists, only: %i[create destroy index]
 end
