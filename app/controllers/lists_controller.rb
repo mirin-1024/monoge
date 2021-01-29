@@ -5,7 +5,11 @@ class ListsController < ApplicationController
   def create
     @list = current_user.lists.build(list_params)
     @list.save
-    redirect_to lists_url
+    @lists = current_user.lists
+    respond_to do |format|
+      format.html { redirect_to lists_url }
+      format.js
+    end
   end
 
   def destroy

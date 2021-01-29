@@ -1,0 +1,11 @@
+<ul class="list-items">
+  <li class="list-form">
+    <%= form_with(model: @list, scope: :list, remote: true, class: "input-group") do |f|  %>
+      <%= f.text_field :content, placeholder: "入力...", class: "text-form form-control" %>
+      <div class="input-group-append">
+        <%= f.submit "追加", class: "btn btn-outline-secondary" %>
+      </div>
+    <% end %>
+  </li>
+  <%= render @lists, list: @list %>
+</ul>
