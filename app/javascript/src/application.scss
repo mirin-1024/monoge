@@ -511,10 +511,10 @@ body {
         padding: 0.25rem;
         position: relative;
         .list-delete {
-          .btn {
+          .delete-btn {
             height: 100%;
             position: absolute;
-            right: 0;
+            right: 1rem;
             top: 0;
           }
         }

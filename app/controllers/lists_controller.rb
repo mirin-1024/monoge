@@ -10,7 +10,10 @@ class ListsController < ApplicationController
 
   def destroy
     @list.destroy
-    redirect_to lists_url
+    respond_to do |format|
+      format.html { redirect_to lists_url }
+      format.js
+    end
   end
 
   def index
