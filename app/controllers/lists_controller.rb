@@ -10,6 +10,7 @@ class ListsController < ApplicationController
       format.html { redirect_to lists_url }
       format.js
     end
+    @list = nil
   end
 
   def destroy
