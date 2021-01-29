@@ -1,5 +1,18 @@
-<footer id="footer">
-  <div class="row">
-
-  </div>
-</footer>
+<% if logged_in? %>
+  <footer id="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <ul class="footer-menu">
+            <li><%= link_to 'トップページ', root_path %> ｜</li>
+            <li><%= link_to 'ユーザー一覧', users_path %> ｜</li>
+            <li><%= link_to 'お問い合わせ', contact_path %></li>
+          </ul>
+        </div>
+        <div class="copyright col-md-8">
+          <p>© All rights reserved by monoge.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+<% end %>

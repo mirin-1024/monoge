@@ -93,11 +93,13 @@ RSpec/EmptyExampleGroup: # 一時的に調整（最終的に不要なら消去�
   Exclude:
     - spec/models/comment_spec.rb
     - spec/models/like_spec.rb
+    - spec/models/list_spec.rb
     - spec/requests/account_activations_request_spec.rb
     - spec/requests/comments_request_spec.rb
     - spec/requests/likes_request_spec.rb
     - spec/requests/searches_request_spec.rb
     - spec/requests/static_pages_request_spec.rb
+    - spec/requests/lists_request_spec.rb
 
 RSpec/ExampleLength:
   Max: 8

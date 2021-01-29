@@ -26,6 +26,36 @@ body {
   padding-top: 4.1rem;
 }
 
+///* フッター *///
+#footer {
+  background-color: #E6E6E6;
+  margin-top: 3rem;
+  .container {
+    .row {
+      justify-content: center;
+      text-align: center;
+      .footer-menu {
+        padding-top: 1rem;
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0.5rem !important;
+        li {
+          display: inline-block;
+        }
+      }
+      .copyright {
+        border-top: 1px solid #dcdcdc;
+        p {
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+}
+
 /* フラッシュメッセージ */
 .flash-message {
   margin-top: 1rem;
@@ -448,6 +478,45 @@ body {
         }
         .post-link {
           margin-left: 0.25rem;
+        }
+      }
+    }
+  }
+}
+
+/// リストページ ///
+
+#list-index {
+  justify-content: center;
+  .col-md-8 {
+    text-align: center;
+    .list-items {
+      list-style: none;
+      padding-left: 0;
+      text-align: center;
+      @include box-rounded;
+      form {
+        height: 2rem;
+        .input-group {
+          width: 100%;
+          height: 100%;
+        }
+        .form-control {
+          border-color: #dcdcdc !important;
+        }
+      }
+      .list-item {
+        height: 2rem;
+        border-top: 1px solid #dcdcdc;
+        padding: 0.25rem;
+        position: relative;
+        .list-delete {
+          .delete-btn {
+            height: 100%;
+            position: absolute;
+            right: 1rem;
+            top: 0;
+          }
         }
       }
     }
