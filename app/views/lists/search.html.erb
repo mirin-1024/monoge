@@ -1,5 +1,5 @@
 <div id="rws-search-result" class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <div class="rakuten-search">
       <%= form_with url: lists_search_path, method: :get, local: true, class: 'form-group' do |f| %>
       <%= f.text_field :keyword, class: 'form-control' %>
@@ -7,9 +7,23 @@
       <% end %>
     </div>
   </div>
-  <div class="col-md-8">
-    <%= @search_results.first(10).each do |search_result| %>
-      <%= puts "#{item['itemName']}, #{item.price} yen" %>
+  <div class="col-md-12">
+    <% unless @search_results.nil? %>
+      <ul class="search-results">
+        <% @search_results.each do |search_result| %>
+          <li class="search-result">
+            <span><%= link_to (image_tag(search_result['smallImageUrl'])), search_result['productUrlPC'] %></span>
+            <span><%= search_result['productName'] %></span>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
+    <!--
+      <ul>
+        <%= RakutenWebService::Ichiba::Genre.root.children.each do |child| %>
+          <li><%= child.name %></li>
+        <% end %>
+      </ul>
+    -->
   </div>
 </div>

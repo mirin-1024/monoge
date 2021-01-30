@@ -26,7 +26,9 @@ class ListsController < ApplicationController
   end
 
   def search
-    @search_results = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+    if params[:keyword]
+      @search_results = RakutenWebService::Ichiba::Product.search(keyword: params[:keyword])
+    end
   end
 
   private
