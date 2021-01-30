@@ -41,6 +41,8 @@ gem 'will_paginate-bootstrap4'
 gem 'carrierwave'
 # 画像のリサイズ
 gem 'mini_magick'
+# 楽天市場API
+gem 'rakuten_web_service'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
