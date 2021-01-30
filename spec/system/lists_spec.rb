@@ -6,6 +6,19 @@ RSpec.describe 'Lists', type: :system do
   let(:user) { create(:user) }
   let(:list_item) { create(:list_item, user: user) }
 
+  # describe '楽天APIによる商品検索' do
+  #   before do
+  #     sign_in(user)
+  #     visit_lists_path
+  #     # 検索フォームに入力
+  #     # 検索ボタンをクリック
+  #   end
+
+  #   example '検索結果が表示される' do
+
+  #   end
+  # end
+
   describe 'リスト項目の作成' do
     before do
       sign_in(user)
