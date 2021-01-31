@@ -26,15 +26,15 @@ class ListsController < ApplicationController
   end
 
   def search
-    if params[:keyword]
-      @search_results = RakutenWebService::Ichiba::Product.search(keyword: params[:keyword])
+    if params[:keyword] && params[:genre_id]
+      @search_results = RakutenWebService::Ichiba::Product.search(genreId: params[:genre_id], keyword: params[:keyword])
     end
   end
 
   private
 
     def list_params
-      params.require(:list).permit(:label, :content)
+      params.require(:list).permit(:label, :content, :image)
     end
 
     def correct_user

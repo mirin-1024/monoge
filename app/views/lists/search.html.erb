@@ -1,9 +1,13 @@
-<div id="rws-search-result" class="row">
-  <div class="col-md-12">
+<% provide(:title, "モノ検索") %>
+<div id="rws-search" class="row">
+  <div class="col-md-8">
     <div class="rakuten-search">
       <%= form_with url: lists_search_path, method: :get, local: true, class: 'form-group' do |f| %>
-      <%= f.text_field :keyword, class: 'form-control' %>
-      <%= f.submit '検索', class: 'btn btn-primary' %>
+        <%= f.text_field :keyword, class: 'form-control' %>
+
+        <%= f.select :genre_id, options_for_select(RakutenWebService::Ichiba::Genre.root.children.map { |child| [child['genreName'], child['genreId']] }), { prompt: '-ジャンルを選択-' }, { class: 'form-control' } %>
+
+        <%= f.submit '検索', class: 'form-btn btn btn-primary btn-block' %>
       <% end %>
     </div>
   </div>
@@ -12,18 +16,19 @@
       <ul class="search-results">
         <% @search_results.each do |search_result| %>
           <li class="search-result">
-            <span><%= link_to (image_tag(search_result['smallImageUrl'])), search_result['productUrlPC'] %></span>
-            <span><%= search_result['productName'] %></span>
+            <div class="search-img">
+              <%= link_to (image_tag(search_result['smallImageUrl'])), search_result['productUrlPC'] %>
+            </div>
+            <div class="product-name"><%= search_result['productName'] %></div>
+            <div class="btn-add">
+              <%= form_with model: List.new, scope: :list, local: true do |f| %>
+                <%= f.hidden_field :content, value: search_result['productName'] %>
+                <%= f.submit '追加', class: 'form-btn btn btn-outline-primary btn-sm' %>
+              <% end %>
+            </div>
           </li>
         <% end %>
       </ul>
     <% end %>
-    <!--
-      <ul>
-        <%= RakutenWebService::Ichiba::Genre.root.children.each do |child| %>
-          <li><%= child.name %></li>
-        <% end %>
-      </ul>
-    -->
   </div>
 </div>

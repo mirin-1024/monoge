@@ -1,8 +1,8 @@
 <li id="list-<%= list.id %>" class="list-item">
-  <%= list.content %>
-  <span class="list-delete">
+  <div class="list-content"><%= list.content %></div>
+  <div class="list-delete">
     <%= link_to list, method: :delete, remote: true, class: 'delete-link' do %>
       <i class="far fa-trash-alt delete-btn"></i>
     <% end %>
-  </span>
+  </div>
 </li>

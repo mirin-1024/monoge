@@ -488,7 +488,7 @@ body {
 
 #list-index {
   justify-content: center;
-  .col-md-8 {
+  .col-md-12 {
     text-align: center;
     .list-items {
       list-style: none;
@@ -506,10 +506,13 @@ body {
         }
       }
       .list-item {
-        height: 2rem;
+        height: 3rem;
         border-top: 1px solid #dcdcdc;
         padding: 0.25rem;
         position: relative;
+        div {
+          display: inline-block;
+        }
         .list-delete {
           .delete-btn {
             height: 100%;
@@ -517,6 +520,44 @@ body {
             right: 1rem;
             top: 0;
           }
+        }
+      }
+    }
+  }
+}
+
+/// 楽天検索ページ ///
+#rws-search {
+  justify-content: center;
+  .rakuten-search {
+    .form-btn {
+      margin: 0.25rem 0 0.5rem 0;
+    }
+  }
+  .search-results {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+    .search-result {
+      @include box-rounded;
+      @include box-shadow;
+      padding: 0.5rem;
+      position: relative;
+      div {
+        display: inline-block;
+      }
+      img {
+        width: 3rem;
+        height: 3rem;
+        @include img-icon;
+      }
+      .btn-add {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        form {
         }
       }
     }
