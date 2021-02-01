@@ -1,8 +1,13 @@
 <li id="list-<%= list.id %>" class="list-item">
-  <div class="list-content"><%= list.content %></div>
-  <div class="list-delete">
-    <%= link_to list, method: :delete, remote: true, class: 'delete-link' do %>
-      <i class="far fa-trash-alt delete-btn"></i>
-    <% end %>
+  <%= image_tag list.image_url, class: 'list-img' %>
+  <div class="list-content">
+    <div class="list-name"><%= list.content %></div>
+    <div class="list-profile"><%= list.profile %></div>
+    <%# 編集ボタンの追加 %>
+    <div class="list-delete">
+      <%= link_to list, method: :delete, remote: true, class: 'delete-link' do %>
+        <i class="delete-btn far fa-trash-alt"></i>
+      <% end %>
+    </div>
   </div>
 </li>

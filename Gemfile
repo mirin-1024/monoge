@@ -53,8 +53,6 @@ group :development, :test do
   gem 'webdrivers'
   gem 'capybara'
   gem 'factory_bot_rails'
-  # メール本文の日本語をJISコードに書き換える
-  # gem 'mail-iso-2022-jp'
   # テストDBのデータを削除
   gem 'database_cleaner-active_record'
   # 画像処理用のgem

@@ -1,5 +1,9 @@
 <% provide(:title, "モノ検索") %>
 <div id="rws-search" class="row">
+  <h2 class="page-title">商品検索</h2>
+  <div class="detail col-md-12">
+    <p><%= link_to '楽天商品価格ナビ', 'https://product.rakuten.co.jp/' %>の商品情報を選択して、自分のモノリストに追加できます。</p>
+  </div>
   <div class="col-md-8">
     <div class="rakuten-search">
       <%= form_with url: lists_search_path, method: :get, local: true, class: 'form-group' do |f| %>
@@ -23,6 +27,7 @@
             <div class="btn-add">
               <%= form_with model: List.new, scope: :list, local: true do |f| %>
                 <%= f.hidden_field :content, value: search_result['productName'] %>
+                <%= f.hidden_field :img_url, value: search_result['mediumImageUrl'] %>
                 <%= f.submit '追加', class: 'form-btn btn btn-outline-primary btn-sm' %>
               <% end %>
             </div>

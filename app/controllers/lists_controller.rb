@@ -4,6 +4,7 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.build(list_params)
+    @list.remote_image_url = params[:list][:img_url] if params[:list][:img_url]
     @list.save
     @lists = current_user.lists
     respond_to do |format|
@@ -34,7 +35,7 @@ class ListsController < ApplicationController
   private
 
     def list_params
-      params.require(:list).permit(:label, :content, :image)
+      params.require(:list).permit(:label, :content, :image, :profile, :img_url)
     end
 
     def correct_user
