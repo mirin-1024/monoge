@@ -136,6 +136,17 @@ button {
   padding: 0.25rem;
 }
 
+// モーダル //
+.modal-body {
+  padding: 0;
+  .form-group {
+    margin: 0;
+    height: 12rem;
+  }
+}
+
+
+
 ///* トップページ *///
 
 //* 未ログイン時 *//
@@ -574,7 +585,7 @@ button {
       .list-content {
         border-top: 1px solid #dcdcdc;
         padding: 0.5rem;
-        .list-name .list-profile .list-delete {
+        .list-name .list-profile .list-btns {
           display: block;
         }
         .list-name {
@@ -583,7 +594,7 @@ button {
         .list-profile {
           font-size: 0.75rem;
         }
-        .list-delete {
+        .list-btns {
           position: absolute;
           right: 0.5rem;
           bottom: 0.5rem;

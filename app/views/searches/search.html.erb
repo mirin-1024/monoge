@@ -20,7 +20,7 @@
               <div class="post-content">
                 <%= search_result.content %>
                 <div class="post-img">
-                  <%= link_to image_tag(search_result.image_url(:thumb)), '#', 'data-toggle': 'modal', 'data-target': '#image-modal' if search_result.image? %>
+                  <%= link_to image_tag(search_result.image_url(:thumb)), '#', data: { toggle: 'modal', target: "#image-#{ search_result.id }-modal" } if search_result.image? %>
                 </div>
               </div>
               <div class="post-stamps">

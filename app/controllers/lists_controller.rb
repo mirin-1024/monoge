@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :logged_in_user, only: %i[create destroy]
+  before_action :logged_in_user, only: %i[create destroy update]
   before_action :correct_user, only: :destroy
 
   def create
@@ -12,6 +12,14 @@ class ListsController < ApplicationController
       format.js
     end
     @list = nil
+  end
+
+  def update
+    @list = current_user.lists.find_by(id: params[:id])
+    return unless @list.update(list_params)
+
+    flash[:success] = '編集に成功しました'
+    redirect_to lists_path
   end
 
   def destroy
@@ -27,9 +35,9 @@ class ListsController < ApplicationController
   end
 
   def search
-    if params[:keyword] && params[:genre_id]
-      @search_results = RakutenWebService::Ichiba::Product.search(genreId: params[:genre_id], keyword: params[:keyword])
-    end
+    return unless params[:keyword] && params[:genre_id]
+
+    @search_results = RakutenWebService::Ichiba::Product.search(genreId: params[:genre_id], keyword: params[:keyword])
   end
 
   private

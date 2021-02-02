@@ -7,7 +7,7 @@
   <div class="col-md-8">
     <div class="rakuten-search">
       <%= form_with url: lists_search_path, method: :get, local: true, class: 'form-group' do |f| %>
-        <%= f.text_field :keyword, class: 'form-control' %>
+        <%= f.text_field :keyword, id: 'rws-search-form', class: 'form-control' %>
 
         <%= f.select :genre_id, options_for_select(RakutenWebService::Ichiba::Genre.root.children.map { |child| [child['genreName'], child['genreId']] }), { prompt: '-ジャンルを選択-' }, { class: 'form-control' } %>
 
