@@ -8,13 +8,20 @@ class ListImageUploader < CarrierWave::Uploader::Base
   process convert: 'jpg'
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
+  if Rails.env.production?
+    storage :fog
+  elsif Rails.env.development?
+    storage :file
+  else
+    storage :file
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{Rails.env}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -34,14 +41,6 @@ class ListImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fill: [60, 60]
-  end
-
-  version :thumb25 do
-    process resize_to_fill: [25, 25]
-  end
-
-  version :thumb60 do
     process resize_to_fill: [60, 60]
   end
 

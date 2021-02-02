@@ -22,10 +22,10 @@ Nginx
 ### アプリケーションサーバー
 Puma
 ### インフラ
-AWS(EC2, RDS(MySQL8.0), S3, Route53, ACM, ALB)
+AWS(ECS, ECR, RDS(MySQL8.0), S3, Route53, ACM, ALB)
 （インフラ構成図の画像）
 ### CI/CD
-CircleCI, Capistrano
+CircleCI
 ### バージョン管理
  Git, GitHub
 

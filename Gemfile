@@ -41,6 +41,8 @@ gem 'will_paginate-bootstrap4'
 gem 'carrierwave'
 # 画像のリサイズ
 gem 'mini_magick'
+# AWS用のライブラリ
+gem 'fog-aws'
 # 楽天市場API
 gem 'rakuten_web_service'
 
