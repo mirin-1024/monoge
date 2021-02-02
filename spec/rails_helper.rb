@@ -110,4 +110,9 @@ RSpec.configure do |config|
   # config.after(:each) do
   #   DatabaseCleaner.clean
   # end
+
+  # テスト後に画像を削除
+  config.after(:all) do
+    FileUtils.rm_rf(Rails.root + "public/uploads/#{Rails.env}/") if Rails.env.test?
+  end
 end
