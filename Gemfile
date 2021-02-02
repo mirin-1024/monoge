@@ -41,6 +41,8 @@ gem 'will_paginate-bootstrap4'
 gem 'carrierwave'
 # 画像のリサイズ
 gem 'mini_magick'
+# 楽天市場API
+gem 'rakuten_web_service'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,8 +53,6 @@ group :development, :test do
   gem 'webdrivers'
   gem 'capybara'
   gem 'factory_bot_rails'
-  # メール本文の日本語をJISコードに書き換える
-  # gem 'mail-iso-2022-jp'
   # テストDBのデータを削除
   gem 'database_cleaner-active_record'
   # 画像処理用のgem

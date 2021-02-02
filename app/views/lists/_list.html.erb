@@ -1,8 +1,16 @@
 <li id="list-<%= list.id %>" class="list-item">
-  <%= list.content %>
-  <span class="list-delete">
-    <%= link_to list, method: :delete, remote: true, class: 'delete-link' do %>
-      <i class="far fa-trash-alt delete-btn"></i>
-    <% end %>
-  </span>
+  <%= image_tag list.image_url, class: 'list-img' %>
+  <div class="list-content">
+    <div class="list-name"><%= list.content %></div>
+    <div class="list-profile"><%= list.profile %></div>
+    <div class="list-btns">
+      <%= link_to '#', class: 'edit-link', data: { toggle: 'modal', target: "#list-#{list.id}-edit-modal" } do %>
+        <i class="edit-btn far fa-edit"></i>
+      <% end %>
+      <%= link_to list, method: :delete, remote: true, class: 'delete-link' do %>
+        <i class="delete-btn far fa-trash-alt"></i>
+      <% end %>
+    </div>
+  </div>
 </li>
+<%= render 'lists/edit_modal', list: list %>

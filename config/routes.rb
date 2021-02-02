@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post '/guest',    to: 'sessions#guest'
   delete '/logout', to: 'sessions#destroy'
   get '/search', to: 'searches#search'
+  get 'lists/search'
   resources :users do
     member do
       get :following, :followers
@@ -18,5 +19,5 @@ Rails.application.routes.draw do
   resources :relationships, only: %i[create destroy]
   resources :likes, only: %i[create destroy]
   resources :comments, only: %i[create destroy]
-  resources :lists, only: %i[create destroy index]
+  resources :lists, only: %i[create destroy update index]
 end

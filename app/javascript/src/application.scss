@@ -120,6 +120,33 @@ body {
   }
 }
 
+// ボタン //
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+// ボタンアイコン //
+.btn-icon-form {
+  font-size: 1.5rem;
+  padding: 0.25rem;
+}
+
+// モーダル //
+.modal-body {
+  padding: 0;
+  .form-group {
+    margin: 0;
+    height: 12rem;
+  }
+}
+
+
+
 ///* トップページ *///
 
 //* 未ログイン時 *//
@@ -488,35 +515,130 @@ body {
 
 #list-index {
   justify-content: center;
-  .col-md-8 {
-    text-align: center;
-    .list-items {
-      list-style: none;
-      padding-left: 0;
-      text-align: center;
-      @include box-rounded;
-      form {
-        height: 2rem;
-        .input-group {
-          width: 100%;
-          height: 100%;
-        }
-        .form-control {
-          border-color: #dcdcdc !important;
+  .list-form {
+    position: relative;
+    .search-link {
+      display: inline-block;
+      margin: 0.5rem 0;
+    }
+    .form-btns {
+      display: inline-block;
+      position: absolute;
+      right: 1rem;
+      bottom: 0.5rem;
+      .img-btn {
+        @include box-rounded;
+        margin-right: 0.5rem;
+        background-color: #D9230F;
+        color: #f5f5f5;
+        &:hover {
+          border-color: #D9230F;
+          background-color: #f5f5f5;
+          color: #D9230F;
         }
       }
-      .list-item {
-        height: 2rem;
+      .submit-btn {
+        @include box-rounded;
+        margin-right: 0.5rem;
+        background-color: green;
+        color: #f5f5f5;
+        &:hover {
+          border-color: green;
+          background-color: #f5f5f5;
+          color: green;
+        }
+      }
+      label {
+        margin-bottom: 0;
+        input {
+          display: none;
+        }
+      }
+      button {
+        input {
+          display: none;
+        }
+      }
+    }
+  }
+  .list-items {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+    .list-item {
+      @include box-rounded;
+      @include box-shadow;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      width: 20rem;
+      height: 30rem;
+      margin: 0 1rem 1rem 1rem;
+      &:hover {
+        opacity: 0.8rem;
+      }
+      .list-img {
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
+      }
+      .list-content {
         border-top: 1px solid #dcdcdc;
-        padding: 0.25rem;
-        position: relative;
-        .list-delete {
-          .delete-btn {
-            height: 100%;
-            position: absolute;
-            right: 1rem;
-            top: 0;
-          }
+        padding: 0.5rem;
+        .list-name .list-profile .list-btns {
+          display: block;
+        }
+        .list-name {
+          font-weight: bold;
+        }
+        .list-profile {
+          font-size: 0.75rem;
+        }
+        .list-btns {
+          position: absolute;
+          right: 0.5rem;
+          bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+/// 楽天検索ページ ///
+#rws-search {
+  justify-content: center;
+  .detail {
+    text-align: center;
+  }
+  .rakuten-search {
+    .form-btn {
+      margin: 0.25rem 0 0.5rem 0;
+    }
+  }
+  .search-results {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+    .search-result {
+      @include box-rounded;
+      @include box-shadow;
+      padding: 0.5rem;
+      position: relative;
+      div {
+        display: inline-block;
+      }
+      img {
+        width: 3rem;
+        height: 3rem;
+        @include img-icon;
+      }
+      .btn-add {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        form {
         }
       }
     }

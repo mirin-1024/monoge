@@ -1,11 +1,32 @@
 <% provide(:title, 'リスト') %>
 <div id="list-index" class="row">
-  <div class="col-md-8">
-    <div class="rakuten-search">
-      <%# 楽天APIでの検索結果を表示 %>
+  <div class="col-md-12">
+    <h2 class="page-title"><%= current_user.name %>さんのモノリスト</h2>
+    <div class="list-form">
+      <%= form_with(model: @list, scope: :list, remote: true, class: "form-group") do |f|  %>
+
+        <%= f.label :content, "商品名" %>
+        <%= f.text_field :content, placeholder: "名前を入力...", class: "text-form form-control" %>
+
+        <%= f.label :profile, "商品の説明" %>
+        <%= f.text_field :profile, placeholder: "説明を入力...", class: "text-form form-control" %>
+
+        <div class="search-link">商品を検索してリストに追加したい方は<%= link_to 'こちら', lists_search_path %></div>
+
+        <%#= 数量タブ %>
+        <div class="form-btns">
+          <%= f.label :image, class: 'img-btn' do %>
+            <i class="btn-icon-form fas fa-image" type="submit"></i>
+            <%= f.file_field :image %>
+          <% end %>
+          <%= f.button class: 'submit-btn' do %>
+            <i class="btn-icon-form fas fa-check" type="submit"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <section class="list-section">
       <%= render 'lists/list_feed' %>
-    </div>
+    </section>
   </div>
 </div>
