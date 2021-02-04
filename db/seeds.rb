@@ -11,15 +11,6 @@ User.create!(name: 'Foo Bar',
              email: 'foobar@example.com',
              password: 'password',
              password_confirmation: 'password',
-             admin: false,
-             activated: true,
-             activated_at: Time.zone.now)
-
-# 管理者ユーザーの作成
-User.create!(name: 'Admin User',
-             email: 'adminuser@example.com',
-             password: 'password',
-             password_confirmation: 'password',
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
@@ -34,9 +25,9 @@ User.create!(name: 'Guest User',
              activated_at: Time.zone.now)
 
 # 追加のユーザーを作成
-99.times do
+10.times do |n|
   name = Faker::Name.name
-  email = Faker::Internet.email
+  email = "monogeuser-#{n}@example.com"
   password = 'password'
   User.create!(name: name,
                email: email,
@@ -49,10 +40,12 @@ end
 
 # ユーザーの一部を対象にマイクロポストを生成する
 users = User.order(:created_at).take(6)
-50.times do
+10.times do
   content = Faker::Lorem.sentence(word_count: 5)
   users.each { |user| user.posts.create!(content: content) }
 end
+
+# ユーザーの一部を対象にリストを作成
 
 # フォロー関係を作成
 users = User.all
