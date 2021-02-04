@@ -5,10 +5,10 @@
     <div class="list-profile"><%= list.profile %></div>
     <div class="list-btns">
       <%= link_to '#', class: 'edit-link', data: { toggle: 'modal', target: "#list-#{list.id}-edit-modal" } do %>
-        <i class="edit-btn far fa-edit"></i>
+        <i class="edit-btn fas fa-edit"></i>
       <% end %>
       <%= link_to list, method: :delete, remote: true, class: 'delete-link' do %>
-        <i class="delete-btn far fa-trash-alt"></i>
+        <i class="delete-btn fas fa-trash-alt"></i>
       <% end %>
     </div>
   </div>

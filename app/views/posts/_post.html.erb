@@ -2,7 +2,7 @@
   <div class="post-top">
     <%= image_tag post.user.image_url(:thumb25) %>
     <%= link_to post.user.name, post.user %>
-    <%= render "likes/like", post: post %>
+    <%= render 'likes/like', post: post %>
   </div>
   <div class="post-content">
     <%= post.content %>
@@ -26,4 +26,4 @@
     </span>
   <div>
 </li>
-<%= render 'shared/image_modal', post: post %>
+<%= render 'shared/image_modal', post: post if post.image? %>

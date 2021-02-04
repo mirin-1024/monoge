@@ -36,12 +36,12 @@ RSpec.describe 'Likes', type: :system do
 
     example '正常にいいねが取り消せる' do
       expect do
-        page.first('.like-btn').click
+        page.first('.unlike-btn').click
       end.to change(Like, :count).by(-1)
     end
 
     example 'いいねの数が減る' do
-      page.first('.like-btn').click
+      page.first('.unlike-btn').click
       expect(other_user.posts.last.likes_count).to eq 0
     end
   end
