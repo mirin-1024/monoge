@@ -4,7 +4,7 @@
     <div class="post-top">
       <%= image_tag @post.user.image_url(:thumb60) %>
       <%= link_to @post.user.name, @post.user %>
-      <%= render "likes/like", post: @post %>
+      <%= render 'likes/like', post: @post %>
     </div>
     <div class="post-content">
       <%= @post.content %>
