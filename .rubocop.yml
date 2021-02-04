@@ -60,6 +60,11 @@ Style/MutableConstant: # FrozenStringLiteralCommentに依存
   Exclude:
     - app/models/user.rb
 
+Style/StringConcatenation:
+  Exclude:
+    - app/uploaders/list_image_uploader.rb
+    - app/uploaders/user_image_uploader.rb
+
 ### rubocop-rails setting
 Bundler/OrderedGems:
   Exclude:
