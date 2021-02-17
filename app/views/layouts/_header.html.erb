@@ -14,9 +14,6 @@
             <%= link_to 'ログイン', login_path, class: "nav-link" %>
           </li>
         <% else %>
-          <li class="nav-item">
-            <%= link_to 'あなたのモノリスト', list_feed_user_path(current_user), class: "nav-link" %>
-          </li>
           <li class="nav-item dropdown">
             <%= link_to('#', class: "nav-link dropdown-toggle", 'data-toggle': :dropdown, 'id': :user_caret) do %>
               ユーザー
@@ -24,7 +21,8 @@
             <% end %>
             <div class="dropdown-menu" aria-labelledby="user_caret">
               <%= link_to "プロフィール", current_user, class: "dropdown-item" %>
-              <%= link_to "設定", edit_user_path(current_user), class: "dropdown-item" %>
+              <%= link_to 'モノリスト', list_feed_user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "アカウント設定", edit_user_path(current_user), class: "dropdown-item" %>
               <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
