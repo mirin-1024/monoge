@@ -9,7 +9,7 @@ RSpec.describe 'Lists', type: :system do
   describe 'リスト項目の作成' do
     before do
       sign_in(user)
-      visit lists_path
+      visit list_feed_user_path(user)
     end
 
     example 'リストが作成される' do
@@ -22,14 +22,14 @@ RSpec.describe 'Lists', type: :system do
     example 'リストページに遷移する' do
       fill_in 'list_content', with: '内容'
       find('.submit-btn').click
-      is_expected.to have_current_path lists_path
+      is_expected.to have_current_path list_feed_user_path(user)
     end
   end
 
   describe 'リスト項目の編集' do
     before do
       sign_in(user)
-      visit lists_path
+      visit list_feed_user_path(user)
       fill_in 'list_content', with: '内容'
       find('.submit-btn').click
       page.first('.edit-btn').click
@@ -49,7 +49,7 @@ RSpec.describe 'Lists', type: :system do
   describe 'リスト項目の削除' do
     before do
       sign_in(user)
-      visit lists_path
+      visit list_feed_user_path(user)
       fill_in 'list_content', with: '内容'
       find('.submit-btn').click
     end
@@ -62,7 +62,7 @@ RSpec.describe 'Lists', type: :system do
 
     example 'リストページに遷移する' do
       find('.delete-link').click
-      is_expected.to have_current_path lists_path
+      is_expected.to have_current_path list_feed_user_path(user)
     end
   end
 end

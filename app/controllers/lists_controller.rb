@@ -8,7 +8,7 @@ class ListsController < ApplicationController
     @list.save
     @lists = current_user.lists
     respond_to do |format|
-      format.html { redirect_to lists_url }
+      format.html { redirect_to list_feed_user_url(current_user) }
       format.js
     end
     @list = nil
@@ -19,19 +19,15 @@ class ListsController < ApplicationController
     return unless @list.update(list_params)
 
     flash[:success] = '編集に成功しました'
-    redirect_to lists_path
+    redirect_to list_feed_user_url(current_user)
   end
 
   def destroy
     @list.destroy
     respond_to do |format|
-      format.html { redirect_to lists_url }
+      format.html { redirect_to list_feed_user_url(current_user) }
       format.js
     end
-  end
-
-  def index
-    @lists = current_user.lists
   end
 
   def search

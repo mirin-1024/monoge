@@ -146,6 +146,10 @@ button {
   }
 }
 
+.list-btn {
+  margin-top: 0.75rem;
+}
+
 
 
 ///* トップページ *///
@@ -188,6 +192,11 @@ button {
 }
 
 //* ログイン時 *//
+#top {
+  .list-btn {
+    margin: 0.5rem 0;
+  }
+}
 
 /* ユーザー情報 */
 .user-info {
@@ -483,7 +492,9 @@ button {
         text-decoration: none;
       }
       .user-icon {
-        @include img-icon;
+        img {
+          @include img-icon;
+        }
       }
       .post-user {
         img {
@@ -599,6 +610,13 @@ button {
           position: absolute;
           right: 0.5rem;
           bottom: 0.5rem;
+          .edit-btn {
+            font-size: 1rem;
+            color: green;
+          }
+          .delete-btn {
+            font-size: 1rem;
+          }
         }
       }
     }
