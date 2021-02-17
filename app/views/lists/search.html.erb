@@ -25,7 +25,7 @@
             </div>
             <div class="product-name"><%= search_result['productName'] %></div>
             <div class="btn-add">
-              <%= form_with model: List.new, scope: :list, local: true do |f| %>
+              <%= form_with model: current_user.lists.build, scope: :list, local: true do |f| %>
                 <%= f.hidden_field :content, value: search_result['productName'] %>
                 <%= f.hidden_field :img_url, value: search_result['mediumImageUrl'] %>
                 <%= f.submit '追加', class: 'form-btn btn btn-outline-primary btn-sm' %>

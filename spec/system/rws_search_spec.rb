@@ -7,7 +7,7 @@ RSpec.describe 'RwsSearch', type: :system do
   let(:list_item) { create(:list_item, user: user) }
 
   describe '楽天APIによる商品検索' do
-    let(:keyword) { '楽天' }
+    let(:keyword) { '富山ブラック' }
 
     before do
       sign_in(user)
@@ -24,7 +24,7 @@ RSpec.describe 'RwsSearch', type: :system do
       before { click_on '追加', match: :first }
 
       example 'モノリストページに遷移する' do
-        is_expected.to have_current_path lists_path
+        is_expected.to have_current_path list_feed_user_path(user)
       end
 
       example '検索した商品がリストに追加される' do
