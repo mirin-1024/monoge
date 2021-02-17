@@ -62,6 +62,13 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def list_feed
+    @user = User.find(params[:id])
+    @list = current_user.lists.build
+    @lists = @user.lists.paginate(page: params[:page])
+    render 'show_lists'
+  end
+
   private
 
     def user_params
