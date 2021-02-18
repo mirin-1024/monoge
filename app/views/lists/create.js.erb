@@ -1,2 +1,5 @@
 $(".list-items").html("<%= escape_javascript(render "lists/list_feed") %>")
 $(".text-form").val('')
+$('#list_image').after('<input type="file" name="list[image]" id="list_image_new">');
+$('#list_image').remove();
+$('#flist_image_new').attr('id','list_image');
