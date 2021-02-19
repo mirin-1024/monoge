@@ -48,6 +48,6 @@ FactoryBot.define do
   # personal trait
   trait :guest do
     name { 'Guest User' }
-    email { 'guest@example.com' }
+    email { Rails.application.credentials.guest[:email] }
   end
 end

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: %i[index edit update destroy following followers]
   before_action :correct_user, only: %i[edit update]
   before_action :admin_user, only: [:destroy]
-  before_action :guest_user, only: [:update]
+  before_action :guest_user, only: %i[edit update]
 
   def new
     @user = User.new
@@ -87,6 +87,8 @@ class UsersController < ApplicationController
     end
 
     def guest_user
-      
+      @user = User.find_by(email: Rails.application.credentials.guest[:email])
+      flash[:danger] = 'ゲストユーザーでは制限されています'
+      redirect_back_or root_url if current_user?(@user)
     end
 end
