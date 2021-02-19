@@ -1,11 +1,11 @@
-<div class="modal fade" id="image-<%= post.id %>-modal"
+<div class="modal fade" id="image-<%= object.id %>-modal"
      role="dialog" aria-labelledby="image-modal-label" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <button type="button" class="close" data-dismiss="modal">
         <span>×</span>
       </button>
-      <%= image_tag(post.image_url) if post.image? %>
+      <%= image_tag(object.image_url) if object.image? %>
     </div>
   </div>
 </div>
