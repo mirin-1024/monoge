@@ -1,5 +1,4 @@
 <li id="list-<%= list.id %>" class="list-item">
-  <%#= image_tag list.image_url, class: 'list-img' %>
   <div class="list-img">
     <%= link_to image_tag(list.image_url), '#', data: { toggle: 'modal', target: "#image-#{ list.id }-modal" } if list.image? %>
   </div>
