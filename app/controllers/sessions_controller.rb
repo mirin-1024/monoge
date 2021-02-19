@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
   end
 
   def guest
-    user = User.find_by(email: 'guest@example.com')
+    user = User.find_by(email: Rails.application.credentials.guest[:email])
     log_in user
     redirect_to root_url
   end

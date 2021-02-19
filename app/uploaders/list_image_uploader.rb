@@ -5,8 +5,6 @@ class ListImageUploader < CarrierWave::Uploader::Base
 
   process resize_to_fill: [500, 500]
 
-  process convert: 'jpg'
-
   # Choose what kind of storage to use for this uploader:
   # storage :file
   # storage :fog

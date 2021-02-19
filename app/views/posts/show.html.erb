@@ -20,4 +20,4 @@
   </section>
   <%= render 'comments/comment' %>
 </div>
-<%= render 'shared/image_modal', post: @post %>
+<%= render 'shared/image_modal', object: @post if @post.image? %>

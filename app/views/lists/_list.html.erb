@@ -1,5 +1,7 @@
 <li id="list-<%= list.id %>" class="list-item">
-  <%= image_tag list.image_url, class: 'list-img' %>
+  <div class="list-img">
+    <%= link_to image_tag(list.image_url), '#', data: { toggle: 'modal', target: "#image-#{ list.id }-modal" } if list.image? %>
+  </div>
   <div class="list-content">
     <div class="list-name"><%= list.content %></div>
     <div class="list-profile"><%= list.profile %></div>
@@ -14,3 +16,4 @@
   </div>
 </li>
 <%= render 'lists/edit_modal', list: list %>
+<%= render 'shared/image_modal', object: list if list.image? %>

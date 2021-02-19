@@ -302,4 +302,25 @@ RSpec.describe 'Users', type: :system do
       end
     end
   end
+
+  describe 'ゲストユーザー' do
+    let!(:guest) { create(:test_user, :guest) }
+
+    before do
+      visit root_path
+      click_on 'ゲストログイン'
+    end
+
+    context '編集ページにアクセスした場合' do
+      before { visit edit_user_path(guest) }
+
+      example '以前いたページに遷移する' do
+        is_expected.to have_current_path root_path
+      end
+
+      example 'エラーメッセージが表示される' do
+        is_expected.to have_selector('.alert-danger', text: 'ゲストユーザーでは制限されています')
+      end
+    end
+  end
 end
