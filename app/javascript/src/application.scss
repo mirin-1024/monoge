@@ -27,6 +27,15 @@ body {
   padding-top: 4.1rem;
 }
 
+///* ヘッダー *///
+.dropdown {
+  img {
+    @include img-icon;
+    margin-right: 0.25rem;
+  }
+}
+
+
 ///* フッター *///
 #footer {
   background-color: #E6E6E6;
