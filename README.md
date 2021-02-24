@@ -48,15 +48,15 @@ https://monoge.net （※ ゲストログインをクリックすることで、
 # 工夫した点
 * 楽天プロダクトAPIを使用し、検索した商品情報をクリックするのみでリストへ追加する機能の実装
 1. ログイン後、アカウント名下の[モノリスト]ボタンをクリックします。
-![rws search description1](https://user-images.githubusercontent.com/63091391/108630311-5d620f00-74a7-11eb-81bb-94461f09aa8c.png)
-2. あなたのモノリストが表示されるので、新規リスト作成フォームの下部にある[こちら]をクリックします。
-![rws search description2](https://user-images.githubusercontent.com/63091391/108630310-5cc97880-74a7-11eb-8814-c0d52dc4432f.png)
+<img width="1440" alt="rws-search-1" src="https://user-images.githubusercontent.com/63091391/109059358-842e7880-7727-11eb-8f65-196389e07763.png">
+2. あなたのモノリストが表示されるので、新規リスト作成フォームの下部にある[楽天プロダクト商品検索]をクリックします。
+<img width="1440" alt="rws-search-2" src="https://user-images.githubusercontent.com/63091391/109059356-8395e200-7727-11eb-9010-fa65e0f7e994.png">
 3. 商品検索ページに遷移するので、リストに追加したい商品の名称をフォームに記入し、[検索]ボタンをクリックします。
-![rws search description3](https://user-images.githubusercontent.com/63091391/108630309-5c30e200-74a7-11eb-9e7e-431ab1b53139.png)
+<img width="1440" alt="rws-search-3" src="https://user-images.githubusercontent.com/63091391/109059355-8395e200-7727-11eb-9b3d-1b9219483379.png">
 4. 検索結果が表示されるので、追加したい商品の右にある[追加]ボタンをクリックします。
-![rws search description4](https://user-images.githubusercontent.com/63091391/108630308-5c30e200-74a7-11eb-84f5-3fb7f4d57329.png)
+<img width="1440" alt="rws-search-4" src="https://user-images.githubusercontent.com/63091391/109059352-82fd4b80-7727-11eb-80bd-ae89dfd5a0e1.png">
 5. モノリストに追加したい商品が追加されました。
-![rws search description5](https://user-images.githubusercontent.com/63091391/108630302-5804c480-74a7-11eb-8fd9-e976f4455682.png)
+<img width="1440" alt="rws-search-5" src="https://user-images.githubusercontent.com/63091391/109059333-7da00100-7727-11eb-8d72-89728782cdb4.png">
 
 * GitHub Issue, Slackを用いた擬似チーム開発
 
@@ -65,7 +65,7 @@ https://monoge.net （※ ゲストログインをクリックすることで、
 * 言語：Ruby 2.7.1
 * フレームワーク：Rails 6.0.3
 ### テスト
-フレームワーク：RSpec(+ Capybara, Factorybot, webdrivers)
+フレームワーク：RSpec(+ Capybara, Factorybot, Webdrivers)
 ## フロントエンド
 * 言語：HTML/CSS, Sass, JavaScript(一部jQuery)
 * フレームワーク：Bootstrap4
@@ -90,3 +90,7 @@ AWS(ECR, ECS, ALB, RDS, S3, Route53, ACM)
 * Amazon Product APIが導入できなかった点
 * レスポンシブ対応が不完全である点
 * SPA化されていない点
+
+【学習期間】
+2020.6~2020.11：コンピュータサイエンス・プログラミングの基礎学習
+2020.11~現在：ポートフォリオ「monoge」の開発
