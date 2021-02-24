@@ -14,18 +14,6 @@
             <%= link_to 'ログイン', login_path, class: "nav-link" %>
           </li>
         <% else %>
-          <li class="nav-item dropdown">
-            <%= link_to('#', class: "nav-link dropdown-toggle", 'data-toggle': :dropdown, 'id': :user_caret) do %>
-              ユーザー
-              <span class="caret"></span>
-            <% end %>
-            <div class="dropdown-menu" aria-labelledby="user_caret">
-              <%= link_to "プロフィール", current_user, class: "dropdown-item" %>
-              <%= link_to 'モノリスト', list_feed_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "アカウント設定", edit_user_path(current_user), class: "dropdown-item" %>
-              <%= link_to "ログアウト", logout_path, method: :delete, class: "dropdown-item" %>
-            </div>
-          </li>
           <div id="search-form" class="d-flex align-items-center">
             <%= form_with(url: search_path, method: :get, class: "form-inline", local: true) do |f| %>
               <%= f.select :model, options_for_select([["ユーザー", "User"], ["投稿", "Post"]]), {}, { class: "custom-select custom-select-sm" } %>
@@ -35,6 +23,21 @@
               <% end %>
             <% end %>
           </div>
+          <li class="nav-item dropdown">
+            <%= link_to('#', class: "nav-link dropdown-toggle", 'data-toggle': :dropdown, 'id': :user_caret) do %>
+              <%= image_tag current_user.image_url(:thumb25) %>
+              <%= current_user.name %>
+              <span class="caret"></span>
+            <% end %>
+            <div class="dropdown-menu" aria-labelledby="user_caret">
+              <%= link_to "プロフィール", current_user, class: "dropdown-item" %>
+              <%= link_to 'モノリスト', list_feed_user_path(current_user), class: "dropdown-item" %>
+              <%= link_to "アカウント設定", edit_user_path(current_user), class: "dropdown-item" %>
+            </div>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <%= link_to "ログアウト", logout_path, method: :delete, class: "nav-link" %>
+          </li>
         <% end %>
       </ul>
     </div>
