@@ -14,7 +14,7 @@ RSpec.describe 'UsersSession', type: :system do
 
         describe 'ログインユーザー専用のヘッダーメニューを表示' do
           example '「ユーザー」項目が表示される' do
-            is_expected.to have_selector('a.dropdown-toggle', text: 'ユーザー')
+            is_expected.to have_selector('a.dropdown-toggle', text: user.name)
           end
 
           example '「ログイン」項目が表示される' do
@@ -89,13 +89,13 @@ RSpec.describe 'UsersSession', type: :system do
   describe 'ユーザーのログアウト' do
     before do
       sign_in(user)
-      find('a.dropdown-toggle', text: 'ユーザー').click
+      find('a.dropdown-toggle', text: user.name).click
       click_link 'ログアウト'
     end
 
     describe '未ログインユーザーのヘッダーメニューを表示' do
-      example '「ユーザー」項目が表示される' do
-        is_expected.to_not have_selector('a.dropdown-toggle', text: 'ユーザー')
+      example '「ユーザー」項目が表示されない' do
+        is_expected.to_not have_selector('a.dropdown-toggle', text: user.name)
       end
 
       example '「ログイン」項目が表示される' do

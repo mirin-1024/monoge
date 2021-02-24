@@ -53,6 +53,7 @@ RSpec.describe 'Lists', type: :system do
         sign_in(other_user)
         visit list_feed_user_path(user)
       end
+
       example '編集ボタンが存在しない' do
         is_expected.to_not have_css('.edit-btn')
       end
